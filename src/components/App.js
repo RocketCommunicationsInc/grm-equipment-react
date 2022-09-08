@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import '@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css';
-import './App.css';
+import '../css/App.scss';
 import { RuxGlobalStatusBar } from '@astrouxds/react';
+import EquipmentContainer from './EquipmentContainer';
 
 function App() {
   return (
@@ -16,7 +16,10 @@ function App() {
         app-state-color=""
         app-state=""
       ></RuxGlobalStatusBar>
-      <rux-button>Button text</rux-button>
+      <main>
+        <nav className="mainMenu">Menu</nav>
+        <EquipmentContainer>Equipment</EquipmentContainer>
+      </main>
     </div>
   );
 }
