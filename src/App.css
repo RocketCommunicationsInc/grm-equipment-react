@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  padding: 1rem 10%;
+  display: flex;
+  justify-content: center;
+}
+rux-tree {
+  width: 15rem;
+}
