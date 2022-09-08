@@ -2,6 +2,10 @@ import {
   RuxClock,
   RuxGlobalStatusBar,
   RuxMonitoringIcon,
+  RuxPopUpMenu,
+  RuxMenuItem,
+  RuxMenuItemDivider,
+  RuxIcon,
 } from '@astrouxds/react';
 
 const GlobalStatusBar = () => {
@@ -12,11 +16,13 @@ const GlobalStatusBar = () => {
         app-domain="GRM"
         app-name="Equipment Manager"
         app-version=""
-        menu-icon="apps"
-        username=""
+        username="J. Smith"
         app-state-color=""
         app-state=""
       >
+        <div slot="left-side">
+          <RuxIcon icon="apps" aria-controls="grm-popup-menu"></RuxIcon>
+        </div>
         <RuxClock />
         <div className="status-indicators" slot="right-side">
           <RuxMonitoringIcon
@@ -49,6 +55,14 @@ const GlobalStatusBar = () => {
           />
         </div>
       </RuxGlobalStatusBar>
+      <RuxPopUpMenu id="grm-popup-menu">
+        <RuxMenuItem>GRM Dashboard</RuxMenuItem>
+        <RuxMenuItem>GRM Equipment Manager</RuxMenuItem>
+        <RuxMenuItem>GRM Schedule</RuxMenuItem>
+        <RuxMenuItemDivider></RuxMenuItemDivider>
+        <RuxMenuItem>Preferences...</RuxMenuItem>
+        <RuxMenuItem>Sign Out...</RuxMenuItem>
+      </RuxPopUpMenu>
     </>
   );
 };
