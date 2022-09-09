@@ -7,6 +7,7 @@ import {
   RuxMenuItemDivider,
   RuxIcon,
 } from '@astrouxds/react';
+import './GlobalStatusBar.scss';
 
 const GlobalStatusBar = () => {
   return (

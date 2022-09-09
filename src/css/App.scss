@@ -1,0 +1,19 @@
+$dark_blue: #1d2f41;
+$blue_grey: rgb(40, 63, 88);
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-menu {
+  flex: 2;
+  background-color: $dark_blue;
+  padding: 15px;
+}
+
+.equipment-container {
+  flex: 10;
+  background-color: $blue_grey;
+  padding: 15px;
+}
