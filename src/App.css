@@ -7,3 +7,7 @@
   margin: 0 auto;
   padding: 0 10px;
 }
+
+rux-monitoring-icon::part(monitoring-badge) {
+  top: 2rem;
+}
