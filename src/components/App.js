@@ -1,7 +1,7 @@
 import '@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css';
 import '../css/App.scss';
 import { RuxGlobalStatusBar } from '@astrouxds/react';
-import EquipmentContainer from './EquipmentContainer';
+import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         app-state=""
       ></RuxGlobalStatusBar>
       <main>
-        <nav className="mainMenu">Menu</nav>
+        <nav className="main-menu">Menu</nav>
         <EquipmentContainer>Equipment</EquipmentContainer>
       </main>
     </div>
