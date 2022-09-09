@@ -8,6 +8,10 @@
   padding: 0 10px;
 }
 
-rux-monitoring-icon::part(monitoring-badge) {
-  top: 2rem;
+rux-global-status-bar {
+  height: 120px;
+}
+
+rux-global-status-bar::part(container) {
+  padding-top: 20px;
 }
