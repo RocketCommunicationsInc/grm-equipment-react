@@ -2,8 +2,8 @@ import EquipmentContainer from '../../src/components/EquipmentContainer/Equipmen
 
 describe('EquipmentContainer.cy.js', () => {
   it('renders', () => {
-    cy.mount(<EquipmentContainer></EquipmentContainer>);
-
-    // cy.get('[data-test="equipment-container"]').should('be.visible');
+    cy.mount(<EquipmentContainer></EquipmentContainer>)
+      .get('[data-test="equipment-container"]')
+      .should('be.visible');
   });
 });
