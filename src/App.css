@@ -38,10 +38,13 @@
 }
 
 .container {
-  padding: 1rem 10%;
   display: flex;
   justify-content: center;
 }
 rux-tree {
   width: 15rem;
+}
+
+rux-status {
+  margin-left: -1rem;
 }
