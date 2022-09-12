@@ -26,6 +26,6 @@ yarn-error.log*
 .vscode
 
 # test data
-cypress/videos/
-cypress/screenshots/
-cypress/downloads/
+cypress/videos
+cypress/screenshots
+cypress/downloads

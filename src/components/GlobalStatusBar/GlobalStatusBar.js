@@ -20,12 +20,14 @@ const GlobalStatusBar = () => {
         username="J. Smith"
         app-state-color=""
         app-state=""
+        data-test="global-status-bar"
       >
         <div slot="left-side">
           <RuxIcon
             className="global-status-menu-icon"
             icon="apps"
             aria-controls="grm-popup-menu"
+            data-test="global-status-menu-btn"
           ></RuxIcon>
         </div>
         <RuxClock />
@@ -60,7 +62,7 @@ const GlobalStatusBar = () => {
           />
         </div>
       </RuxGlobalStatusBar>
-      <RuxPopUpMenu id="grm-popup-menu">
+      <RuxPopUpMenu id="grm-popup-menu" data-test="global-status-menu">
         <RuxMenuItem>GRM Dashboard</RuxMenuItem>
         <RuxMenuItem>GRM Equipment Manager</RuxMenuItem>
         <RuxMenuItem>GRM Schedule</RuxMenuItem>

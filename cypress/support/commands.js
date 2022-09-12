@@ -25,5 +25,10 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import { mount } from 'cypress/react';
+import App from '../../src/components/App';
 
-Cypress.Commands.add('mount', mount);
+Cypress.Commands.add('mount', (component) => {
+  const wrapped = <App>{component}</App>;
+
+  return mount(wrapped);
+});
