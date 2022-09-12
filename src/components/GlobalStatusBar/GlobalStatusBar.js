@@ -22,7 +22,11 @@ const GlobalStatusBar = () => {
         app-state=""
       >
         <div slot="left-side">
-          <RuxIcon icon="apps" aria-controls="grm-popup-menu"></RuxIcon>
+          <RuxIcon
+            className="global-status-menu-icon"
+            icon="apps"
+            aria-controls="grm-popup-menu"
+          ></RuxIcon>
         </div>
         <RuxClock />
         <div className="status-indicators" slot="right-side">
