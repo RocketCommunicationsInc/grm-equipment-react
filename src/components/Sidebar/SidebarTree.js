@@ -4,6 +4,9 @@ import {
   RuxStatus
 } from '@astrouxds/react';
 
+import './Sidebar.css';
+
+
 const SidebarTree = () => {
     
   return (
