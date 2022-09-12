@@ -9,9 +9,6 @@ import {
 } from '@astrouxds/react';
 import './GlobalStatusBar.scss';
 
-import React from 'react';
-
-
 const GlobalStatusBar = () => {
   return (
     <>
