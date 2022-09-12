@@ -2,6 +2,7 @@ import '@astrouxds/astro-web-components/dist/astro-web-components/astro-web-comp
 import '../css/App.scss';
 import GlobalStatusBar from './GlobalStatusBar/GlobalStatusBar';
 import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
+import React from 'react';
 
 function App() {
   return (
