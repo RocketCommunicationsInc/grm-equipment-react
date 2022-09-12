@@ -7,6 +7,7 @@ import {
   RuxStatus,
 } from '@astrouxds/react';
 import './EquipmentContainer.scss';
+import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
 
 const EquipmentContainer = () => {
   return (
@@ -476,7 +477,9 @@ const EquipmentContainer = () => {
             </div>
           </div>
         </RuxTabPanel>
-        <RuxTabPanel aria-labelledby="tab-id-2">Tab 2 HTML content</RuxTabPanel>
+        <RuxTabPanel aria-labelledby="tab-id-2">
+          <EquipmentDetails />
+        </RuxTabPanel>
       </RuxTabPanels>
     </div>
   );
