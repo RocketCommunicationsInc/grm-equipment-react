@@ -1,0 +1,12 @@
+@import '../css/variables';
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-menu {
+  flex: 2;
+  background-color: $dark_blue;
+  padding: 15px;
+}

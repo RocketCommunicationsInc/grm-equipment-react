@@ -1,3 +1,5 @@
+// import './EquipmentContainer.scss';
+
 function EquipmentContainer() {
   return (
     <div className="equipment-container" data-test="equipment-container">
