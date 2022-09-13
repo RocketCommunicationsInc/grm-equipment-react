@@ -1,6 +1,6 @@
-@import 'colors';
+@import '../colors';
 
-.EquipmentContainer {
+.equipment-container {
   padding-bottom: 150px;
 
   ul {
@@ -28,11 +28,11 @@
   }
 }
 
-.EquipmentContainerTabs {
+#equipment-container-tabs {
   height: 40px;
 }
 
-.tabPanels {
+.tab-panels {
   padding-top: 30px;
 }
 
@@ -45,8 +45,9 @@
 
   rux-status {
     position: absolute;
-    top: 30px;
+    top: 15px;
     left: 30px;
+    margin: 0;
   }
 }
 
