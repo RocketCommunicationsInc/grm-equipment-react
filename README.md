@@ -76,4 +76,4 @@ Two ways to test:
 
 - From shell:
 
-  `npm run cy:e2e` or `npm run cy:component` Will go through all the respective tests
+  `npm run cy:unit` or `npm run cy:component` Will go through all the respective tests
