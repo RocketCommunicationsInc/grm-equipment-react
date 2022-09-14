@@ -1,4 +1,4 @@
-@import '../css/variables';
+@import 'colors';
 
 main {
   display: flex;
@@ -8,5 +8,4 @@ main {
 .main-menu {
   flex: 2;
   background-color: $dark_blue;
-  padding: 15px;
 }

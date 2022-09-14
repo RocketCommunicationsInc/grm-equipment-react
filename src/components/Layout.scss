@@ -1,1 +1,7 @@
-@import '../css/variables';
+@import './colors';
+
+$font-stack: 'Roboto';
+
+body {
+  font-family: $font-stack;
+}

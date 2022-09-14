@@ -72,8 +72,8 @@ Two ways to test:
 
   Run the frontend either using `npm run start` or `npm run build & serve -s build`
 
-  Then `npm run cy` To run the visual Cypress tool
+  Then `npm run cy` to run the visual Cypress tool
 
 - From shell:
 
-  `npm run cy:unit` or `npm run cy:component` Will go through all the respective tests
+  `npm run test` will go through all the respective tests
