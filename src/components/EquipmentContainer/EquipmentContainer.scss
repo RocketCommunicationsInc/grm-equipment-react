@@ -1,0 +1,60 @@
+@import '../colors';
+
+.equipment-container {
+  padding-bottom: 150px;
+
+  ul {
+    padding-left: 0;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  li {
+    list-style: none;
+    justify-content: space-evenly;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  rux-tabs {
+    height: 40px;
+  }
+
+  h2, h3 {
+    background-color: $darkest_blue;
+    padding: 20px;
+    margin-top: 0;
+  }
+}
+
+#equipment-container-tabs {
+  height: 40px;
+}
+
+.tab-panels {
+  padding-top: 30px;
+}
+
+.tab-inoperable {
+  background-color: $dark_blue;
+}
+
+.equipment-inoperable {
+  padding: 20px;
+
+  rux-status {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    margin: 0;
+  }
+}
+
+.critical {
+  color: $critical;
+}
+
+.serious {
+  color: $serious;
+}
