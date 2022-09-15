@@ -7,7 +7,7 @@ import { getTaxonomy } from '../../services/equipment';
 
 import './Sidebar.scss';
 
-var sidebarObjects = getTaxonomy();
+let sidebarObjects = getTaxonomy();
 
 const SidebarTree = () => {
     
