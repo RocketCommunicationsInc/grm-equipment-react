@@ -140,3 +140,46 @@
   flex-grow: 1;
   overflow-y: scroll;
 }
+
+.alert-bin-header {
+  display: flex;
+  flex: none;
+  flex-flow: row nowrap;
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  background: rgba(113, 189, 255, 0.03);
+}
+
+.alert-summary {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+.alert-count {
+  font-size: 2.75rem;
+  line-height: 2.6rem;
+  font-weight: 600;
+}
+
+.alert-filters {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: flex-end;
+}
+
+.alert-filter {
+  margin: 0 0.5rem;
+}
+
+.alert-filter label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.alert-filter .rux-select {
+  padding-right: 2rem;
+  line-height: 1.5rem;
+}
