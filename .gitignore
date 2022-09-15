@@ -24,3 +24,8 @@ yarn-error.log*
 
 # VSCode workspace settings
 .vscode
+
+# test data
+cypress/videos
+cypress/screenshots
+cypress/downloads

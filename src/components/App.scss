@@ -1,9 +1,4 @@
 @import 'colors';
-$font-stack: "Roboto";
-
-body {
-  font-family: $font-stack;
-}
 
 main {
   display: flex;
@@ -13,10 +8,4 @@ main {
 .main-menu {
   flex: 2;
   background-color: $dark_blue;
-}
-
-.equipment-container {
-  flex: 10;
-  background-color: $blue_grey;
-  padding: 15px;
 }

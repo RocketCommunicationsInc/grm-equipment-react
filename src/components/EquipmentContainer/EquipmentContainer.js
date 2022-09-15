@@ -10,7 +10,7 @@ import './EquipmentContainer.scss';
 
 const EquipmentContainer = () => {
   return (
-    <div className="equipment-container">
+    <div className="equipment-container" data-test="equipment-container">
       <RuxTabs id="equipment-container-tabs" small>
         <RuxTab id="tab-inoperable">Inoperable</RuxTab>
         <RuxTab id="tab-id-2">Test</RuxTab>
