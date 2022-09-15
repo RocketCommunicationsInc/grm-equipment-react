@@ -1,4 +1,4 @@
-import GlobalStatusBar from '../../src/components/GlobalStatusBar/GlobalStatusBar';
+import GlobalStatusBar from './GlobalStatusBar';
 
 describe('EquipmentContainer.cy.js', () => {
   it('renders', () => {

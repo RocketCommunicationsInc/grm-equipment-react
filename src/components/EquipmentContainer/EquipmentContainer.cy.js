@@ -1,4 +1,4 @@
-import EquipmentContainer from '../../src/components/EquipmentContainer/EquipmentContainer';
+import EquipmentContainer from './EquipmentContainer';
 
 describe('EquipmentContainer.cy.js', () => {
   it('renders', () => {

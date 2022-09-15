@@ -1,4 +1,4 @@
-import { randInt, loremIpsum } from '../../../src/util/util';
+import { randInt, loremIpsum } from './util';
 
 describe('Unit test util.js', function () {
   before(() => {
