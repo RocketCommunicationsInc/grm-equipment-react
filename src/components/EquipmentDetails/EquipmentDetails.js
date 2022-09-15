@@ -1,5 +1,7 @@
 import './EquipmentDetails.scss';
 import EquipmentHeader from './EquipmentHeader';
+import EquipmentAlerts from './EquipmentAlerts';
+import EquipmentContacts from './EquipmentContacts';
 
 const EquipmentDetails = () => {
   return (
@@ -8,20 +10,8 @@ const EquipmentDetails = () => {
         <div className="grid-zone__label">Equipment Details</div>
         <div className="grid-zone__content equipment-details-grid">
           <EquipmentHeader equipmentNumber={1247} status="critical" />
-
-          <div className="grid-zone grid-zone--equipment-alerts grid-zone--fixed">
-            <div className="grid-zone__label">Alerts</div>
-            <div className="grid-zone__content">
-              <grm-alerts log="{{alertsLog}}"></grm-alerts>
-            </div>
-          </div>
-
-          <div className="grid-zone grid-zone--equipment-contacts grid-zone--fixed">
-            <div className="grid-zone__label">Current Contacts</div>
-            <div className="grid-zone__content">
-              <current-contacts log="[[contactsLog]]"></current-contacts>
-            </div>
-          </div>
+          <EquipmentAlerts />
+          <EquipmentContacts />
         </div>
       </div>
     </>
