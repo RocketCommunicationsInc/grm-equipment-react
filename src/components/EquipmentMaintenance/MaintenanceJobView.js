@@ -28,30 +28,30 @@ const MaintenanceJobView = () => {
 
               return (
                 <div class="job-card">
-							<h3 class="job-card__id">Job ID {job.id}</h3>
-							<h4 class="job-card__progress">{mapJobProgress(job.progressStep)}</h4>
-							<div class="job-card__meta">
-								<label class="job-card__meta__label">Job Type</label>
-								<div class="job-card__meta__value">{mapJobType(job.type)}</div>
-							</div>
-							<div class="job-card__meta">
-								<label class="job-card__meta__label">Year</label>
-								<div class="job-card__meta__value">{formatYear(job.startTime)}</div>
-							</div>
-							<div class="job-card__meta">
-								<label class="job-card__meta__label">DOY</label>
-								<div class="job-card__meta__value">{formatDayOfYear(job.endTime)}</div>
-							</div>
-							<div class="job-card__meta">
-								<label class="job-card__meta__label">Start</label>
-								<div class="job-card__meta__value">{formatReadableTime(job.startTime)}</div>
-							</div>
-							<div class="job-card__meta">
-								<label class="job-card__meta__label">Stop</label>
-								<div class="job-card__meta__value">{formatReadableTime(job.endTime)}</div>
-							</div>
-							<RuxButton class="rux-button" on-click="viewJobDetails">View Details</RuxButton>
-						</div>
+									<h3 class="job-card__id">Job ID {job.id}</h3>
+									<h4 class="job-card__progress">{mapJobProgress(job.progressStep)}</h4>
+									<div class="job-card__meta">
+										<label class="job-card__meta__label">Job Type</label>
+										<div class="job-card__meta__value">{mapJobType(job.type)}</div>
+									</div>
+									<div class="job-card__meta">
+										<label class="job-card__meta__label">Year</label>
+										<div class="job-card__meta__value">{formatYear(job.startTime)}</div>
+									</div>
+									<div class="job-card__meta">
+										<label class="job-card__meta__label">DOY</label>
+										<div class="job-card__meta__value">{formatDayOfYear(job.endTime)}</div>
+									</div>
+									<div class="job-card__meta">
+										<label class="job-card__meta__label">Start</label>
+										<div class="job-card__meta__value">{formatReadableTime(job.startTime)}</div>
+									</div>
+									<div class="job-card__meta">
+										<label class="job-card__meta__label">Stop</label>
+										<div class="job-card__meta__value">{formatReadableTime(job.endTime)}</div>
+									</div>
+									<RuxButton class="rux-button" on-click="viewJobDetails">View Details</RuxButton>
+								</div>
               );
             }) : ''}
             
