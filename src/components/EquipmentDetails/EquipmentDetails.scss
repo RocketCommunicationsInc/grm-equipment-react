@@ -6,7 +6,7 @@
 .grid-zone__label {
   flex: none;
   background: rgba(20, 31, 44, 0.5);
-  padding: 10px 15px;
+  padding: 0.625rem 0.9375rem;
   color: white;
   font-size: 1.35rem;
   font-weight: 300;
@@ -80,7 +80,7 @@
 }
 
 .equipment-name {
-  padding: 10px 15px;
+  padding: 0.625rem 0.9375rem;
   color: white;
   font-size: 1.35rem;
   font-weight: 300;
@@ -129,13 +129,13 @@
 }
 
 .equipment-header__detail__label {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #989898;
   margin-bottom: 0.5rem;
 }
 .equipment-header__detail__content {
   background: #1d2f41;
-  font-size: 14px;
+  font-size: 0.875rem;
   padding: 0.5rem;
   flex-grow: 1;
   overflow-y: scroll;
@@ -230,7 +230,7 @@
 
 .alert-log__events {
   height: 100%;
-  min-height: 0px;
+  min-height: 0;
   overflow-y: scroll;
   overflow-x: hidden;
 }
