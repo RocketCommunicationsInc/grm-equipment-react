@@ -77,7 +77,8 @@ const EquipmentHeader = ({ equipmentNumber, status }) => {
                     label: 'Offline',
                   },
                 ]}
-              ></RuxSegmentedButton>
+                data-test="online-offline"
+              />
               <RuxSegmentedButton
                 className="rux-segmented-button"
                 data={[
@@ -89,7 +90,8 @@ const EquipmentHeader = ({ equipmentNumber, status }) => {
                     label: 'Deconsidered',
                   },
                 ]}
-              ></RuxSegmentedButton>
+                data-test="considered-deconsidered"
+              />
             </div>
             <div className="equipment-header__detail equipment-header__detail--equipment-description">
               <div className="equipment-header__detail__label">Description</div>
