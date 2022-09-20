@@ -1,11 +1,5 @@
-/* 
-	CSS 
-	=================================================
-	For use with component specific CSS styles here
-	Keep in mind special component specific style elements like:
-		:host https://developer.mozilla.org/en-US/docs/Web/CSS/:host()
-		::slotted https://developer.mozilla.org/en-US/docs/Web/CSS/::slotted
-*/
+@import '../colors';
+
 :host {
 	overflow-y: auto;
 	padding-right: .5rem;
@@ -76,6 +70,7 @@
 	grid-gap: 1.5rem; 
 	margin-left: 1.5rem;
 }
+
 .job-card {
 	background: rgba(113, 189, 255, 0.1);
 	padding: 1rem 1.5rem;
