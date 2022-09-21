@@ -24,11 +24,15 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import Layout from '../../src/components/Layout';
 
 Cypress.Commands.add('mount', (component) => {
   const wrapped = <Layout>{component}</Layout>;
 
   return mount(wrapped);
+});
+
+Cypress.Commands.add('getByData', (dataSelector) => {
+  return cy.get(`[data-test=${dataSelector}]`);
 });
