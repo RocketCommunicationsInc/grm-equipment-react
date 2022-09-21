@@ -6,6 +6,7 @@ module.exports = defineConfig({
       framework: 'create-react-app',
       bundler: 'webpack',
     },
+    includeShadowDom: true,
   },
 
   e2e: {

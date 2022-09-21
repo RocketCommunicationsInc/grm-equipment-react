@@ -8,6 +8,7 @@ import {
 } from '@astrouxds/react';
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
+import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
 
 const EquipmentContainer = () => {
   return (
@@ -478,6 +479,7 @@ const EquipmentContainer = () => {
           </div>
         </RuxTabPanel>
         <RuxTabPanel aria-labelledby="tab-id-2">
+          <EquipmentDetails />
           <EquipmentMaintenance />
         </RuxTabPanel>
       </RuxTabPanels>

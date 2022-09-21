@@ -70,8 +70,6 @@ Two ways to test:
 
 - Visually:
 
-  Run the frontend either using `npm run start` or `npm run build & serve -s build`
-
   Then `npm run cy` to run the visual Cypress tool
 
 - From shell:
