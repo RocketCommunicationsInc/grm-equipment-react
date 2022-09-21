@@ -6,7 +6,6 @@ export function loremIpsum() {
   return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis dolor efficitur nisl sagittis, rutrum ornare mauris consectetur. Nunc at sem quam. Etiam dolor mauris, dictum sed condimentum sit amet, interdum eget dolor. Nullam quis fringilla ex, non scelerisque mauris. Phasellus aliquam ligula sapien, et vulputate lorem mollis vitae.';
 }
 
-
 export function formatReadableTime(timestamp) {
   // assumes timestamp is a UTC Epoch
   const time = new Date(timestamp);
@@ -19,16 +18,13 @@ export function formatReadableTime(timestamp) {
   });
 }
 
-
 export function formatDayOfYear(timestamp) {
   const time = new Date(timestamp);
 
   function zeroFill(number, width) {
     width -= number.toString().length;
     if (width > 0) {
-      return (
-        new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number
-      );
+      return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
     }
     return number + ''; // always return a string
   }
@@ -43,15 +39,13 @@ export function formatDayOfYear(timestamp) {
   return zeroFill(doy, 3);
 }
 
-
 export function formatYear(timestamp) {
   const time = new Date(timestamp);
   return time.getUTCFullYear();
 }
 
-
-export function mapJobType(int) {
-  switch (int) {
+export function mapJobType(jobType) {
+  switch (jobType) {
     case 1:
       return 'PMR 1';
     case 2:
@@ -67,8 +61,8 @@ export function mapJobType(int) {
   }
 }
 
-export function mapJobProgress(int) {
-  switch (int) {
+export function mapJobProgress(jobProgress) {
+  switch (jobProgress) {
     case 2:
       return 'Approved';
     case 3:
