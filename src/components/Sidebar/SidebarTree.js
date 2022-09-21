@@ -1,11 +1,10 @@
 import { RuxTree, RuxTreeNode, RuxStatus } from '@astrouxds/react';
-import { getTaxonomy } from '../../services/equipment';
 
 import './Sidebar.scss';
 
-let sidebarObjects = getTaxonomy();
+const SidebarTree = (props) => {
+  let sidebarObjects = props.sidebarObjects;
 
-const SidebarTree = () => {
   return (
     <>
       <RuxTree>
