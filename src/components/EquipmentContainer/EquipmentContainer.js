@@ -13,13 +13,18 @@ const EquipmentContainer = () => {
   return (
     <div className="equipment-container" data-test="equipment-container">
       <RuxTabs id="equipment-container-tabs" small>
-        <RuxTab id="tab-inoperable">Inoperable</RuxTab>
-        <RuxTab id="tab-id-2">Test</RuxTab>
+        <RuxTab id="tab-inoperable" data-test="tab-inoperable">
+          Inoperable
+        </RuxTab>
+        <RuxTab id="tab-id-2" data-test="tab-id-2">
+          Test
+        </RuxTab>
       </RuxTabs>
       <RuxTabPanels className="tab-panels" aria-labelledby="tab-set-id-1">
         <RuxTabPanel
           className="tab-inoperable"
           aria-labelledby="tab-inoperable"
+          data-test="panel-inoperable"
         >
           <h2>Inoperable Equipment</h2>
           <div className="equipment-inoperable">
@@ -477,7 +482,7 @@ const EquipmentContainer = () => {
             </div>
           </div>
         </RuxTabPanel>
-        <RuxTabPanel aria-labelledby="tab-id-2">
+        <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
           <EquipmentDetails />
         </RuxTabPanel>
       </RuxTabPanels>
