@@ -34,6 +34,22 @@ const EquipmentContacts = () => {
               </div>
             </div>
           </div>
+          <div class="contact-log">
+            <header class="contact-log-header">
+              <div class="contact-log__header-labels">
+                <div class="contact-log__event__status"></div>
+                <div class="contact-log__event__name">Name</div>
+                <div class="contact-log__event__ground">GS</div>
+                <div class="contact-log__event__equipment">
+                  Equipment String
+                </div>
+                <div class="contact-log__event__state">Status</div>
+                <div class="contact-log__event__timestamp">AOS &ndash; LOS</div>
+              </div>
+            </header>
+
+            <ol class="contact-log__events"></ol>
+          </div>
         </div>
       </div>
     </>

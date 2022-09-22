@@ -47,3 +47,153 @@
   padding-right: 2rem;
   line-height: 1.5rem;
 }
+
+.contact-log {
+  display: flex;
+  flex-flow: column;
+  font-size: 0.9rem;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.contact-log-header {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25); /* perhaps just when scroll isn't at top? */
+}
+
+.contact-log__header-labels {
+  display: flex;
+  flex-grow: 1;
+  color: var(--logHeaderTextColor, rgb(169, 178, 188));
+  font-weight: bold;
+  flex-shrink: 0;
+  align-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.0625);
+  border-width: 1px 0;
+}
+
+.contact-log__events {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: rgb(26, 40, 56);
+  height: 100%;
+  min-height: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.contact-log__header-labels .contact-log__event__select {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: var(--colorSecondary, rgb(77, 172, 255));
+  cursor: pointer;
+}
+
+.contact-log__event {
+  display: flex;
+  align-content: flex-start;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+}
+
+.contact-log__event:last-child {
+  border-bottom: none;
+}
+
+.contact-log__event__status {
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-align: center;
+  width: 2rem;
+  overflow: hidden;
+  text-align: center;
+  align-self: center;
+}
+
+.contact-log__event__name,
+.contact-log__event__ground,
+.contact-log__event__equipment,
+.contact-log__event__state,
+.contact-log__event__timestamp {
+  flex: 0 0 20%;
+  text-align: left;
+  padding: 0 0.7rem;
+  align-self: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-log__event__name {
+  flex: 1 1 3rem;
+}
+.contact-log__event__ground {
+  flex: 1 1 2rem;
+}
+.contact-log__event__equipment {
+  flex: 6 6 7rem;
+}
+.contact-log__event__state {
+  flex: 4 5 7rem;
+}
+.contact-log__event__timestamp {
+  flex: 0 0 11rem;
+}
+
+.contact-log__filter-enabled {
+  flex-grow: 1;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-content: center;
+  background-color: var(--colorPrimaryDarken1, rgb(0, 68, 107));
+  color: var(--colorPrimaryLighten3, rgb(211, 234, 255));
+  padding: 0.5rem;
+  text-align: center;
+  width: 100%;
+}
+.contact-log__filter-enabled a {
+  color: var(--white, rgb(255, 255, 255));
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.contact-log__no-items {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-content: center;
+  background-color: rgb(20, 31, 44);
+  padding: 1.5rem;
+  text-align: center;
+}
+.contact-log__no-items .rux-button {
+  margin: 1rem auto 0;
+}
+
+.contact-log__actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-top: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+  box-shadow: 0 -0.5rem 1.25rem rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  margin-top: auto;
+}
+.contact-log__actions .rux-button {
+  margin: 0.25rem;
+  min-width: 5rem;
+}
