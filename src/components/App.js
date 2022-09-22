@@ -4,7 +4,7 @@ import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
 import SidebarTree from './Sidebar/SidebarTree';
 import { getTaxonomy } from '../services/equipment';
 
-let sidebarObjects = getTaxonomy();
+let data = getTaxonomy();
 
 function App() {
   return (
@@ -12,9 +12,9 @@ function App() {
       <GlobalStatusBar />
       <main>
         <nav className="main-menu">
-          <SidebarTree sidebarObjects={sidebarObjects} />
+          <SidebarTree sidebarObjects={data} />
         </nav>
-        <EquipmentContainer>Equipment</EquipmentContainer>
+        <EquipmentContainer data={data}>Equipment</EquipmentContainer>
       </main>
     </>
   );

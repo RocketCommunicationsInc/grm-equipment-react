@@ -10,7 +10,26 @@ import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
 
-const EquipmentContainer = () => {
+const EquipmentContainer = (props) => {
+  // configure data to flat lists
+  let equipmentData = props.data;
+  let formattedData = [];
+
+  for (const category of equipmentData) {
+    let equipObject = {};
+    equipObject.label = category.label;
+    equipObject.children = [];
+
+    for (const categoryChildren of category.children) {
+      for (const equipment of categoryChildren.children) {
+        equipObject.children.push(equipment);
+      }
+    }
+
+    formattedData.push(equipObject);
+  }
+  console.log(formattedData);
+
   return (
     <div className="equipment-container" data-test="equipment-container">
       <RuxTabs id="equipment-container-tabs" small>
