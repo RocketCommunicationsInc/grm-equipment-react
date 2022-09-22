@@ -1,7 +1,6 @@
 @import '../colors';
 
 .equipment-container {
-  padding-bottom: 150px;
   overflow: hidden;
 
   ul {
@@ -43,7 +42,7 @@
 }
 
 .equipment-inoperable {
-  padding: 20px;
+  padding: 20px 20px 150px;
 
   rux-status {
     position: absolute;
