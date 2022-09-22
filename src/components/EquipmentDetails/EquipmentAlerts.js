@@ -1,4 +1,5 @@
 import { RuxCheckbox, RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
+import './EquipmentAlerts.scss';
 
 const Alert = ({ selected, status, message, category, timestamp }) => {
   return (
