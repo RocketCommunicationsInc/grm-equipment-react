@@ -9,6 +9,7 @@ import {
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
+import EquipmentIcon from './EquipmentIcon/EquipmentIcon';
 
 const EquipmentContainer = () => {
   return (
@@ -32,14 +33,13 @@ const EquipmentContainer = () => {
             <div className="equipment-comms">
               <h3>Comms (16)</h3>
               <ul>
+                {/* {for loop here} */}
                 <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 1247</p>
+                  <EquipmentIcon
+                    type="antenna-receive"
+                    status="critical"
+                    label="Equipment 782"
+                  />
                 </li>
                 <li>
                   <RuxStatus status="serious"></RuxStatus>

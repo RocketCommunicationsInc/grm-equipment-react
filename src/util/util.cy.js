@@ -13,7 +13,7 @@ describe('Unit test util.js', function () {
     });
 
     it('gives a random integer', function () {
-      expect(Number.isInteger(randInt(10))).to.eq(true);
+      expect(Number.isInteger(randInt(0, 10))).to.eq(true);
     });
   });
 

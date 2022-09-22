@@ -1,9 +1,30 @@
-export function randInt(max, min = 0) {
+export function randInt(min, max) {
   return Math.floor(Math.random() * max) + min;
 }
 
 export function loremIpsum() {
   return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis dolor efficitur nisl sagittis, rutrum ornare mauris consectetur. Nunc at sem quam. Etiam dolor mauris, dictum sed condimentum sit amet, interdum eget dolor. Nullam quis fringilla ex, non scelerisque mauris. Phasellus aliquam ligula sapien, et vulputate lorem mollis vitae.';
+}
+
+const decimals = new Map();
+let attemptsLeft = false;
+export function uniqueInt(digits) {
+  if (attemptsLeft === 'false') {
+    attemptsLeft = digits * 10;
+  }
+
+  let num = randInt(digits * 10, (digits + 1) * 10 - 1);
+  decimals.set(num, true);
+  attemptsLeft--;
+
+  if (attemptsLeft <= 0) {
+    return false;
+  } else if (decimals.get(num)) {
+    return uniqueInt(digits);
+  }
+
+  attemptsLeft = false;
+  return num;
 }
 
 export function formatReadableTime(timestamp) {

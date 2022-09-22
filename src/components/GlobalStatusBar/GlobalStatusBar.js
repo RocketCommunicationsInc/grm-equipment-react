@@ -8,8 +8,19 @@ import {
   RuxIcon,
 } from '@astrouxds/react';
 import './GlobalStatusBar.scss';
+import { getAll } from '../../services/log';
+import { useEffect, useState } from 'react';
 
 const GlobalStatusBar = () => {
+  const [data, setData] = useState(getAll());
+
+  useEffect(() => {
+    const dataInterval = setInterval(() => {
+      setData(getAll());
+    }, 5000);
+    return () => clearInterval(dataInterval);
+  }, []);
+
   return (
     <>
       <RuxGlobalStatusBar
@@ -36,29 +47,29 @@ const GlobalStatusBar = () => {
             className="status-indicators__indicator"
             icon="antenna"
             label="RF"
-            status="critical"
-            notifications={23}
+            status={data.rfStatus.worstStatus}
+            notifications={data.rfStatus.numMessages}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="processor-alt"
             label="Digital"
-            status="serious"
-            notifications={42}
+            status={data.digitalStatus.worstStatus}
+            notifications={data.digitalStatus.numMessages}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-transmit"
             label="Comms"
-            status="caution"
-            notifications={11}
+            status={data.commsStatus.worstStatus}
+            notifications={data.commsStatus.numMessages}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-receive"
             label="Facilities"
-            status="normal"
-            notifications={2}
+            status={data.facilitiesStatus.worstStatus}
+            notifications={data.facilitiesStatus.numMessages}
           />
         </div>
       </RuxGlobalStatusBar>
