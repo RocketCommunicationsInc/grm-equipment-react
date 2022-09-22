@@ -1,0 +1,49 @@
+.contact-bin-header {
+  display: flex;
+  flex: none;
+  flex-flow: row nowrap;
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  background: rgba(113, 189, 255, 0.03);
+}
+
+.contact-summary {
+  flex: 0 1 8rem;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+
+.contact-summary--failed {
+  color: var(--colorSerious, rgb(255, 176, 0));
+}
+
+.contact-count {
+  font-size: 2.75rem;
+  line-height: 2.6rem;
+  font-weight: 600;
+}
+
+.contact-filters {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  padding-right: 1rem;
+}
+
+.contact-filter {
+  margin: 0 0.5rem;
+}
+
+.contact-filter label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.contact-filter .rux-select {
+  padding-right: 2rem;
+  line-height: 1.5rem;
+}
