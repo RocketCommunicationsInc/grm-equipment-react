@@ -31,7 +31,7 @@ const EquipmentContainer = () => {
           <div className="equipment-inoperable">
             <div className="equipment-comms">
               <h3>Comms (16)</h3>
-              <ul>
+              <ul className="equipment-list">
                 <li>
                   <RuxStatus status="critical"></RuxStatus>
                   <RuxIcon
@@ -180,7 +180,7 @@ const EquipmentContainer = () => {
             </div>
             <div className="equipment-digital">
               <h3>Digital (12)</h3>
-              <ul>
+              <ul className="equipment-list">
                 <li>
                   <RuxStatus status="serious"></RuxStatus>
                   <RuxIcon
@@ -293,7 +293,7 @@ const EquipmentContainer = () => {
             </div>
             <div className="equipment-facilities">
               <h3>Facilities (12)</h3>
-              <ul>
+              <ul className="equipment-list">
                 <li>
                   <RuxStatus status="critical"></RuxStatus>
                   <RuxIcon
@@ -406,7 +406,7 @@ const EquipmentContainer = () => {
             </div>
             <div className="equipment-rf">
               <h3>RF (8)</h3>
-              <ul>
+              <ul className="equipment-list">
                 <li>
                   <RuxStatus status="critical"></RuxStatus>
                   <RuxIcon
