@@ -1,4 +1,5 @@
 import { RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
+import { formatReadableTime } from '../../util/util';
 import './EquipmentContacts.scss';
 
 const Contact = ({
@@ -33,9 +34,9 @@ const Contact = ({
           {state} (Step: {step})
         </div>
         <div className="contact-log__event__timestamp">
-          <span>{begin}</span>
+          <span>{formatReadableTime(begin)}</span>
           &ndash;
-          <span>{end}</span>
+          <span>{formatReadableTime(end)}</span>
         </div>
       </li>
     </>
