@@ -3,8 +3,7 @@ import {
   RuxTab,
   RuxTabPanels,
   RuxTabPanel,
-  RuxIcon,
-  RuxStatus,
+  RuxMonitoringIcon,
 } from '@astrouxds/react';
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
@@ -62,13 +61,12 @@ const EquipmentContainer = (props) => {
                         {equipmentList.children.map((equipment, index) => {
                           return (
                             <li key={equipment.id}>
-                              <RuxStatus status={equipment.status}></RuxStatus>
-                              <RuxIcon
+                              <RuxMonitoringIcon
                                 icon={equipmentList.icon}
                                 className={equipment.status}
-                                size="large"
-                              ></RuxIcon>
-                              <p>{equipment.label}</p>
+                                status={equipment.status}
+                                label={equipment.label}
+                              ></RuxMonitoringIcon>
                             </li>
                           );
                         })}
