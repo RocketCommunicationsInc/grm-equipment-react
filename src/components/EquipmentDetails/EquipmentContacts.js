@@ -1,5 +1,5 @@
 import { RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
-import { formatReadableTime } from '../../util/util';
+import { formatReadableTime, loremIpsum } from '../../util/util';
 import './EquipmentContacts.scss';
 
 const Contact = ({
@@ -51,8 +51,7 @@ const contactLogs = [
     contactEquipment: 'ANT43 VAFB1 SFEP227CH1 ECEU6 WS402 USP177',
     contactState: 'executing',
     contactStep: 'Downlink',
-    contactDetail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    contactDetail: loremIpsum(),
     contactBeginTimestamp: 1571086435343,
     contactEndTimestamp: 1571088368326,
     expanded: false,
@@ -64,8 +63,7 @@ const contactLogs = [
     contactEquipment: 'ANT74 BAFB1 SFEP299CH1 ECEU6 WS305 USP451',
     contactState: 'failed',
     contactStep: 'AOS',
-    contactDetail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    contactDetail: loremIpsum(),
     contactBeginTimestamp: 1571088235343,
     contactEndTimestamp: 1571088398326,
     expanded: false,
@@ -77,8 +75,7 @@ const contactLogs = [
     contactEquipment: 'ANT73 PAFB1 SFEP149CH1 ECEU6 WS167 USP182',
     contactState: 'executing',
     contactStep: 'Uplink',
-    contactDetail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    contactDetail: loremIpsum(),
     contactBeginTimestamp: 1571088635343,
     contactEndTimestamp: 1571088768326,
     expanded: false,
@@ -90,8 +87,7 @@ const contactLogs = [
     contactEquipment: 'ANT52 SAFB1 SFEP374CH1 ECEU6 WS481 USP342',
     contactState: 'executing',
     contactStep: 'Downlink',
-    contactDetail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    contactDetail: loremIpsum(),
     contactBeginTimestamp: 1571085435343,
     contactEndTimestamp: 1571089368326,
     expanded: false,
