@@ -1,6 +1,6 @@
 import { RuxLog, RuxSegmentedButton, RuxStatus } from '@astrouxds/react';
 import { loremIpsum } from '../../util/util';
-import './EquipmentDetails.scss';
+import './EquipmentHeader.scss';
 
 const eventData = [
   {
