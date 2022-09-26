@@ -40,7 +40,7 @@
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
-  overflow: hidden;
+  overflow-y: scroll;
   background: rgb(24, 38, 53);
 }
 .equipment-header__detail--equipment-states .rux-segmented-button {
