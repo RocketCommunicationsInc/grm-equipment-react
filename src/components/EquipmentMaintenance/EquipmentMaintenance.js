@@ -2,11 +2,7 @@ import './EquipmentMaintenance.scss';
 import MaintenanceJobView from './MaintenanceJobView';
 
 const EquipmentMaintenance = () => {
-  return (
-    <>
-      <MaintenanceJobView />
-    </>
-  );
+  return <></>;
 };
 
 export default EquipmentMaintenance;

@@ -10,16 +10,14 @@ import {
 import './GlobalStatusBar.scss';
 import { getAll } from '../../services/log';
 import { useEffect, useState } from 'react';
+import { calcCategoryStatus, getCategoryAlerts } from '../../services/data';
 
-const GlobalStatusBar = () => {
-  const [data, setData] = useState(getAll());
+const GlobalStatusBar = ({ data }) => {
+  // const [data, setData] = useState(getAll());
 
-  useEffect(() => {
-    const dataInterval = setInterval(() => {
-      setData(getAll());
-    }, 5000);
-    return () => clearInterval(dataInterval);
-  }, []);
+  // useEffect(() => {
+
+  // }, [data]);
 
   return (
     <>
@@ -47,29 +45,29 @@ const GlobalStatusBar = () => {
             className="status-indicators__indicator"
             icon="antenna"
             label="RF"
-            status={data.rfStatus.worstStatus}
-            notifications={data.rfStatus.numMessages}
+            status={calcCategoryStatus(data[3])}
+            notifications={getCategoryAlerts(data[3]).length}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="processor-alt"
             label="Digital"
-            status={data.digitalStatus.worstStatus}
-            notifications={data.digitalStatus.numMessages}
+            status={calcCategoryStatus(data[2])}
+            notifications={getCategoryAlerts(data[2]).length}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-transmit"
             label="Comms"
-            status={data.commsStatus.worstStatus}
-            notifications={data.commsStatus.numMessages}
+            status={calcCategoryStatus(data[1])}
+            notifications={getCategoryAlerts(data[1]).length}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-receive"
             label="Facilities"
-            status={data.facilitiesStatus.worstStatus}
-            notifications={data.facilitiesStatus.numMessages}
+            status={calcCategoryStatus(data[0])}
+            notifications={getCategoryAlerts(data[0]).length}
           />
         </div>
       </RuxGlobalStatusBar>

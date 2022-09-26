@@ -2,25 +2,28 @@ import './App.scss';
 import GlobalStatusBar from './GlobalStatusBar/GlobalStatusBar';
 import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
 import SidebarTree from './Sidebar/SidebarTree';
-import { createDataObject, mainData } from '../services/data';
+import { createDataObject, getCategoryAlerts, mainData } from '../services/data';
 import { useEffect, useState } from 'react';
 function App() {
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
+  const [data, setData] = useState(mainData);
 
   // const data = createDataObject();
 
-  // useEffect(() => {
-  //   if (!data) {
-  //     setData(createDataObject());
-  //   } else {
-  //     setData;
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    setData(data);
+  }, [data]);
+
+  setInterval(() => {
+    console.log(getCategoryAlerts(data[0]).length);
+  }, 5000);
+
+  // console.log(data);
 
   return (
     <>
-      <p>{data ? data.foo : 'nothing'}</p>
-      <GlobalStatusBar />
+      <p>{data ? getCategoryAlerts(data[0]).length : 'nothing'}</p>
+      <GlobalStatusBar data={data} />
       <main>
         <nav className="main-menu">
           <SidebarTree data={mainData} />

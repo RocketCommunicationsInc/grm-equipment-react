@@ -1,30 +1,9 @@
 export function randInt(min, max) {
-  return Math.floor(Math.random() * max) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export function loremIpsum() {
   return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis dolor efficitur nisl sagittis, rutrum ornare mauris consectetur. Nunc at sem quam. Etiam dolor mauris, dictum sed condimentum sit amet, interdum eget dolor. Nullam quis fringilla ex, non scelerisque mauris. Phasellus aliquam ligula sapien, et vulputate lorem mollis vitae.';
-}
-
-const decimals = new Map();
-let attemptsLeft = false;
-export function uniqueInt(digits) {
-  if (attemptsLeft === 'false') {
-    attemptsLeft = digits * 10;
-  }
-
-  let num = randInt(digits * 10, (digits + 1) * 10 - 1);
-  decimals.set(num, true);
-  attemptsLeft--;
-
-  if (attemptsLeft <= 0) {
-    return false;
-  } else if (decimals.get(num)) {
-    return uniqueInt(digits);
-  }
-
-  attemptsLeft = false;
-  return num;
 }
 
 export function formatReadableTime(timestamp) {
@@ -51,8 +30,7 @@ export function formatDayOfYear(timestamp) {
   }
 
   const doy =
-    (Date.UTC(time.getFullYear(), time.getMonth(), time.getDate()) -
-      Date.UTC(time.getFullYear(), 0, 0)) /
+    (Date.UTC(time.getFullYear(), time.getMonth(), time.getDate()) - Date.UTC(time.getFullYear(), 0, 0)) /
     24 /
     60 /
     60 /
@@ -95,4 +73,67 @@ export function mapJobProgress(jobProgress) {
     default:
       return 'Submitted'; // also 1
   }
+}
+
+const decimals = new Map();
+let attemptsLeft = false;
+export function uniqueInt(digits) {
+  digits = parseInt(digits);
+  const min = Math.pow(10, digits - 1);
+  const max = Math.pow(10, digits) - 1;
+  const num = randInt(digits === 1 ? 0 : min, max);
+
+  return num;
+  /*
+  if (attemptsLeft === false) {
+    attemptsLeft = digits * 10;
+  }
+  console.log('b4', attemptsLeft);
+
+  let num = randInt(digits * 10, (digits + 1) * 10 - 1);
+  decimals.set(num, true);
+  attemptsLeft--;
+
+  console.log('af', attemptsLeft);
+
+  if (attemptsLeft <= 0) {
+    return false;
+  } else if (decimals.get(num)) {
+    return uniqueInt(digits);
+  }
+
+  attemptsLeft = false;
+  return num;
+  */
+}
+
+export function shuffleArray(array) {
+  let counter = array.length;
+
+  // While there are elements in the array
+  while (counter > 0) {
+    // Pick a random index
+    let index = Math.floor(Math.random() * counter);
+
+    // Decrease counter by 1
+    counter--;
+
+    // And swap the last element with it
+    let temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+  }
+
+  return array;
+}
+
+export function getWorstStatus(statuses) {
+  const statusSeverity = ['normal', 'serious', 'caution', 'critical'];
+  let worstStatus = statusSeverity[0];
+
+  statuses.forEach((status) => {
+    worstStatus = statusSeverity.indexOf(status) > statusSeverity.indexOf(worstStatus) ? status : worstStatus;
+  });
+
+  return worstStatus;
 }

@@ -1,10 +1,11 @@
-import { randInt, loremIpsum } from './util';
+import { randInt, loremIpsum, uniqueInt, getWorstStatus, shuffleArray } from './util';
 
-describe('Unit test util.js', function () {
+describe.only('Unit test util.js', function () {
   before(() => {
     // check if the import worked correctly
     expect(randInt, 'randInt').to.be.a('function');
     expect(loremIpsum, 'loremIpsum').to.be.a('function');
+    expect(getWorstStatus, 'getWorstStatus').to.be.a('function');
   });
 
   context('randInt', function () {
@@ -20,6 +21,30 @@ describe('Unit test util.js', function () {
   context('loremIpsum', function () {
     it('returns a string', function () {
       expect(loremIpsum()).to.be.a('string');
+    });
+  });
+
+  context('uniqueInt', function () {
+    it('returns one digit', function () {
+      let length = 1;
+      let int = uniqueInt(length);
+
+      expect(int).to.be.a('number');
+      expect(int.toString().length).to.eq(length);
+    });
+
+    it('returns five digits', function () {
+      let length = 2;
+      let int = uniqueInt(length);
+
+      expect(int.toString().length).to.eq(length);
+    });
+  });
+
+  context('getWorstStatus', function () {
+    it('returns the most severe status', function () {
+      const shuffled = shuffleArray(['serious', 'normal', 'critical', 'caution']);
+      expect(getWorstStatus(shuffled)).to.eq('critical');
     });
   });
 });

@@ -1,4 +1,6 @@
-import { loremIpsum } from '../util/util';
+import { loremIpsum, uniqueInt, randInt } from '../util/util';
+import { genAlert, genAlerts } from './alerts';
+import { getWorstStatus } from '../util/util';
 
 export function getTaxonomy() {
   return [
@@ -451,4 +453,53 @@ export function getOne() {
       },
     ],
   };
+}
+
+export function genManyEquipment(num, eqPrefix, numDigits) {
+  const equipment = [];
+
+  for (let i = 0; i < num; i++) {
+    equipment.push(genEquipment(eqPrefix, numDigits));
+  }
+
+  return equipment;
+}
+
+export function genEquipment(prefix, numDigits) {
+  const eNum = uniqueInt(numDigits);
+
+  const equipment = {
+    id: `${prefix}${eNum}`,
+    label: `${prefix} ${eNum}`,
+    status: 'normal',
+    events: [],
+    alerts: genAlerts(randInt(2, 5), this),
+    contacts: [],
+    jobs: [
+      {
+        id: '0001',
+      },
+    ],
+  };
+
+  genFutureAlert(equipment, 1000, 60000);
+
+  return equipment;
+}
+
+function genFutureAlert(equipment, minTime, maxTime) {
+  setTimeout(() => {
+    equipment.alerts.push(genAlert());
+    calcEquipmentStatus(equipment);
+    // console.log(equipment);
+    genFutureAlert(equipment, minTime, maxTime);
+  }, randInt(minTime, maxTime));
+}
+
+export function calcEquipmentStatus(equipment) {
+  const statuses = equipment.alerts.map((alert) => alert.errorSeverity);
+
+  equipment.status = getWorstStatus(statuses);
+
+  return equipment;
 }
