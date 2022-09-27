@@ -1,11 +1,34 @@
-import { RuxCheckbox, RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
+import { useState } from 'react';
+import classNames from 'classnames';
+import {
+  RuxButton,
+  RuxCheckbox,
+  RuxOption,
+  RuxSelect,
+  RuxStatus,
+} from '@astrouxds/react';
 import { formatReadableTime } from '../../util/util';
 import './EquipmentAlerts.scss';
 
-const Alert = ({ selected, status, message, category, timestamp }) => {
+const Alert = ({
+  selected,
+  expanded,
+  status,
+  message,
+  category,
+  timestamp,
+  details,
+}) => {
+  const [expand, setExpand] = useState(expanded);
   return (
     <>
-      <li className="alert-log__event alert-log--collapsed">
+      <li
+        className={classNames('alert-log__event', {
+          'alert-log--collapsed': !expand,
+          'alert-log--expanded': expand,
+        })}
+        onClick={() => setExpand(!expand)}
+      >
         <div className="alert-log__event__select">
           <RuxCheckbox className="rux-checkbox" checked={selected} />
         </div>
@@ -19,7 +42,7 @@ const Alert = ({ selected, status, message, category, timestamp }) => {
         </div>
       </li>
       <div className="alert-log__detail">
-        <div></div>
+        <div>{details}</div>
       </div>
     </>
   );
@@ -221,14 +244,34 @@ const EquipmentAlerts = () => {
                   <Alert
                     key={alert.errorId}
                     selected={alert.selected}
+                    expanded={alert.expanded}
                     status={alert.errorSeverity}
                     message={alert.errorMessage}
                     category={alert.errorCategory}
                     timestamp={alert.errorTime}
+                    details={alert.longMessage}
                   />
                 );
               })}
             </ol>
+            <div className="alert-log__actions">
+              <RuxButton
+                className="rux-button"
+                onClick={() => {
+                  alert('This feature is not implemented, yet.');
+                }}
+              >
+                Dismiss
+              </RuxButton>
+              <RuxButton
+                className="rux-button"
+                onClick={() => {
+                  alert('This feature is not implemented, yet.');
+                }}
+              >
+                Acknowledge
+              </RuxButton>
+            </div>
           </div>
         </div>
       </div>
