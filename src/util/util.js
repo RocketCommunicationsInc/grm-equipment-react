@@ -44,6 +44,11 @@ export function formatYear(timestamp) {
   return time.getUTCFullYear();
 }
 
+export function capitalize(val) {
+  if (!val) return;
+  return val.charAt(0).toUpperCase() + val.substring(1);
+}
+
 export function mapJobType(jobType) {
   switch (jobType) {
     case 1:

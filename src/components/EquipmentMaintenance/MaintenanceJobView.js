@@ -13,7 +13,7 @@ const maintenanceObject = getOne();
 const maintenanceJobs = maintenanceObject.maintenanceJobs;
 const maintenanceLog = maintenanceObject.maintenanceLog;
 
-const MaintenanceJobView = () => {
+const MaintenanceJobView = (props) => {
   return (
     <>
       <div className="grid-zone-wrap">
@@ -24,7 +24,14 @@ const MaintenanceJobView = () => {
 
             <div className="grid-zone__content maintenance-jobs">
               <div className="maintenance-jobs__actions">
-                <RuxButton className="rux-button">Schedule Job</RuxButton>
+                <RuxButton
+                  className="rux-button"
+                  onClick={(event) => {
+                    props.changeView('scheduleJob');
+                  }}
+                >
+                  Schedule Job
+                </RuxButton>
               </div>
               <div className="maintenance-jobs__list">
                 {maintenanceJobs &&
@@ -69,7 +76,10 @@ const MaintenanceJobView = () => {
                         </div>
                         <RuxButton
                           className="rux-button"
-                          on-click="viewJobDetails"
+                          onClick={(event) => {
+                            props.changeView('viewJobDetails');
+                            props.setCurrentJob(job);
+                          }}
                         >
                           View Details
                         </RuxButton>

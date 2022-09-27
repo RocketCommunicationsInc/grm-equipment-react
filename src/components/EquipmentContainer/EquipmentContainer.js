@@ -10,7 +10,7 @@ import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
 
-const EquipmentContainer = () => {
+const EquipmentContainer = (props) => {
   return (
     <div className="equipment-container" data-test="equipment-container">
       <RuxTabs id="equipment-container-tabs" small>
@@ -485,7 +485,10 @@ const EquipmentContainer = () => {
         </RuxTabPanel>
         <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
           <EquipmentDetails />
-          <EquipmentMaintenance />
+          <EquipmentMaintenance
+            changeView={props.changeView}
+            setCurrentJob={props.setCurrentJob}
+          />
         </RuxTabPanel>
       </RuxTabPanels>
     </div>
