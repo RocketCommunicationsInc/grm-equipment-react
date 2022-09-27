@@ -101,7 +101,7 @@ const EquipmentHeader = ({ equipmentNumber, status }) => {
             </div>
             <div className="equipment-header__detail equipment-header__detail--equipment-event-log">
               <div className="equipment-header__detail__label">Event Log</div>
-              <RuxLog data={eventData}></RuxLog>
+              <RuxLog className="rux-log" data={eventData}></RuxLog>
             </div>
           </div>
         </div>
