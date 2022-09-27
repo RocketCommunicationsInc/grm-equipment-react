@@ -1,0 +1,277 @@
+.contact-bin-header {
+  display: flex;
+  flex: none;
+  flex-flow: row nowrap;
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  background: rgba(113, 189, 255, 0.03);
+}
+
+.contact-summary {
+  flex: 0 1 8rem;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+
+.contact-summary--failed {
+  color: var(--colorSerious, rgb(255, 176, 0));
+}
+
+.contact-count {
+  font-size: 2.75rem;
+  line-height: 2.6rem;
+  font-weight: 600;
+}
+
+.contact-filters {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  padding-right: 1rem;
+}
+
+.contact-filter {
+  margin: 0 0.5rem;
+}
+
+.contact-filter label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.contact-filter .rux-select {
+  padding-right: 2rem;
+  line-height: 1.5rem;
+}
+
+.contact-log {
+  display: flex;
+  flex-flow: column;
+  font-size: 0.9rem;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.contact-log-header {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25); /* perhaps just when scroll isn't at top? */
+}
+
+.contact-log__header-labels {
+  display: flex;
+  flex-grow: 1;
+  color: var(--logHeaderTextColor, rgb(169, 178, 188));
+  font-weight: bold;
+  flex-shrink: 0;
+  align-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.0625);
+  border-width: 1px 0;
+}
+
+.contact-log__events {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: rgb(26, 40, 56);
+  height: 100%;
+  min-height: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.contact-log__header-labels .contact-log__event__select {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: var(--colorSecondary, rgb(77, 172, 255));
+  cursor: pointer;
+}
+
+.contact-log__event {
+  display: flex;
+  align-content: flex-start;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+}
+
+.contact-log__event:last-child {
+  border-bottom: none;
+}
+
+.contact-log__event__status {
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-align: center;
+  width: 2rem;
+  overflow: hidden;
+  text-align: center;
+  align-self: center;
+
+  rux-status {
+    margin-left: 0;
+  }
+}
+
+.contact-log__event__name,
+.contact-log__event__ground,
+.contact-log__event__equipment,
+.contact-log__event__state,
+.contact-log__event__timestamp {
+  flex: 0 0 20%;
+  text-align: left;
+  padding: 0 0.7rem;
+  align-self: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-log__event__name {
+  flex: 1 1 3rem;
+}
+.contact-log__event__ground {
+  flex: 1 1 2rem;
+}
+.contact-log__event__equipment {
+  flex: 6 6 7rem;
+}
+.contact-log__event__state {
+  flex: 4 5 7rem;
+  text-transform: capitalize;
+}
+.contact-log__event__timestamp {
+  flex: 0 0 11rem;
+}
+
+.contact-log__filter-enabled {
+  flex-grow: 1;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-content: center;
+  background-color: var(--colorPrimaryDarken1, rgb(0, 68, 107));
+  color: var(--colorPrimaryLighten3, rgb(211, 234, 255));
+  padding: 0.5rem;
+  text-align: center;
+  width: 100%;
+}
+.contact-log__filter-enabled a {
+  color: var(--white, rgb(255, 255, 255));
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.contact-log__no-items {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-content: center;
+  background-color: rgb(20, 31, 44);
+  padding: 1.5rem;
+  text-align: center;
+}
+.contact-log__no-items .rux-button {
+  margin: 1rem auto 0;
+}
+
+.contact-log__actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-top: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+  box-shadow: 0 -0.5rem 1.25rem rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  margin-top: auto;
+}
+.contact-log__actions .rux-button {
+  margin: 0.25rem;
+  min-width: 5rem;
+}
+
+@keyframes appearInList {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.contact-log__event {
+  display: flex;
+  align-content: flex-start;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding: 0.5rem;
+  background: #1d2f41;
+  border-bottom: 2px solid rgba(12, 21, 29, 0.5);
+  transition: background 0.5s;
+  width: 100%;
+  cursor: pointer;
+}
+.contact-log__event.animation-active {
+  animation: appearInList 0.5s ease-in-out;
+  background: var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+}
+.contact-log__event:hover {
+  background: rgb(40, 63, 88);
+}
+
+.contact-log__event__state--serious {
+  font-weight: bold;
+  color: var(--colorSerious, rgb(255, 176, 0));
+}
+// Included for completeness.  Probably won't be used.
+// .contact-log__event__state--normal {
+// }
+
+.contact-log__detail {
+  overflow: hidden;
+  padding: 0 1rem 0 2.5rem;
+  height: 0;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+  background: rgba(20, 32, 44, 0.5);
+}
+
+.contact-log__event.contact-log--expanded {
+  background: var(--colorTertiary, rgb(40, 63, 88));
+}
+
+.contact-log--expanded + .contact-log__detail {
+  height: auto;
+  padding: 2rem 1rem 2rem 2.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.contact-log__detail__text {
+  flex: 8 auto;
+  padding-right: 1rem;
+}
+.contact-log__detail__command-mode {
+  flex: auto;
+}
+.contact-log__detail__command-mode label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.contact-log__detail__command-mode .rux-select {
+  padding-right: 2rem;
+  line-height: 1.5rem;
+}
