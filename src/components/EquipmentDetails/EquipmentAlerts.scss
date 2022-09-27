@@ -97,7 +97,7 @@
   align-content: flex-start;
   flex-shrink: 0;
   align-items: flex-start;
-  padding: 0.5rem !important;
+  padding: 0.5rem;
   border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
 }
 
@@ -195,4 +195,104 @@
 .alert-log__actions .rux-button {
   margin: 0.25rem;
   min-width: 5rem;
+}
+
+@keyframes appearInList {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.alert-log__event {
+  display: flex;
+  align-content: flex-start;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding: 0.25rem 0.5rem;
+  background: #1d2f41;
+  border-bottom: 2px solid rgba(12, 21, 29, 0.5);
+  cursor: pointer;
+}
+
+.alert-log__event.animation-active {
+  animation: appearInList 0.5s ease-in-out;
+  background: var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+}
+
+.alert-log__event:hover {
+  background: rgb(40, 63, 88);
+}
+
+.alert-log__event__select {
+  flex: 0 0 2rem;
+  text-align: center;
+  overflow: hidden;
+  text-align: center;
+  align-self: center;
+}
+
+.alert-log__event__select .rux-checkbox {
+  display: inline-flex;
+  margin: 0.25rem;
+  width: 1.4rem;
+  cursor: pointer;
+}
+
+.alert-log__event__status {
+  flex: 0 0 2rem;
+  padding-left: 0.5rem;
+  overflow: hidden;
+  text-align: center;
+  align-self: center;
+
+  rux-status {
+    margin-left: 0;
+  }
+}
+
+.alert-log__event__message {
+  flex: 1 0 8rem;
+  text-align: left;
+  padding: 0 0.7rem;
+  align-self: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.alert-log__event__category {
+  flex: 0 1 5rem;
+  text-align: left;
+  align-self: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.alert-log__event__timestamp {
+  flex-shrink: 0;
+  text-align: left;
+  width: 4.5rem;
+  padding-left: 0.7rem;
+  align-self: center;
+}
+
+.alert-log__detail {
+  overflow: hidden;
+  padding: 0 1rem 0 2.5rem;
+  height: 0;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+  background: rgba(20, 32, 44, 0.5);
+}
+
+.alert-log__event.alert-log--expanded {
+  background: var(--colorTertiary, rgb(40, 63, 88));
+}
+
+.alert-log--expanded + .alert-log__detail {
+  height: auto;
+  padding: 2rem 1rem 2rem 2.5rem;
 }

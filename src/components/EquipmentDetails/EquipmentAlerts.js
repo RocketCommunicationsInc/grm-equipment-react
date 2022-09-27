@@ -221,7 +221,7 @@ const EquipmentAlerts = () => {
                   <Alert
                     key={alert.errorId}
                     selected={alert.selected}
-                    status={alert.errorCategory}
+                    status={alert.errorSeverity}
                     message={alert.errorMessage}
                     category={alert.errorCategory}
                     timestamp={alert.errorTime}
