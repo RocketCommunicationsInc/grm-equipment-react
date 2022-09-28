@@ -48,7 +48,7 @@ const EquipmentContainer = (props) => {
           <div className="equipment-inoperable">
             {formattedData.length > 0 ? (
               <div>
-                {formattedData.map((equipmentList, index) => {
+                {formattedData.map((equipmentList) => {
                   return (
                     <div
                       key={equipmentList.label}
@@ -58,7 +58,7 @@ const EquipmentContainer = (props) => {
                         {equipmentList.label} ({equipmentList.children.length})
                       </h3>
                       <ul className="equipment-list">
-                        {equipmentList.children.map((equipment, index) => {
+                        {equipmentList.children.map((equipment) => {
                           return (
                             <li key={equipment.id}>
                               <RuxMonitoringIcon
@@ -66,7 +66,7 @@ const EquipmentContainer = (props) => {
                                 className={equipment.status}
                                 status={equipment.status}
                                 label={equipment.id}
-                              ></RuxMonitoringIcon>
+                              />
                             </li>
                           );
                         })}
