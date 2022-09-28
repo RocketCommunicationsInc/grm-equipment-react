@@ -1,35 +1,65 @@
 import './App.scss';
+import { RuxButton } from '@astrouxds/react';
 import GlobalStatusBar from './GlobalStatusBar/GlobalStatusBar';
 import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
 import SidebarTree from './Sidebar/SidebarTree';
 import { createDataObject, getCategoryAlerts, mainData } from '../services/data';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
+import { DataContext } from '../DataContext';
+
 function App() {
-  // const [data, setData] = useState(null);
-  const [data, setData] = useState(mainData);
+  // const [data, setData] = useState(mainData);
+  let [num, setNum] = useState(0);
 
-  // const data = createDataObject();
+  // const [timestamp, setTimestamp] = useState(Date.now());
+  // useEffect(() => {
+  //   let interval = setInterval(() => {
+  //     setTimestamp(Date.now());
+  //   }, 1000);
+  //   setData(data); // is this needed?
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [timestamp, data]);
 
-  useEffect(() => {
-    setData(data);
-  }, [data]);
+  function changeNum() {
+    setNum((num += 1));
+  }
 
-  setInterval(() => {
-    console.log(getCategoryAlerts(data[0]).length);
-  }, 5000);
+  function setNumState() {
+    console.log('setNumState');
+  }
 
-  // console.log(data);
+  const [dataContext, setDataContext] = useState({
+    data: mainData,
+    setData: customSetDataContext,
+  });
+
+  function customSetDataContext() {
+    console.log('customSetDataContext', getCategoryAlerts(dataContext.data[3]).length);
+    setDataContext((oldContext) => ({
+      data: oldContext.data,
+      setData: oldContext.setData,
+    }));
+  }
 
   return (
     <>
-      <p>{data ? getCategoryAlerts(data[0]).length : 'nothing'}</p>
-      <GlobalStatusBar data={data} />
-      <main>
-        <nav className="main-menu">
-          <SidebarTree data={mainData} />
-        </nav>
-        <EquipmentContainer data={mainData}>Equipment</EquipmentContainer>
-      </main>
+      <DataContext.Provider value={dataContext}>
+        {/* <p>{data ? getCategoryAlerts(data.categories[3]).length : 'nothing'}</p> */}
+
+        <RuxButton className="rux-button" onClick={changeNum}>
+          Parent
+        </RuxButton>
+        <p>{num}</p>
+        <GlobalStatusBar />
+        {/* <main>
+          <nav className="main-menu">
+            <SidebarTree data={data.categories} />
+          </nav>
+          <EquipmentContainer data={data.categories}>Equipment</EquipmentContainer>
+        </main> */}
+      </DataContext.Provider>
     </>
   );
 }

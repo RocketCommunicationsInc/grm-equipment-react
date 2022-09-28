@@ -6,21 +6,37 @@ import {
   RuxMenuItem,
   RuxMenuItemDivider,
   RuxIcon,
+  RuxButton,
 } from '@astrouxds/react';
 import './GlobalStatusBar.scss';
 import { getAll } from '../../services/log';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { calcCategoryStatus, getCategoryAlerts } from '../../services/data';
+import { DataContext } from '../../DataContext';
 
-const GlobalStatusBar = ({ data }) => {
+const GlobalStatusBar = ({ data, num }) => {
   // const [data, setData] = useState(getAll());
+  const dataContext = useContext(DataContext);
+
+  console.log(dataContext);
 
   // useEffect(() => {
 
   // }, [data]);
 
+  function changeNum() {
+    console.log(num);
+    num++;
+  }
+
+  console.log(data);
+
   return (
     <>
+      <RuxButton className="rux-button" onClick={dataContext.setData}>
+        Child
+      </RuxButton>
+      <p>{num}</p>
       <RuxGlobalStatusBar
         include-icon="true"
         app-domain="GRM"
@@ -45,10 +61,10 @@ const GlobalStatusBar = ({ data }) => {
             className="status-indicators__indicator"
             icon="antenna"
             label="RF"
-            status={calcCategoryStatus(data[3])}
-            notifications={getCategoryAlerts(data[3]).length}
+            status={calcCategoryStatus(dataContext.data[3])}
+            notifications={getCategoryAlerts(dataContext.data[3]).length}
           />
-          <RuxMonitoringIcon
+          {/* <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="processor-alt"
             label="Digital"
@@ -68,7 +84,7 @@ const GlobalStatusBar = ({ data }) => {
             label="Facilities"
             status={calcCategoryStatus(data[0])}
             notifications={getCategoryAlerts(data[0]).length}
-          />
+          /> */}
         </div>
       </RuxGlobalStatusBar>
       <RuxPopUpMenu id="grm-popup-menu" data-test="global-status-menu">
