@@ -1,6 +1,6 @@
 import { RuxLog, RuxSegmentedButton, RuxStatus } from '@astrouxds/react';
 import { loremIpsum } from '../../util/util';
-import './EquipmentDetails.scss';
+import './EquipmentHeader.scss';
 
 const eventData = [
   {
@@ -101,7 +101,7 @@ const EquipmentHeader = ({ equipmentNumber, status }) => {
             </div>
             <div className="equipment-header__detail equipment-header__detail--equipment-event-log">
               <div className="equipment-header__detail__label">Event Log</div>
-              <RuxLog data={eventData}></RuxLog>
+              <RuxLog className="rux-log" data={eventData}></RuxLog>
             </div>
           </div>
         </div>
