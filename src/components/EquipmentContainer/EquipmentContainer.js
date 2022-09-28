@@ -65,7 +65,7 @@ const EquipmentContainer = (props) => {
                                 icon={equipmentList.icon}
                                 className={equipment.status}
                                 status={equipment.status}
-                                label={equipment.label}
+                                label={equipment.id}
                               ></RuxMonitoringIcon>
                             </li>
                           );
