@@ -1,5 +1,6 @@
 import { RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
-import { formatReadableTime, loremIpsum } from '../../util/util';
+import { getAll } from '../../services/contacts';
+import { formatReadableTime } from '../../util/util';
 import './EquipmentContacts.scss';
 
 const Contact = ({
@@ -43,56 +44,7 @@ const Contact = ({
   );
 };
 
-const contactLogs = [
-  {
-    contactId: '80e5654b-df70-5a9c-85dd-75541a7cafae',
-    contactName: '22683',
-    contactGround: 'HTS',
-    contactEquipment: 'ANT43 VAFB1 SFEP227CH1 ECEU6 WS402 USP177',
-    contactState: 'executing',
-    contactStep: 'Downlink',
-    contactDetail: loremIpsum(),
-    contactBeginTimestamp: 1571086435343,
-    contactEndTimestamp: 1571088368326,
-    expanded: false,
-  },
-  {
-    contactId: '40e5654b-df70-5a9c-85dd-75541a7cafae',
-    contactName: '68112',
-    contactGround: 'VTS',
-    contactEquipment: 'ANT74 BAFB1 SFEP299CH1 ECEU6 WS305 USP451',
-    contactState: 'failed',
-    contactStep: 'AOS',
-    contactDetail: loremIpsum(),
-    contactBeginTimestamp: 1571088235343,
-    contactEndTimestamp: 1571088398326,
-    expanded: false,
-  },
-  {
-    contactId: '70e5654b-df70-5a9c-85dd-75541a7cafae',
-    contactName: '16834',
-    contactGround: 'DGS',
-    contactEquipment: 'ANT73 PAFB1 SFEP149CH1 ECEU6 WS167 USP182',
-    contactState: 'executing',
-    contactStep: 'Uplink',
-    contactDetail: loremIpsum(),
-    contactBeginTimestamp: 1571088635343,
-    contactEndTimestamp: 1571088768326,
-    expanded: false,
-  },
-  {
-    contactId: '00e5654b-df70-5a9c-85dd-75541a7cafae',
-    contactName: '62346',
-    contactGround: 'TCS',
-    contactEquipment: 'ANT52 SAFB1 SFEP374CH1 ECEU6 WS481 USP342',
-    contactState: 'executing',
-    contactStep: 'Downlink',
-    contactDetail: loremIpsum(),
-    contactBeginTimestamp: 1571085435343,
-    contactEndTimestamp: 1571089368326,
-    expanded: false,
-  },
-];
+const contacts = getAll() || [];
 
 const EquipmentContacts = () => {
   return (
@@ -102,13 +54,28 @@ const EquipmentContacts = () => {
         <div className="grid-zone__content">
           <div className="contact-bin-header">
             <div className="contact-summary contact-summary--all">
-              <span className="contact-count"> 4 </span> Contacts
+              <span className="contact-count">{contacts.length}</span>
+              Contacts
             </div>
             <div className="contact-summary contact-summary--failed">
-              <span className="contact-count"> 1 </span> Failed
+              <span className="contact-count">
+                {
+                  contacts.filter(
+                    (contact) => contact.contactState === 'failed'
+                  ).length
+                }
+              </span>
+              Failed
             </div>
             <div className="contact-summary contact-summary--executing">
-              <span className="contact-count"> 3 </span> Executing
+              <span className="contact-count">
+                {
+                  contacts.filter(
+                    (contact) => contact.contactState === 'executing'
+                  ).length
+                }
+              </span>
+              Executing
             </div>
             <div className="contact-filters">
               <div className="contact-filter">
@@ -144,7 +111,7 @@ const EquipmentContacts = () => {
             </header>
 
             <ol className="contact-log__events">
-              {contactLogs.map((log) => {
+              {contacts.map((log) => {
                 return (
                   <Contact
                     key={log.contactId}
