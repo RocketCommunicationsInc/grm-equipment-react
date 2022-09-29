@@ -2,20 +2,36 @@ import './App.scss';
 import GlobalStatusBar from './GlobalStatusBar/GlobalStatusBar';
 import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
 import SidebarTree from './Sidebar/SidebarTree';
-import { getTaxonomy } from '../services/equipment';
-
-let sidebarObjects = getTaxonomy();
+import { useState } from 'react';
+import { DataContext } from '../DataContext';
+import { mainData } from '../services/data';
 
 function App() {
+  const [dataContext, setDataContext] = useState({
+    data: mainData,
+    notifiyUpdate: customNotifiyUpdate,
+  });
+
+  function customNotifiyUpdate() {
+    setDataContext((oldContext) => ({
+      data: oldContext.data,
+      notifiyUpdate: oldContext.notifiyUpdate,
+    }));
+  }
+
+  mainData.notifiyUpdate = customNotifiyUpdate;
+
   return (
     <>
-      <GlobalStatusBar />
-      <main>
-        <nav className="main-menu">
-          <SidebarTree sidebarObjects={sidebarObjects} />
-        </nav>
-        <EquipmentContainer>Equipment</EquipmentContainer>
-      </main>
+      <DataContext.Provider value={dataContext}>
+        <GlobalStatusBar />
+        <main>
+          <nav className="main-menu">
+            <SidebarTree />
+          </nav>
+          <EquipmentContainer>Equipment</EquipmentContainer>
+        </main>
+      </DataContext.Provider>
     </>
   );
 }

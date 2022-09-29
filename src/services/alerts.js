@@ -142,3 +142,22 @@ export function getAll() {
 export function getOne() {
   return alerts[randInt(0, alerts.length - 1)];
 }
+
+export function genAlerts(num) {
+  let alerts = [];
+  for (let i = 0; i < num; i++) {
+    alerts.push(genAlert());
+  }
+  return alerts;
+}
+
+var uniqueAlertId;
+export function genAlert() {
+  if (!uniqueAlertId) {
+    uniqueAlertId = 1;
+  }
+
+  const alert = getOne();
+  alert.errorId = uniqueAlertId++;
+  return alert;
+}

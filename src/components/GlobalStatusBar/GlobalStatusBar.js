@@ -8,8 +8,13 @@ import {
   RuxIcon,
 } from '@astrouxds/react';
 import './GlobalStatusBar.scss';
+import { useContext } from 'react';
+import { calcCategoryStatus, getCategoryAlerts } from '../../services/data';
+import { DataContext } from '../../DataContext';
 
 const GlobalStatusBar = () => {
+  const dataContext = useContext(DataContext);
+
   return (
     <>
       <RuxGlobalStatusBar
@@ -36,29 +41,37 @@ const GlobalStatusBar = () => {
             className="status-indicators__indicator"
             icon="antenna"
             label="RF"
-            status="critical"
-            notifications={23}
+            status={calcCategoryStatus(dataContext.data.categories[3])}
+            notifications={
+              getCategoryAlerts(dataContext.data.categories[3]).length
+            }
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="processor-alt"
             label="Digital"
-            status="serious"
-            notifications={42}
+            status={calcCategoryStatus(dataContext.data.categories[2])}
+            notifications={
+              getCategoryAlerts(dataContext.data.categories[2]).length
+            }
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-transmit"
             label="Comms"
-            status="caution"
-            notifications={11}
+            status={calcCategoryStatus(dataContext.data.categories[1])}
+            notifications={
+              getCategoryAlerts(dataContext.data.categories[1]).length
+            }
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-receive"
             label="Facilities"
-            status="normal"
-            notifications={2}
+            status={calcCategoryStatus(dataContext.data.categories[0])}
+            notifications={
+              getCategoryAlerts(dataContext.data.categories[0]).length
+            }
           />
         </div>
       </RuxGlobalStatusBar>

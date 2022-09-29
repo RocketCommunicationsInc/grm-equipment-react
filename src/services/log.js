@@ -9,7 +9,7 @@ const logStatuses = [
   'critical',
 ];
 
-function getLogStatus() {
+export function getLogStatus() {
   return logStatuses[Math.floor(Math.random() * logStatuses.length)];
 }
 
@@ -17,27 +17,27 @@ export function getAll() {
   return {
     commsStatus: {
       worstStatus: getLogStatus(),
-      numMessages: randInt(50),
+      numMessages: randInt(1, 50),
     },
     digitalStatus: {
       worstStatus: getLogStatus(),
-      numMessages: randInt(50),
+      numMessages: randInt(1, 50),
     },
     facilitiesStatus: {
       worstStatus: getLogStatus(),
-      numMessages: randInt(50),
+      numMessages: randInt(1, 50),
     },
     rfStatus: {
       worstStatus: getLogStatus(),
-      numMessages: randInt(50),
+      numMessages: randInt(1, 50),
     },
     softwareStatus: {
       worstStatus: getLogStatus(),
-      numMessages: randInt(50),
+      numMessages: randInt(1, 50),
     },
     ucaStatus: {
       worstStatus: getLogStatus(),
-      numMessages: randInt(50),
+      numMessages: randInt(1, 50),
     },
     timestamp: Date.now(),
   };
