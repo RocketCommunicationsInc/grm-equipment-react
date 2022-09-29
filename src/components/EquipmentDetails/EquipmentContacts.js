@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+import { useState } from 'react';
 import { RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
 import { getAll } from '../../services/contacts';
 import { formatReadableTime } from '../../util/util';
@@ -12,7 +14,11 @@ const Contact = ({
   step,
   begin,
   end,
+  details,
+  expanded,
+  commandMode,
 }) => {
+  const [expand, setExpand] = useState(expanded);
   function getStatus() {
     if (state === 'executing') return 'normal';
     if (state === 'failed') return 'serious';
@@ -22,7 +28,13 @@ const Contact = ({
 
   return (
     <>
-      <li className="contact-log__event contact-log--collapsed">
+      <li
+        className={classNames('contact-log__event', {
+          'contact-log--collapsed': !expand,
+          'contact-log--expanded': expand,
+        })}
+        onClick={() => setExpand(!expand)}
+      >
         <div className="contact-log__event__status">
           <RuxStatus status={status} />
         </div>
@@ -40,6 +52,21 @@ const Contact = ({
           <span>{formatReadableTime(end)}</span>
         </div>
       </li>
+      <div className="contact-log__detail">
+        <div className="contact-log__detail__text">{details}</div>
+        <div className="contact-log__detail__command-mode">
+          <label htmlFor="commandModeSelector">Command Mode</label>
+          <RuxSelect
+            input-id="commandModeSelector"
+            className="rux-select"
+            value={commandMode}
+          >
+            <RuxOption value="manual" label="Manual" />
+            <RuxOption value="semi-automated" label="Semi-Automated" />
+            <RuxOption value="fully-automated" label="Fully Automated" />
+          </RuxSelect>
+        </div>
+      </div>
     </>
   );
 };
@@ -122,6 +149,9 @@ const EquipmentContacts = () => {
                     step={log.contactStep}
                     begin={log.contactBeginTimestamp}
                     end={log.contactEndTimestamp}
+                    details={log.contactDetail}
+                    expanded={log.expanded}
+                    commandMode="manual"
                   />
                 );
               })}
