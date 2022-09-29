@@ -3,14 +3,31 @@ import {
   RuxTab,
   RuxTabPanels,
   RuxTabPanel,
-  RuxIcon,
-  RuxStatus,
+  RuxMonitoringIcon,
 } from '@astrouxds/react';
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
 
-const EquipmentContainer = () => {
+const EquipmentContainer = (props) => {
+  let equipmentData = props.data;
+  let formattedData = [];
+
+  for (const category of equipmentData) {
+    let equipObject = {};
+    equipObject.label = category.label;
+    equipObject.icon = category.icon;
+    equipObject.children = [];
+
+    for (const categoryChildren of category.children) {
+      for (const equipment of categoryChildren.children) {
+        equipObject.children.push(equipment);
+      }
+    }
+
+    formattedData.push(equipObject);
+  }
+
   return (
     <div className="equipment-container" data-test="equipment-container">
       <RuxTabs id="equipment-container-tabs" small>
@@ -29,458 +46,38 @@ const EquipmentContainer = () => {
         >
           <h2>Inoperable Equipment</h2>
           <div className="equipment-inoperable">
-            <div className="equipment-comms">
-              <h3>Comms (16)</h3>
-              <ul className="equipment-list">
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 1247</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 1364</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 1543</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 2126</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 2364</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 2375</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 2374</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 3267</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 3653</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 3734</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 4782</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 5782</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 6757</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 7342</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 9433</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-receive"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 9623</p>
-                </li>
-              </ul>
-            </div>
-            <div className="equipment-digital">
-              <h3>Digital (12)</h3>
-              <ul className="equipment-list">
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 247</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 267</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 342</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 345</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 346</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 364</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 433</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 543</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 653</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 734</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 757</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="processor-alt"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 782</p>
-                </li>
-              </ul>
-            </div>
-            <div className="equipment-facilities">
-              <h3>Facilities (12)</h3>
-              <ul className="equipment-list">
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 10364</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 11543</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 12247</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 21345</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 23734</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 27345</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 32267</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 35653</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 46782</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 63757</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 76342</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna-off"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Equipment 91433</p>
-                </li>
-              </ul>
-            </div>
-            <div className="equipment-rf">
-              <h3>RF (8)</h3>
-              <ul className="equipment-list">
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 1247</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 2461</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 3267</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 6757</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 1543</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 3164</p>
-                </li>
-                <li>
-                  <RuxStatus status="critical"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="critical"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 3653</p>
-                </li>
-                <li>
-                  <RuxStatus status="serious"></RuxStatus>
-                  <RuxIcon
-                    icon="antenna"
-                    className="serious"
-                    size="large"
-                  ></RuxIcon>
-                  <p>Black FEP 7342</p>
-                </li>
-              </ul>
-            </div>
+            {formattedData.length > 0 ? (
+              <div>
+                {formattedData.map((equipmentList) => {
+                  return (
+                    <div
+                      key={equipmentList.label}
+                      className={`equipment-${equipmentList.label.toLowerCase()}`}
+                    >
+                      <h3>
+                        {equipmentList.label} ({equipmentList.children.length})
+                      </h3>
+                      <ul className="equipment-list">
+                        {equipmentList.children.map((equipment) => {
+                          return (
+                            <li key={equipment.id}>
+                              <RuxMonitoringIcon
+                                icon={equipmentList.icon}
+                                className={equipment.status}
+                                status={equipment.status}
+                                label={equipment.id}
+                              />
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p>No Equipment found.</p>
+            )}
           </div>
         </RuxTabPanel>
         <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
