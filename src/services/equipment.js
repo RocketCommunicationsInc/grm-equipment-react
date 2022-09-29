@@ -479,13 +479,26 @@ export function genEquipment(prefix, numDigits) {
     label: `${prefix} ${eNum}`,
     status: 'normal',
     events: [],
-    alerts: genAlerts(randInt(2, 5)),
+    alerts: genAlerts(randInt(1, 3)),
     contacts: [],
     jobs: [
       {
         id: '0001',
       },
     ],
+    removeAlert(id) {
+      let foundIndex = false;
+      for (let i = 0; i < this.alerts.length; i++) {
+        if (this.alerts[i].errorId === id) {
+          foundIndex = i;
+          break;
+        }
+      }
+
+      if (foundIndex !== false) {
+        this.alerts.slice(foundIndex, foundIndex);
+      }
+    },
   };
 
   genFutureAlert(equipment, 1000, 60000);

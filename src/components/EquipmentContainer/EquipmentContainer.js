@@ -8,13 +8,16 @@ import {
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
+import { DataContext } from '../../DataContext';
+import { useContext } from 'react';
 
 const EquipmentContainer = (props) => {
-  let equipmentData = props.data;
+  let equipmentData = useContext(DataContext).data;
   let formattedData = [];
 
-  for (const category of equipmentData) {
+  for (const category of equipmentData.categories) {
     let equipObject = {};
+    equipObject.id = category.label;
     equipObject.label = category.label;
     equipObject.icon = category.icon;
     equipObject.children = [];
@@ -51,7 +54,7 @@ const EquipmentContainer = (props) => {
                 {formattedData.map((equipmentList) => {
                   return (
                     <div
-                      key={equipmentList.label}
+                      key={equipmentList.id}
                       className={`equipment-${equipmentList.label.toLowerCase()}`}
                     >
                       <h3>
@@ -65,7 +68,7 @@ const EquipmentContainer = (props) => {
                                 icon={equipmentList.icon}
                                 className={equipment.status}
                                 status={equipment.status}
-                                label={equipment.id}
+                                label={equipment.label}
                               />
                             </li>
                           );

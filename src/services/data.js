@@ -1,22 +1,22 @@
-import { randIntDigits, randInt } from '../util/util';
-import { getOne as getOneAlert } from './alerts';
+import { randInt } from '../util/util';
+// import { getOne as getOneAlert } from './alerts';
 import { genManyEquipment, calcEquipmentStatus } from './equipment';
 
-let data;
+// let data;
 
-export function createDataObject() {
-  console.log('what is data?', data);
-  if (data) return data;
+// export function createDataObject() {
+//   console.log('what is data?', data);
+//   if (data) return data;
 
-  data = { foo: Date.now() };
+//   data = { foo: Date.now() };
 
-  setInterval(() => {
-    console.log('wut');
-    data = { foo: Date.now() };
-  }, 1000);
+//   setInterval(() => {
+//     console.log('wut');
+//     data = { foo: Date.now() };
+//   }, 1000);
 
-  return data;
-}
+//   return data;
+// }
 
 export var mainData = {
   notifiyUpdate: function () {},
@@ -25,24 +25,28 @@ export var mainData = {
       id: 'comms',
       label: 'Comms',
       payload: null,
+      icon: 'antenna-receive',
       children: generateComponents(randInt(2, 5), 'E', 4),
     },
     {
       id: 'digital',
       label: 'Digital',
       payload: null,
+      icon: 'processor-alt',
       children: generateComponents(randInt(2, 5), 'E', 3),
     },
     {
       id: 'facilities',
       label: 'Facilities',
       payload: null,
+      icon: 'antenna-off',
       children: generateComponents(randInt(2, 5), 'E', 5),
     },
     {
       id: 'rf',
       label: 'RF',
       payload: null,
+      icon: 'antenna',
       children: [
         {
           id: 'Black FEP',

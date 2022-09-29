@@ -7,7 +7,6 @@ import {
   RuxSelect,
   RuxStatus,
 } from '@astrouxds/react';
-import { getAll } from '../../services/alerts';
 import { formatReadableTime } from '../../util/util';
 import './EquipmentAlerts.scss';
 
@@ -49,9 +48,7 @@ const Alert = ({
   );
 };
 
-const alerts = getAll() || [];
-
-const EquipmentAlerts = () => {
+const EquipmentAlerts = ({ alerts }) => {
   return (
     <>
       <div className="grid-zone grid-zone--equipment-alerts grid-zone--fixed">

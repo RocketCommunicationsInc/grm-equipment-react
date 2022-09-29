@@ -9,38 +9,8 @@ const logStatuses = [
   'critical',
 ];
 
-export function getLogStatus() {
+function getLogStatus() {
   return logStatuses[Math.floor(Math.random() * logStatuses.length)];
-}
-
-export function getAll() {
-  return {
-    commsStatus: {
-      worstStatus: getLogStatus(),
-      numMessages: randInt(1, 50),
-    },
-    digitalStatus: {
-      worstStatus: getLogStatus(),
-      numMessages: randInt(1, 50),
-    },
-    facilitiesStatus: {
-      worstStatus: getLogStatus(),
-      numMessages: randInt(1, 50),
-    },
-    rfStatus: {
-      worstStatus: getLogStatus(),
-      numMessages: randInt(1, 50),
-    },
-    softwareStatus: {
-      worstStatus: getLogStatus(),
-      numMessages: randInt(1, 50),
-    },
-    ucaStatus: {
-      worstStatus: getLogStatus(),
-      numMessages: randInt(1, 50),
-    },
-    timestamp: Date.now(),
-  };
 }
 
 export function getOne() {
@@ -56,6 +26,11 @@ export function getOne() {
   return {
     timestamp: new Date(),
     status: getLogStatus(),
-    entry: logMessages[Math.floor(Math.random() * logMessages.length)],
+    message: logMessages[Math.floor(Math.random() * logMessages.length)],
   };
+}
+
+export const eventLog = [];
+for (let i = 0; i < randInt(1, 2); i++) {
+  eventLog.push(getOne());
 }

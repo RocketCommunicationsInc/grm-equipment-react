@@ -2,8 +2,13 @@ import './EquipmentDetails.scss';
 import EquipmentHeader from './EquipmentHeader';
 import EquipmentAlerts from './EquipmentAlerts';
 import EquipmentContacts from './EquipmentContacts';
+import { DataContext } from '../../DataContext';
+import { useContext } from 'react';
 
 const EquipmentDetails = () => {
+  let data = useContext(DataContext).data;
+  let equipment = data.categories[0].children[0].children[0];
+
   return (
     <>
       <div className="grid-zone-wrap">
@@ -11,8 +16,8 @@ const EquipmentDetails = () => {
           Equipment Details
         </div>
         <div className="grid-zone__content equipment-details-grid">
-          <EquipmentHeader equipmentNumber={1247} status="critical" />
-          <EquipmentAlerts />
+          <EquipmentHeader equipment={equipment} status="critical" />
+          <EquipmentAlerts alerts={equipment.alerts} />
           <EquipmentContacts />
         </div>
       </div>
