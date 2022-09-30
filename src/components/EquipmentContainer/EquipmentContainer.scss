@@ -1,21 +1,12 @@
 @import '../colors';
 
 .equipment-container {
-  padding-bottom: 150px;
   overflow: hidden;
 
   ul {
     padding-left: 0;
     display: flex;
     flex-flow: row wrap;
-  }
-
-  li {
-    list-style: none;
-    justify-content: space-evenly;
-    padding: 20px;
-    text-align: center;
-    position: relative;
   }
 
   rux-tabs {
@@ -43,7 +34,7 @@
 }
 
 .equipment-inoperable {
-  padding: 20px;
+  padding: 20px 20px 150px;
 
   rux-status {
     position: absolute;
@@ -51,6 +42,14 @@
     left: 30px;
     margin: 0;
   }
+}
+
+.equipment-list li {
+  list-style: none;
+  justify-content: space-evenly;
+  padding: 20px;
+  text-align: center;
+  position: relative;
 }
 
 .critical {

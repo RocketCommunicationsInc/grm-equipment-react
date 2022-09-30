@@ -1,9 +1,35 @@
-import { RuxCheckbox, RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
+import { useState } from 'react';
+import classNames from 'classnames';
+import {
+  RuxButton,
+  RuxCheckbox,
+  RuxOption,
+  RuxSelect,
+  RuxStatus,
+} from '@astrouxds/react';
+import { getAll } from '../../services/alerts';
+import { formatReadableTime } from '../../util/util';
+import './EquipmentAlerts.scss';
 
-const Alert = ({ selected, status, message, category, timestamp }) => {
+const Alert = ({
+  selected,
+  expanded,
+  status,
+  message,
+  category,
+  timestamp,
+  details,
+}) => {
+  const [expand, setExpand] = useState(expanded);
   return (
     <>
-      <li className="alert-log__event alert-log--collapsed">
+      <li
+        className={classNames('alert-log__event', {
+          'alert-log--collapsed': !expand,
+          'alert-log--expanded': expand,
+        })}
+        onClick={() => setExpand(!expand)}
+      >
         <div className="alert-log__event__select">
           <RuxCheckbox className="rux-checkbox" checked={selected} />
         </div>
@@ -12,14 +38,18 @@ const Alert = ({ selected, status, message, category, timestamp }) => {
         </div>
         <div className="alert-log__event__message">{message}</div>
         <div className="alert-log__event__category">{category}</div>
-        <div className="alert-log__event__timestamp">{timestamp}</div>
+        <div className="alert-log__event__timestamp">
+          {formatReadableTime(timestamp)}
+        </div>
       </li>
       <div className="alert-log__detail">
-        <div></div>
+        <div>{details}</div>
       </div>
     </>
   );
 };
+
+const alerts = getAll() || [];
 
 const EquipmentAlerts = () => {
   return (
@@ -29,7 +59,8 @@ const EquipmentAlerts = () => {
         <div className="grid-zone__content">
           <div className="alert-bin-header">
             <div className="alert-summary">
-              <span className="alert-count"> 12 </span> Active Alerts
+              <span className="alert-count"> {alerts.length} </span>
+              Active Alerts
             </div>
 
             <div className="alert-filters">
@@ -76,42 +107,39 @@ const EquipmentAlerts = () => {
             </header>
 
             <ol className="alert-log__events">
-              <Alert
-                selected={true}
-                status="critical"
-                message="Antenna DGS 2 - Weak signal"
-                category="Hardware"
-                timestamp="17:58:37"
-              />
-              <Alert
-                selected={false}
-                status="critical"
-                message="USA-177 - Solar panel misalignment"
-                category="Spacecraft"
-                timestamp="17:58:32"
-              />
-              <Alert
-                selected={false}
-                status="critical"
-                message="Black FEP 121 - Offline"
-                category="Software"
-                timestamp="17:58:28"
-              />
-              <Alert
-                selected={false}
-                status="serious"
-                message="Workstation 134 - Offline"
-                category="Hardware"
-                timestamp="17:58:17"
-              />
-              <Alert
-                selected={false}
-                status="serious"
-                message="Antenna DGS 2 - Offline"
-                category="Hardware"
-                timestamp="17:58:12"
-              />
+              {alerts.map((alert) => {
+                return (
+                  <Alert
+                    key={alert.errorId}
+                    selected={alert.selected}
+                    expanded={alert.expanded}
+                    status={alert.errorSeverity}
+                    message={alert.errorMessage}
+                    category={alert.errorCategory}
+                    timestamp={alert.errorTime}
+                    details={alert.longMessage}
+                  />
+                );
+              })}
             </ol>
+            <div className="alert-log__actions">
+              <RuxButton
+                className="rux-button"
+                onClick={() => {
+                  alert('This feature is not implemented, yet.');
+                }}
+              >
+                Dismiss
+              </RuxButton>
+              <RuxButton
+                className="rux-button"
+                onClick={() => {
+                  alert('This feature is not implemented, yet.');
+                }}
+              >
+                Acknowledge
+              </RuxButton>
+            </div>
           </div>
         </div>
       </div>

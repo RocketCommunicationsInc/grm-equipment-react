@@ -1,0 +1,61 @@
+.equipment-name {
+  padding: 0.625rem 0.9375rem;
+  color: white;
+  font-size: 1.35rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+.equipment-name .rux-status {
+  display: inline-block;
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.equipment-header {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+.equipment-header__detail {
+  display: flex;
+  flex: 0 1 auto;
+  flex-flow: column;
+  overflow: hidden;
+}
+
+.equipment-header__detail--equipment-states {
+  flex: 0 0 17rem;
+}
+.equipment-header__detail--equipment-description {
+  padding: 0 1rem;
+  flex: 0 0 27rem;
+}
+.equipment-header__detail--equipment-event-log {
+  flex-grow: 1;
+  margin-right: 1rem;
+}
+.equipment-header__detail--equipment-event-log .rux-log {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  overflow-y: scroll;
+  background: rgb(24, 38, 53);
+}
+.equipment-header__detail--equipment-states .rux-segmented-button {
+  margin: 0.25rem 1rem;
+}
+
+.equipment-header__detail__label {
+  font-size: 0.875rem;
+  color: #989898;
+  margin-bottom: 0.5rem;
+}
+.equipment-header__detail__content {
+  background: #1d2f41;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  flex-grow: 1;
+  overflow-y: scroll;
+}
