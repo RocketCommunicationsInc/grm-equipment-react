@@ -30,15 +30,19 @@ function App() {
         </main>
       </>
     );
-  } else if (
-    currentView === 'scheduleJob' ||
-    currentView === 'viewJobDetails'
-  ) {
+  } else if (currentView === 'scheduleJob') {
     return (
       <>
         <GlobalStatusBar />
 
-        <ScheduleJob currentJob={currentJob} currentView={currentView} />
+        <ScheduleJob />
+      </>
+    );
+  } else if (currentView === 'viewJobDetails') {
+    return (
+      <>
+        <GlobalStatusBar />
+        <JobDetails currentJob={currentJob} />
       </>
     );
   }

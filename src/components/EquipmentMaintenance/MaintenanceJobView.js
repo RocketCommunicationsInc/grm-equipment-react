@@ -26,7 +26,7 @@ const MaintenanceJobView = (props) => {
               <div className="maintenance-jobs__actions">
                 <RuxButton
                   className="rux-button"
-                  onClick={(event) => {
+                  onClick={() => {
                     props.changeView('scheduleJob');
                   }}
                 >
@@ -76,7 +76,7 @@ const MaintenanceJobView = (props) => {
                         </div>
                         <RuxButton
                           className="rux-button"
-                          onClick={(event) => {
+                          onClick={() => {
                             props.changeView('viewJobDetails');
                             props.setCurrentJob(job);
                           }}
