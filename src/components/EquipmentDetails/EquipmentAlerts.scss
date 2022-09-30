@@ -83,6 +83,7 @@
   font-weight: normal;
   color: var(--colorSecondary, rgb(77, 172, 255));
   cursor: pointer;
+  overflow: visible;
 }
 
 .alert-log__events {
