@@ -5,6 +5,7 @@ export function getTaxonomy() {
     {
       _id: 'comms',
       label: 'Comms',
+      icon: 'antenna-receive',
       payload: null,
       children: [
         {
@@ -112,6 +113,7 @@ export function getTaxonomy() {
     {
       _id: 'digital',
       label: 'Digital',
+      icon: 'processor-alt',
       payload: null,
       children: [
         {
@@ -148,8 +150,8 @@ export function getTaxonomy() {
               status: 'critical',
             },
             {
-              id: 'E345',
-              label: 'Equipment 345',
+              id: 'E346',
+              label: 'Equipment 346',
               status: 'serious',
             },
             {
@@ -194,6 +196,7 @@ export function getTaxonomy() {
     {
       _id: 'facilities',
       label: 'Facilities',
+      icon: 'antenna-off',
       payload: null,
       children: [
         {
@@ -276,6 +279,7 @@ export function getTaxonomy() {
     {
       _id: 'rf',
       label: 'RF',
+      icon: 'antenna',
       payload: null,
       children: [
         {

@@ -78,3 +78,8 @@
   flex-flow: column;
   flex-grow: 1;
 }
+
+.rux-select::part(select) {
+  padding-right: 3rem;
+  width: fit-content;
+}

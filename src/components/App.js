@@ -7,7 +7,7 @@ import ScheduleJob from './EquipmentMaintenance/ScheduleJob.js';
 import JobDetails from './EquipmentMaintenance/JobDetails.js';
 import React, { useState } from 'react';
 
-let sidebarObjects = getTaxonomy();
+let data = getTaxonomy();
 
 // 'main', 'scheduleJob', 'viewJobDetails'
 
@@ -21,11 +21,12 @@ function App() {
         <GlobalStatusBar />
         <main key={currentView}>
           <nav className="main-menu">
-            <SidebarTree sidebarObjects={sidebarObjects} />
+            <SidebarTree sidebarObjects={data} />
           </nav>
           <EquipmentContainer
             changeView={(view) => setCurrentView((currentView = view))}
             setCurrentJob={(job) => setCurrentJob((currentJob = job))}
+            data={data}
           />
         </main>
       </>
