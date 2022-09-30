@@ -1,22 +1,5 @@
 import { randInt } from '../util/util';
-// import { getOne as getOneAlert } from './alerts';
 import { genManyEquipment, calcEquipmentStatus } from './equipment';
-
-// let data;
-
-// export function createDataObject() {
-//   console.log('what is data?', data);
-//   if (data) return data;
-
-//   data = { foo: Date.now() };
-
-//   setInterval(() => {
-//     console.log('wut');
-//     data = { foo: Date.now() };
-//   }, 1000);
-
-//   return data;
-// }
 
 export var mainData = {
   notifiyUpdate: function () {},

@@ -510,7 +510,6 @@ function genFutureAlert(equipment, minTime, maxTime) {
   setTimeout(() => {
     equipment.alerts.push(genAlert());
     calcEquipmentStatus(equipment);
-    // console.log(equipment);
     mainData.notifiyUpdate();
     genFutureAlert(equipment, minTime, maxTime);
   }, randInt(minTime, maxTime));
