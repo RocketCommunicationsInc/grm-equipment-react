@@ -82,7 +82,10 @@ const EquipmentContainer = (props) => {
         </RuxTabPanel>
         <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
           <EquipmentDetails />
-          <EquipmentMaintenance />
+          <EquipmentMaintenance
+            changeView={props.changeView}
+            setCurrentJob={props.setCurrentJob}
+          />
         </RuxTabPanel>
       </RuxTabPanels>
     </div>
