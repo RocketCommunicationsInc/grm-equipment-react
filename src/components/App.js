@@ -24,8 +24,8 @@ function App() {
             <SidebarTree sidebarObjects={data} />
           </nav>
           <EquipmentContainer
-            changeView={(view) => setCurrentView((currentView = view))}
-            setCurrentJob={(job) => setCurrentJob((currentJob = job))}
+            changeView={(view) => setCurrentView(view)}
+            setCurrentJob={(job) => setCurrentJob(job)}
             data={data}
           />
         </main>

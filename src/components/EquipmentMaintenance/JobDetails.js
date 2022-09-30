@@ -17,7 +17,7 @@ const ScheduleJob = (props) => {
     <>
       <div className="grid-zone-wrap">
         <div className="grid-zone__label">
-          {'Maintenance Job ID #' + props.currentJob.id}
+          Maintenance Job ID #{props.currentJob.id}
         </div>
         <div className="grid-zone__content job-details">
           <div className="grid-zone grid-zone--fixed grid-zone--job-details">
@@ -140,7 +140,6 @@ const ScheduleJob = (props) => {
                 <div className="job-details__meta">
                   <label className="job-details__meta__label">Job Type</label>
                   <div className="job-details__meta__value">
-                    {' '}
                     {mapJobType(props.currentJob.type)}
                   </div>
                 </div>
