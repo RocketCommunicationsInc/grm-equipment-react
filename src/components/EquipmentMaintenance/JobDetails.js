@@ -8,9 +8,7 @@ import {
 } from '../../util/util';
 
 import ConflictsTable from './ConflictsTable';
-import { getAll } from '../../services/alerts';
-
-let logs = getAll();
+import { eventLog as logs } from '../../services/events';
 
 const ScheduleJob = (props) => {
   return (
