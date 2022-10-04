@@ -18,8 +18,16 @@ const Alert = ({
   category,
   timestamp,
   details,
+  onChange,
 }) => {
   const [expand, setExpand] = useState(expanded);
+  const [select, setSelect] = useState(selected);
+
+  const handleChange = (e) => {
+    setSelect(e.target.checked);
+    onChange(e.target.checked);
+  };
+
   return (
     <>
       <li
@@ -30,7 +38,11 @@ const Alert = ({
         onClick={() => setExpand(!expand)}
       >
         <div className="alert-log__event__select">
-          <RuxCheckbox className="rux-checkbox" checked={selected} />
+          <RuxCheckbox
+            className="rux-checkbox"
+            checked={select}
+            onRuxchange={handleChange}
+          />
         </div>
         <div className="alert-log__event__status">
           <RuxStatus status={status} />
@@ -48,7 +60,20 @@ const Alert = ({
   );
 };
 
-const EquipmentAlerts = ({ alerts }) => {
+const EquipmentAlerts = (props) => {
+  const [alerts, setAlerts] = useState(props.alerts || []);
+
+  const alertsSelected = () =>
+    alerts.filter((alert) => alert.selected).length > 0;
+  const [buttonsEnabled, setButtonsEnabled] = useState(alertsSelected());
+  const enableButtons = () => {
+    setButtonsEnabled(alertsSelected());
+  };
+  const dismissAlerts = () => {
+    setAlerts(alerts.filter((alert) => !alert.selected));
+    setButtonsEnabled(false);
+  };
+
   return (
     <>
       <div className="grid-zone grid-zone--equipment-alerts grid-zone--fixed">
@@ -104,35 +129,41 @@ const EquipmentAlerts = ({ alerts }) => {
             </header>
 
             <ol className="alert-log__events">
-              {alerts.map((alert) => {
-                return (
-                  <Alert
-                    key={alert.errorId}
-                    selected={alert.selected}
-                    expanded={alert.expanded}
-                    status={alert.errorSeverity}
-                    message={alert.errorMessage}
-                    category={alert.errorCategory}
-                    timestamp={alert.errorTime}
-                    details={alert.longMessage}
-                  />
-                );
-              })}
+              {alerts.length > 0 ? (
+                alerts.map((alert) => {
+                  return (
+                    <Alert
+                      key={alert.errorId}
+                      selected={alert.selected}
+                      expanded={alert.expanded}
+                      status={alert.errorSeverity}
+                      message={alert.errorMessage}
+                      category={alert.errorCategory}
+                      timestamp={alert.errorTime}
+                      details={alert.longMessage}
+                      onChange={(selected) => {
+                        alert.selected = selected;
+                        enableButtons();
+                      }}
+                    />
+                  );
+                })
+              ) : (
+                <div>No new alerts. Please wait for more.</div>
+              )}
             </ol>
             <div className="alert-log__actions">
               <RuxButton
                 className="rux-button"
-                onClick={() => {
-                  alert('This feature is not implemented, yet.');
-                }}
+                disabled={!buttonsEnabled}
+                onClick={() => dismissAlerts()}
               >
                 Dismiss
               </RuxButton>
               <RuxButton
                 className="rux-button"
-                onClick={() => {
-                  alert('This feature is not implemented, yet.');
-                }}
+                disabled={!buttonsEnabled}
+                onClick={() => dismissAlerts()}
               >
                 Acknowledge
               </RuxButton>
