@@ -470,7 +470,7 @@ export function genManyEquipment(num, eqPrefix, numDigits) {
   return equipment;
 }
 
-let equipmentId = 1;
+var equipmentId = 1;
 export function genEquipment(prefix, numDigits) {
   const eNum = randIntDigits(numDigits);
 
