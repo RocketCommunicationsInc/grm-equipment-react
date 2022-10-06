@@ -1,5 +1,5 @@
 import { RuxButton } from '@astrouxds/react';
-import { getOne } from '../../services/equipment';
+import { getOne } from '../../services/Equipment';
 import {
   mapJobProgress,
   mapJobType,

@@ -15,6 +15,7 @@ const EquipmentContainer = (props) => {
   let equipmentData = useContext(DataContext).data;
   let formattedData = [];
 
+  // gather equipment from category components
   for (const category of equipmentData.categories) {
     let equipObject = {};
     equipObject.id = category.label;
@@ -63,12 +64,12 @@ const EquipmentContainer = (props) => {
                       <ul className="equipment-list">
                         {equipmentList.children.map((equipment) => {
                           return (
-                            <li key={equipment.id}>
+                            <li key={equipment.data.id}>
                               <RuxMonitoringIcon
                                 icon={equipmentList.icon}
-                                className={equipment.status}
-                                status={equipment.status}
-                                label={equipment.label}
+                                className={equipment.data.status}
+                                status={equipment.data.status}
+                                label={equipment.data.label}
                               />
                             </li>
                           );

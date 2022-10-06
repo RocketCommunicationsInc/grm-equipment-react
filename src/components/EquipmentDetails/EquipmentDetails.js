@@ -3,11 +3,13 @@ import EquipmentHeader from './EquipmentHeader';
 import EquipmentAlerts from './EquipmentAlerts';
 import EquipmentContacts from './EquipmentContacts';
 import { DataContext } from '../../DataContext';
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 const EquipmentDetails = () => {
   let data = useContext(DataContext).data;
-  let equipment = data.categories[0].children[0].children[0];
+  const [equipment, setEquipment] = useState(
+    data.categories[0].children[0].children[0]
+  );
 
   return (
     <>
@@ -17,7 +19,7 @@ const EquipmentDetails = () => {
         </div>
         <div className="grid-zone__content equipment-details-grid">
           <EquipmentHeader equipment={equipment} status="critical" />
-          <EquipmentAlerts alerts={equipment.alerts} />
+          <EquipmentAlerts alerts={equipment.data.alerts} />
           <EquipmentContacts />
         </div>
       </div>

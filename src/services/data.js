@@ -1,5 +1,6 @@
 import { randInt } from '../util/util';
-import { genManyEquipment, calcEquipmentStatus } from './equipment';
+import { genManyEquipment } from './Equipment';
+import { getWorstStatus } from '../util/util';
 
 export var mainData = {
   notifiyUpdate: function () {},
@@ -52,11 +53,12 @@ function generateComponents(num, eqPrefix, numDigits) {
 
   for (let i = 0; i < num; i++) {
     const label = `Component ${alphabet[i]}`;
+    const eq = genManyEquipment(randInt(2, 5), eqPrefix, numDigits);
 
     components.push({
       id: label.toLowerCase(),
       label: label,
-      children: genManyEquipment(randInt(2, 5), eqPrefix, numDigits),
+      children: eq,
     });
   }
 
@@ -64,15 +66,15 @@ function generateComponents(num, eqPrefix, numDigits) {
 }
 
 export function calcCategoryStatus(category) {
-  let status = '';
+  let statuses = [];
   category &&
     category.children.forEach((component) => {
       component.children.forEach((equipment) => {
-        status = calcEquipmentStatus(equipment).status;
+        statuses.push(equipment.calcEquipmentStatus());
       });
     });
 
-  return status;
+  return getWorstStatus(statuses);
 }
 
 export function getCategoryAlerts(category) {

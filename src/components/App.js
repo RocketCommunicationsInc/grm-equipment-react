@@ -2,12 +2,9 @@ import './App.scss';
 import GlobalStatusBar from './GlobalStatusBar/GlobalStatusBar';
 import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
 import SidebarTree from './Sidebar/SidebarTree';
-import { getTaxonomy } from '../services/equipment';
 import ScheduleJob from './EquipmentMaintenance/ScheduleJob.js';
 import JobDetails from './EquipmentMaintenance/JobDetails.js';
 import { useState } from 'react';
-
-let data = getTaxonomy();
 
 function App() {
   let [currentView, setCurrentView] = useState('main');

@@ -7,17 +7,17 @@ import { useState } from 'react';
 const Layout = ({ children }) => {
   const [dataContext, setDataContext] = useState({
     data: mainData,
-    notifiyUpdate: customNotifiyUpdate,
+    notifyUpdate: customNotifyUpdate,
   });
 
-  function customNotifiyUpdate() {
+  function customNotifyUpdate() {
     setDataContext((oldContext) => ({
       data: oldContext.data,
       notifiyUpdate: oldContext.notifiyUpdate,
     }));
   }
 
-  mainData.notifiyUpdate = customNotifiyUpdate;
+  mainData.notifyUpdate = customNotifyUpdate;
 
   return (
     <DataContext.Provider value={dataContext}>{children}</DataContext.Provider>

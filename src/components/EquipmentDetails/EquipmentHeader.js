@@ -3,7 +3,6 @@ import { loremIpsum, randInt } from '../../util/util';
 import './EquipmentHeader.scss';
 import { eventLog, getOne } from '../../services/events';
 import { useEffect, useState } from 'react';
-import { calcEquipmentStatus } from '../../services/equipment';
 
 const EquipmentHeader = ({ equipment }) => {
   const [events, setEvents] = useState(eventLog);
@@ -24,10 +23,7 @@ const EquipmentHeader = ({ equipment }) => {
       <div className="grid-zone grid-zone--fixed grid-zone--equipment-header">
         <div className="grid-zone__content">
           <div className="equipment-name">
-            <RuxStatus
-              className="rux-status"
-              status={calcEquipmentStatus(equipment)}
-            />
+            <RuxStatus className="rux-status" status={equipment.data.status} />
             {equipment.label}
           </div>
           <div className="equipment-header">

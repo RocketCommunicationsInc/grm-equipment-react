@@ -1,344 +1,7 @@
-import { loremIpsum, randIntDigits, randInt } from '../util/util';
-import { genAlert, genAlerts } from './alerts';
+import { loremIpsum, randIntDigits } from '../util/util';
+import { AlertsService } from './Alerts';
 import { getWorstStatus } from '../util/util';
-import { mainData } from './data';
-
-export function getTaxonomy() {
-  return [
-    {
-      _id: 'comms',
-      label: 'Comms',
-      icon: 'antenna-receive',
-      payload: null,
-      children: [
-        {
-          label: 'Component A',
-          children: [
-            {
-              id: 'E1247',
-              label: 'Equipment 1247',
-              status: 'critical',
-            },
-            {
-              id: 'E2375',
-              label: 'Equipment 2375',
-              status: 'serious',
-            },
-            {
-              id: 'E3267',
-              label: 'Equipment 3267',
-              status: 'critical',
-            },
-            {
-              id: 'E6757',
-              label: 'Equipment 6757',
-              status: 'serious',
-            },
-          ],
-        },
-        {
-          label: 'Component B',
-          children: [
-            {
-              id: 'E1543',
-              label: 'Equipment 1543',
-              status: 'serious',
-            },
-            {
-              id: 'E2126',
-              label: 'Equipment 2126',
-              status: 'critical',
-            },
-            {
-              id: 'E3653',
-              label: 'Equipment 3653',
-              status: 'critical',
-            },
-            {
-              id: 'E7342',
-              label: 'Equipment 7342',
-              status: 'serious',
-            },
-          ],
-        },
-        {
-          label: 'Component C',
-          children: [
-            {
-              id: 'E1364',
-              label: 'Equipment 1364',
-              status: 'serious',
-            },
-            {
-              id: 'E2734',
-              label: 'Equipment 2734',
-              status: 'serious',
-            },
-            {
-              id: 'E4782',
-              label: 'Equipment 4782',
-              status: 'serious',
-            },
-            {
-              id: 'E9433',
-              label: 'Equipment 9433',
-              status: 'critical',
-            },
-          ],
-        },
-        {
-          label: 'Component D',
-          children: [
-            {
-              id: 'E2364',
-              label: 'Equipment 2364',
-              status: 'critical',
-            },
-            {
-              id: 'E3734',
-              label: 'Equipment 3734',
-              status: 'critical',
-            },
-            {
-              id: 'E5782',
-              label: 'Equipment 5782',
-              status: 'serious',
-            },
-            {
-              id: 'E9623',
-              label: 'Equipment 9623',
-              status: 'critical',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      _id: 'digital',
-      label: 'Digital',
-      icon: 'processor-alt',
-      payload: null,
-      children: [
-        {
-          label: 'Component A',
-          children: [
-            {
-              id: 'E247',
-              label: 'Equipment 247',
-              status: 'serious',
-            },
-            {
-              id: 'E345',
-              label: 'Equipment 345',
-              status: 'critical',
-            },
-            {
-              id: 'E267',
-              label: 'Equipment 267',
-              status: 'critical',
-            },
-            {
-              id: 'E757',
-              label: 'Equipment 757',
-              status: 'serious',
-            },
-          ],
-        },
-        {
-          label: 'Component B',
-          children: [
-            {
-              id: 'E543',
-              label: 'Equipment 543',
-              status: 'critical',
-            },
-            {
-              id: 'E346',
-              label: 'Equipment 346',
-              status: 'serious',
-            },
-            {
-              id: 'E653',
-              label: 'Equipment 653',
-              status: 'critical',
-            },
-            {
-              id: 'E342',
-              label: 'Equipment 342',
-              status: 'serious',
-            },
-          ],
-        },
-        {
-          label: 'Component C',
-          children: [
-            {
-              id: 'E364',
-              label: 'Equipment 364',
-              status: 'critical',
-            },
-            {
-              id: 'E734',
-              label: 'Equipment 734',
-              status: 'critical',
-            },
-            {
-              id: 'E782',
-              label: 'Equipment 782',
-              status: 'serious',
-            },
-            {
-              id: 'E433',
-              label: 'Equipment 433',
-              status: 'serious',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      _id: 'facilities',
-      label: 'Facilities',
-      icon: 'antenna-off',
-      payload: null,
-      children: [
-        {
-          label: 'Component A',
-          children: [
-            {
-              id: 'E12247',
-              label: 'Equipment 12247',
-              status: 'serious',
-            },
-            {
-              id: 'E21345',
-              label: 'Equipment 21345',
-              status: 'critical',
-            },
-            {
-              id: 'E32267',
-              label: 'Equipment 32267',
-              status: 'serious',
-            },
-            {
-              id: 'E63757',
-              label: 'Equipment 63757',
-              status: 'critical',
-            },
-          ],
-        },
-        {
-          label: 'Component B',
-          children: [
-            {
-              id: 'E11543',
-              label: 'Equipment 11543',
-              status: 'serious',
-            },
-            {
-              id: 'E27345',
-              label: 'Equipment 27345',
-              status: 'serious',
-            },
-            {
-              id: 'E35653',
-              label: 'Equipment 35653',
-              status: 'critical',
-            },
-            {
-              id: 'E76342',
-              label: 'Equipment 76342',
-              status: 'serious',
-            },
-          ],
-        },
-        {
-          label: 'Component C',
-          children: [
-            {
-              id: 'E10364',
-              label: 'Equipment 10364',
-              status: 'critical',
-            },
-            {
-              id: 'E23734',
-              label: 'Equipment 23734',
-              status: 'serious',
-            },
-            {
-              id: 'E46782',
-              label: 'Equipment 46782',
-              status: 'serious',
-            },
-            {
-              id: 'E91433',
-              label: 'Equipment 91433',
-              status: 'critical',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      _id: 'rf',
-      label: 'RF',
-      icon: 'antenna',
-      payload: null,
-      children: [
-        {
-          label: 'Black FEP',
-          children: [
-            {
-              id: 'Black F1247',
-              label: 'Black FEP 1247',
-              status: 'critical',
-            },
-            {
-              id: 'Black F2461',
-              label: 'Black FEP 2461',
-              status: 'critical',
-            },
-            {
-              id: 'Black F3267',
-              label: 'Black FEP 3267',
-              status: 'serious',
-            },
-            {
-              id: 'Black F6757',
-              label: 'Black FEP 6757',
-              status: 'critical',
-            },
-          ],
-        },
-        {
-          label: 'Red FEP',
-          children: [
-            {
-              id: 'Red F1543',
-              label: 'Red FEP 1543',
-              status: 'serious',
-            },
-            {
-              id: 'Red F3164',
-              label: 'Red FEP 3164',
-              status: 'serious',
-            },
-            {
-              id: 'Red F3653',
-              label: 'Red FEP 3653',
-              status: 'critical',
-            },
-            {
-              id: 'Red F7342',
-              label: 'Red FEP 7342',
-              status: 'serious',
-            },
-          ],
-        },
-      ],
-    },
-  ];
-}
+import { Service } from './Service';
 
 export function getOne() {
   return {
@@ -460,65 +123,47 @@ export function getOne() {
   };
 }
 
+export class EquipmentService extends Service {
+  static equipmentId = 1;
+
+  constructor(prefix, numDigits) {
+    super();
+
+    const eNum = randIntDigits(numDigits);
+
+    this.data = {
+      id: EquipmentService.equipmentId++,
+      label: `${prefix} ${eNum}`,
+      status: 'normal',
+      events: [],
+      contacts: [],
+      jobs: [
+        {
+          id: '0001',
+        },
+      ],
+    };
+
+    const alerts = new AlertsService(this.data);
+    this.data.alerts = alerts;
+    alerts.onChange(() => {
+      this.calcEquipmentStatus(this.data);
+    });
+  }
+
+  calcEquipmentStatus() {
+    const statuses = this.data.alerts.data.map((alert) => alert.errorSeverity);
+    this.data.status = getWorstStatus(statuses);
+    return this.data.status;
+  }
+}
+
 export function genManyEquipment(num, eqPrefix, numDigits) {
   const equipment = [];
 
   for (let i = 0; i < num; i++) {
-    equipment.push(genEquipment(eqPrefix, numDigits));
+    equipment.push(new EquipmentService(eqPrefix, numDigits));
   }
-
-  return equipment;
-}
-
-var equipmentId = 1;
-export function genEquipment(prefix, numDigits) {
-  const eNum = randIntDigits(numDigits);
-
-  const equipment = {
-    id: equipmentId++,
-    label: `${prefix} ${eNum}`,
-    status: 'normal',
-    events: [],
-    alerts: genAlerts(randInt(1, 3)),
-    contacts: [],
-    jobs: [
-      {
-        id: '0001',
-      },
-    ],
-    removeAlert(id) {
-      let foundIndex = false;
-      for (let i = 0; i < this.alerts.length; i++) {
-        if (this.alerts[i].errorId === id) {
-          foundIndex = i;
-          break;
-        }
-      }
-
-      if (foundIndex !== false) {
-        this.alerts.slice(foundIndex, foundIndex);
-      }
-    },
-  };
-
-  genFutureAlert(equipment, 1000, 60000);
-
-  return equipment;
-}
-
-function genFutureAlert(equipment, minTime, maxTime) {
-  setTimeout(() => {
-    equipment.alerts.push(genAlert());
-    calcEquipmentStatus(equipment);
-    mainData.notifiyUpdate();
-    genFutureAlert(equipment, minTime, maxTime);
-  }, randInt(minTime, maxTime));
-}
-
-export function calcEquipmentStatus(equipment) {
-  const statuses = equipment.alerts.map((alert) => alert.errorSeverity);
-
-  equipment.status = getWorstStatus(statuses);
 
   return equipment;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import {
   RuxButton,
@@ -61,18 +61,40 @@ const Alert = ({
 };
 
 const EquipmentAlerts = (props) => {
-  const [alerts, setAlerts] = useState(props.alerts || []);
+  const [alerts, setAlerts] = useState(props.alerts.data || []);
+  const [alertsService, setAlertsService] = useState(props.alerts);
 
-  const alertsSelected = () =>
-    alerts.filter((alert) => alert.selected).length > 0;
+  function alertsSelected() {
+    return alerts.filter((alert) => alert.selected).length > 0;
+  }
   const [buttonsEnabled, setButtonsEnabled] = useState(alertsSelected());
-  const enableButtons = () => {
-    setButtonsEnabled(alertsSelected());
-  };
-  const dismissAlerts = () => {
-    setAlerts(alerts.filter((alert) => !alert.selected));
+  function enableButtons() {
+    return setButtonsEnabled(alertsSelected());
+  }
+
+  function dismissAlerts() {
+    const ids = [];
+    alerts.forEach((alert) => {
+      if (alert.selected) {
+        ids.push(alert.errorId);
+      }
+    });
+
+    alertsService.remove(ids);
     setButtonsEnabled(false);
-  };
+  }
+
+  useEffect(() => {
+    function onAlertsChange(newAlerts) {
+      setAlerts([...newAlerts]);
+    }
+
+    alertsService.onChange(onAlertsChange);
+
+    return () => {
+      alertsService.onChangeRemove(onAlertsChange);
+    };
+  }, [alertsService]);
 
   return (
     <>
