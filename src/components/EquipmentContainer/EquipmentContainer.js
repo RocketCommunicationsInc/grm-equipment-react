@@ -5,6 +5,7 @@ import {
   RuxTabPanel,
   RuxMonitoringIcon,
 } from '@astrouxds/react';
+import { useState } from 'react';
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
@@ -12,6 +13,17 @@ import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
 const EquipmentContainer = (props) => {
   let equipmentData = props.data;
   let formattedData = [];
+  var defaultTabs = [
+    {
+      id: 'inoperable',
+      label: 'Inoperable',
+    },
+    {
+      id: 'id-2',
+      label: 'Test',
+    },
+  ];
+  let [tabs, setTabs] = useState(defaultTabs);
 
   for (const category of equipmentData) {
     let equipObject = {};
@@ -26,17 +38,34 @@ const EquipmentContainer = (props) => {
     }
 
     formattedData.push(equipObject);
+
+    var addTab = (e) => {
+      e.preventDefault();
+      const addTabId = e.target.label;
+
+      let checkTabsToAdd = (element) => element.label === addTabId;
+      let checkTabs = tabs.some(checkTabsToAdd);
+
+      if (!checkTabs) {
+        let newTab = {
+          id: e.target.label,
+          label: e.target.label,
+        };
+        setTabs([...tabs, newTab]);
+      }
+    };
   }
 
   return (
     <div className="equipment-container" data-test="equipment-container">
       <RuxTabs id="equipment-container-tabs" small>
-        <RuxTab id="tab-inoperable" data-test="tab-inoperable">
-          Inoperable
-        </RuxTab>
-        <RuxTab id="tab-id-2" data-test="tab-id-2">
-          Test
-        </RuxTab>
+        {tabs.map((tab) => {
+          return (
+            <RuxTab key={tab.id} id={`tab-${tab.id}`} data-test={tab.id}>
+              {tab.label}
+            </RuxTab>
+          );
+        })}
       </RuxTabs>
       <RuxTabPanels className="tab-panels" aria-labelledby="tab-set-id-1">
         <RuxTabPanel
@@ -60,7 +89,7 @@ const EquipmentContainer = (props) => {
                       <ul className="equipment-list">
                         {equipmentList.children.map((equipment) => {
                           return (
-                            <li key={equipment.id}>
+                            <li key={equipment.id} onClick={addTab}>
                               <RuxMonitoringIcon
                                 icon={equipmentList.icon}
                                 className={equipment.status}
