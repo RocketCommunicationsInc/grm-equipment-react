@@ -11,7 +11,7 @@ const SidebarTree = (props) => {
         {sidebarObjects &&
           sidebarObjects.map(function (a) {
             return (
-              <RuxTreeNode key={a.label}>
+              <RuxTreeNode expanded="true" key={a.label}>
                 {a.status && <RuxStatus status={a.status} />}
                 {a.label}
 

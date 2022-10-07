@@ -3,7 +3,7 @@ import EquipmentHeader from './EquipmentHeader';
 import EquipmentAlerts from './EquipmentAlerts';
 import EquipmentContacts from './EquipmentContacts';
 
-const EquipmentDetails = () => {
+const EquipmentDetails = ({ id }) => {
   return (
     <>
       <div className="grid-zone-wrap">
@@ -11,7 +11,7 @@ const EquipmentDetails = () => {
           Equipment Details
         </div>
         <div className="grid-zone__content equipment-details-grid">
-          <EquipmentHeader equipmentNumber={1247} status="critical" />
+          <EquipmentHeader equipmentNumber={id} status="critical" />
           <EquipmentAlerts />
           <EquipmentContacts />
         </div>

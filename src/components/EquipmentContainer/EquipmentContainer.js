@@ -18,12 +18,9 @@ const EquipmentContainer = (props) => {
       id: 'inoperable',
       label: 'Inoperable',
     },
-    {
-      id: 'id-2',
-      label: 'Test',
-    },
   ];
   let [tabs, setTabs] = useState(defaultTabs);
+  let [tabPanels, setTabPanels] = useState([]);
 
   for (const category of equipmentData) {
     let equipObject = {};
@@ -51,7 +48,11 @@ const EquipmentContainer = (props) => {
           id: e.target.label,
           label: e.target.label,
         };
+        let newTabPanel = {
+          id: e.target.label,
+        };
         setTabs([...tabs, newTab]);
+        setTabPanels([...tabPanels, newTabPanel]);
       }
     };
   }
@@ -67,7 +68,10 @@ const EquipmentContainer = (props) => {
           );
         })}
       </RuxTabs>
-      <RuxTabPanels className="tab-panels" aria-labelledby="tab-set-id-1">
+      <RuxTabPanels
+        className="tab-panels"
+        aria-labelledby="equipment-container-tabs"
+      >
         <RuxTabPanel
           className="tab-inoperable"
           aria-labelledby="tab-inoperable"
@@ -109,13 +113,29 @@ const EquipmentContainer = (props) => {
             )}
           </div>
         </RuxTabPanel>
-        <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
+        {/* <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
           <EquipmentDetails />
           <EquipmentMaintenance
             changeView={props.changeView}
             setCurrentJob={props.setCurrentJob}
           />
-        </RuxTabPanel>
+        </RuxTabPanel> */}
+        {tabPanels.map((panel) => {
+          return (
+            <RuxTabPanel
+              key={panel.id}
+              data-test={panel.id}
+              id={panel.id}
+              aria-labelledby={`tab-${panel.id}`}
+            >
+              <EquipmentDetails id={panel.id} />
+              <EquipmentMaintenance
+                changeView={props.changeView}
+                setCurrentJob={props.setCurrentJob}
+              />
+            </RuxTabPanel>
+          );
+        })}
       </RuxTabPanels>
     </div>
   );
