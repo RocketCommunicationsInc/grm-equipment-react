@@ -24,7 +24,7 @@ const EquipmentHeader = ({ equipment }) => {
         <div className="grid-zone__content">
           <div className="equipment-name">
             <RuxStatus className="rux-status" status={equipment.data.status} />
-            {equipment.label}
+            {equipment.data.label}
           </div>
           <div className="equipment-header">
             <div className="equipment-header__detail equipment-header__detail--equipment-states">

@@ -8,12 +8,21 @@ import {
   RuxIcon,
 } from '@astrouxds/react';
 import './GlobalStatusBar.scss';
-import { useContext } from 'react';
-import { calcCategoryStatus, getCategoryAlerts } from '../../services/data';
-import { DataContext } from '../../DataContext';
+import { calcCategoryStatus, getCategoryAlerts } from '../../services/Data';
+import { useEffect, useState } from 'react';
 
-const GlobalStatusBar = () => {
-  const dataContext = useContext(DataContext);
+const GlobalStatusBar = ({ data }) => {
+  const [rfStatus, setRfStatus] = useState(
+    calcCategoryStatus(data.categories[3])
+  );
+  const [rfAlerts, setRfAlerts] = useState(
+    getCategoryAlerts(data.categories[3]).length
+  );
+
+  useEffect(() => {
+    setRfStatus(calcCategoryStatus(data.categories[3]));
+    setRfAlerts(getCategoryAlerts(data.categories[3]).length);
+  }, [data]);
 
   return (
     <>
@@ -41,37 +50,29 @@ const GlobalStatusBar = () => {
             className="status-indicators__indicator"
             icon="antenna"
             label="RF"
-            status={calcCategoryStatus(dataContext.data.categories[3])}
-            notifications={
-              getCategoryAlerts(dataContext.data.categories[3]).length
-            }
+            status={rfStatus}
+            notifications={rfAlerts}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="processor-alt"
             label="Digital"
-            status={calcCategoryStatus(dataContext.data.categories[2])}
-            notifications={
-              getCategoryAlerts(dataContext.data.categories[2]).length
-            }
+            status={calcCategoryStatus(data.categories[2])}
+            notifications={getCategoryAlerts(data.categories[2]).length}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-transmit"
             label="Comms"
-            status={calcCategoryStatus(dataContext.data.categories[1])}
-            notifications={
-              getCategoryAlerts(dataContext.data.categories[1]).length
-            }
+            status={calcCategoryStatus(data.categories[1])}
+            notifications={getCategoryAlerts(data.categories[1]).length}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-receive"
             label="Facilities"
-            status={calcCategoryStatus(dataContext.data.categories[0])}
-            notifications={
-              getCategoryAlerts(dataContext.data.categories[0]).length
-            }
+            status={calcCategoryStatus(data.categories[0])}
+            notifications={getCategoryAlerts(data.categories[0]).length}
           />
         </div>
       </RuxGlobalStatusBar>

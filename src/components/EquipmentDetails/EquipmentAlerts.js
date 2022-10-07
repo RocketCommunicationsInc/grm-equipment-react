@@ -92,7 +92,7 @@ const EquipmentAlerts = (props) => {
     alertsService.onChange(onAlertsChange);
 
     return () => {
-      alertsService.onChangeRemove(onAlertsChange);
+      alertsService.removeOnChange(onAlertsChange);
     };
   }, [alertsService]);
 

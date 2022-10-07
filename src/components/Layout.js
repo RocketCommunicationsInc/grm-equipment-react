@@ -1,26 +1,14 @@
 import '@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css';
 import './Layout.scss';
 import { DataContext } from '../DataContext';
-import { mainData } from '../services/data';
+import { DataService } from '../services/Data';
 import { useState } from 'react';
 
 const Layout = ({ children }) => {
-  const [dataContext, setDataContext] = useState({
-    data: mainData,
-    notifyUpdate: customNotifyUpdate,
-  });
-
-  function customNotifyUpdate() {
-    setDataContext((oldContext) => ({
-      data: oldContext.data,
-      notifiyUpdate: oldContext.notifiyUpdate,
-    }));
-  }
-
-  mainData.notifyUpdate = customNotifyUpdate;
+  const [dataService, setDataContext] = useState(new DataService());
 
   return (
-    <DataContext.Provider value={dataContext}>{children}</DataContext.Provider>
+    <DataContext.Provider value={dataService}>{children}</DataContext.Provider>
   );
 };
 

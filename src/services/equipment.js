@@ -148,6 +148,7 @@ export class EquipmentService extends Service {
     this.data.alerts = alerts;
     alerts.onChange(() => {
       this.calcEquipmentStatus(this.data);
+      this.notifyChange();
     });
   }
 
@@ -158,12 +159,14 @@ export class EquipmentService extends Service {
   }
 }
 
-export function genManyEquipment(num, eqPrefix, numDigits) {
-  const equipment = [];
+export function genManyEquipment(changeCallback, num, eqPrefix, numDigits) {
+  const equipments = [];
 
   for (let i = 0; i < num; i++) {
-    equipment.push(new EquipmentService(eqPrefix, numDigits));
+    const equipment = new EquipmentService(eqPrefix, numDigits);
+    equipment.onChange(changeCallback);
+    equipments.push(equipment);
   }
 
-  return equipment;
+  return equipments;
 }

@@ -125,11 +125,11 @@ export class AlertsService extends Service {
     },
   ];
   static uniqueAlertId = 1;
-
+  data = [];
   constructor() {
     super();
-    this.data = this.genAlerts(randInt(1, 3));
-    this.genFutureAlert(1000, 60000);
+    // this.data = this.genAlerts(randInt(0, 1));
+    this.genFutureAlert(3000, 60000);
   }
 
   genAlert() {
@@ -161,9 +161,7 @@ export class AlertsService extends Service {
   }
 
   remove(ids) {
-    // console.log('data removeCheckedAlerts', this.alerts);
     this.data = this.data.filter((alert) => !ids.includes(alert.errorId));
-    // console.log('data removeCheckedAlerts', this.alerts);
-    this.notifyChange(); //does this bind 'this'?
+    this.notifyChange();
   }
 }

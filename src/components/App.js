@@ -4,16 +4,31 @@ import EquipmentContainer from './EquipmentContainer/EquipmentContainer';
 import SidebarTree from './Sidebar/SidebarTree';
 import ScheduleJob from './EquipmentMaintenance/ScheduleJob.js';
 import JobDetails from './EquipmentMaintenance/JobDetails.js';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { DataContext } from '../DataContext';
 
 function App() {
   let [currentView, setCurrentView] = useState('main');
   let [currentJob, setCurrentJob] = useState({});
+  const dataService = useContext(DataContext);
+  let [data, setData] = useState(dataService.data);
+
+  useEffect(() => {
+    function onDataChange(newData) {
+      setData({ ...newData });
+    }
+
+    dataService.onChange(onDataChange);
+
+    return () => {
+      dataService.removeOnChange(onDataChange);
+    };
+  }, [dataService]);
 
   if (currentView === 'main') {
     return (
       <>
-        <GlobalStatusBar />
+        <GlobalStatusBar data={data} />
         <main key={currentView}>
           <nav className="main-menu">
             <SidebarTree />
@@ -28,7 +43,7 @@ function App() {
   } else if (currentView === 'scheduleJob') {
     return (
       <>
-        <GlobalStatusBar />
+        <GlobalStatusBar data={data} />
 
         <ScheduleJob />
       </>
@@ -36,7 +51,7 @@ function App() {
   } else if (currentView === 'viewJobDetails') {
     return (
       <>
-        <GlobalStatusBar />
+        <GlobalStatusBar data={data} />
         <JobDetails currentJob={currentJob} />
       </>
     );
