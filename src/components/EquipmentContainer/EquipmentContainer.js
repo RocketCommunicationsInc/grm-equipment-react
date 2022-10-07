@@ -8,15 +8,12 @@ import {
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
-import { DataContext } from '../../DataContext';
-import { useContext } from 'react';
 
-const EquipmentContainer = (props) => {
-  let equipmentData = useContext(DataContext).data;
+const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
   let formattedData = [];
 
   // gather equipment from category components
-  for (const category of equipmentData.categories) {
+  for (const category of data.categories) {
     let equipObject = {};
     equipObject.id = category.label;
     equipObject.label = category.label;
@@ -85,10 +82,12 @@ const EquipmentContainer = (props) => {
           </div>
         </RuxTabPanel>
         <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
-          <EquipmentDetails />
+          <EquipmentDetails
+            equipment={data.categories[0].children[0].children[0]}
+          />
           <EquipmentMaintenance
-            changeView={props.changeView}
-            setCurrentJob={props.setCurrentJob}
+            changeView={changeView}
+            setCurrentJob={setCurrentJob}
           />
         </RuxTabPanel>
       </RuxTabPanels>

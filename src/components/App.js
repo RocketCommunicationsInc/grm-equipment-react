@@ -36,6 +36,7 @@ function App() {
           <EquipmentContainer
             changeView={(view) => setCurrentView(view)}
             setCurrentJob={(job) => setCurrentJob(job)}
+            data={data}
           />
         </main>
       </>

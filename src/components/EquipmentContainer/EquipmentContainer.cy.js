@@ -1,8 +1,11 @@
+import { DataService } from '../../services/Data';
 import EquipmentContainer from './EquipmentContainer';
 
 describe('EquipmentContainer.cy.js', () => {
   beforeEach(() => {
-    cy.mount(<EquipmentContainer />);
+    DataService.isStatic = true;
+    const data = new DataService().data;
+    cy.mount(<EquipmentContainer data={data} />);
   });
 
   it('renders', () => {

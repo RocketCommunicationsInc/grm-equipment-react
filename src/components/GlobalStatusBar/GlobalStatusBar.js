@@ -12,16 +12,26 @@ import { calcCategoryStatus, getCategoryAlerts } from '../../services/Data';
 import { useEffect, useState } from 'react';
 
 const GlobalStatusBar = ({ data }) => {
-  const [rfStatus, setRfStatus] = useState(
-    calcCategoryStatus(data.categories[3])
-  );
-  const [rfAlerts, setRfAlerts] = useState(
-    getCategoryAlerts(data.categories[3]).length
-  );
+  const [rfStatus, setRfStatus] = useState('');
+  const [rfAlerts, setRfAlerts] = useState(0);
+  const [digitalStatus, setDigitalStatus] = useState('');
+  const [digitalAlerts, setDigitalAlerts] = useState(0);
+  const [commsStatus, setCommsStatus] = useState('');
+  const [commsAlerts, setCommsAlerts] = useState(0);
+  const [facilitiesStatus, setFacilitiesStatus] = useState('');
+  const [facilitiesAlerts, setFacilitiesAlerts] = useState(0);
 
   useEffect(() => {
-    setRfStatus(calcCategoryStatus(data.categories[3]));
-    setRfAlerts(getCategoryAlerts(data.categories[3]).length);
+    if (data) {
+      setRfStatus(calcCategoryStatus(data.categories[3]));
+      setRfAlerts(getCategoryAlerts(data.categories[3]).length);
+      setDigitalStatus(calcCategoryStatus(data.categories[2]));
+      setDigitalAlerts(getCategoryAlerts(data.categories[2]).length);
+      setCommsStatus(calcCategoryStatus(data.categories[1]));
+      setCommsAlerts(getCategoryAlerts(data.categories[1]).length);
+      setFacilitiesStatus(calcCategoryStatus(data.categories[0]));
+      setFacilitiesAlerts(getCategoryAlerts(data.categories[0]).length);
+    }
   }, [data]);
 
   return (
@@ -57,22 +67,22 @@ const GlobalStatusBar = ({ data }) => {
             className="status-indicators__indicator"
             icon="processor-alt"
             label="Digital"
-            status={calcCategoryStatus(data.categories[2])}
-            notifications={getCategoryAlerts(data.categories[2]).length}
+            status={digitalStatus}
+            notifications={digitalAlerts}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-transmit"
             label="Comms"
-            status={calcCategoryStatus(data.categories[1])}
-            notifications={getCategoryAlerts(data.categories[1]).length}
+            status={commsStatus}
+            notifications={commsAlerts}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-receive"
             label="Facilities"
-            status={calcCategoryStatus(data.categories[0])}
-            notifications={getCategoryAlerts(data.categories[0]).length}
+            status={facilitiesStatus}
+            notifications={facilitiesAlerts}
           />
         </div>
       </RuxGlobalStatusBar>

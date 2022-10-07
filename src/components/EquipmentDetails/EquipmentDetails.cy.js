@@ -1,8 +1,12 @@
+import { DataService } from '../../services/Data';
 import EquipmentDetails from './EquipmentDetails';
 
 describe('Equipment Details', () => {
   beforeEach(() => {
-    cy.mount(<EquipmentDetails />);
+    DataService.isStatic = true;
+    const data = new DataService().data;
+    const equipment = data.categories[0].children[0].children[0];
+    cy.mount(<EquipmentDetails equipment={equipment} />);
   });
 
   it('shows the panel label', () => {

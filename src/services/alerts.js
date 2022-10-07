@@ -1,4 +1,5 @@
 import { randInt } from '../util/util';
+import { DataService } from './Data';
 import { Service } from './Service';
 
 export class AlertsService extends Service {
@@ -128,8 +129,10 @@ export class AlertsService extends Service {
   data = [];
   constructor() {
     super();
-    // this.data = this.genAlerts(randInt(0, 1));
-    this.genFutureAlert(3000, 60000);
+    // this.data = this.genAlerts(randInt(2, 3));
+    if (!DataService.isStatic) {
+      this.genFutureAlert(10000, 60000);
+    }
   }
 
   genAlert() {

@@ -51,6 +51,8 @@ export function getCategoryAlerts(category) {
 }
 
 export class DataService extends Service {
+  static isStatic = false;
+
   constructor() {
     super();
 

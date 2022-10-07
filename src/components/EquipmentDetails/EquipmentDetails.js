@@ -2,15 +2,8 @@ import './EquipmentDetails.scss';
 import EquipmentHeader from './EquipmentHeader';
 import EquipmentAlerts from './EquipmentAlerts';
 import EquipmentContacts from './EquipmentContacts';
-import { DataContext } from '../../DataContext';
-import { useState, useContext, useEffect } from 'react';
 
-const EquipmentDetails = () => {
-  let data = useContext(DataContext).data;
-  const [equipment, setEquipment] = useState(
-    data.categories[0].children[0].children[0]
-  );
-
+const EquipmentDetails = ({ equipment }) => {
   return (
     <>
       <div className="grid-zone-wrap">
