@@ -1,68 +1,30 @@
 import { RuxLog, RuxSegmentedButton, RuxStatus } from '@astrouxds/react';
-import { loremIpsum } from '../../util/util';
+import { loremIpsum, randInt } from '../../util/util';
 import './EquipmentHeader.scss';
+import { eventLog, getOne } from '../../services/events';
+import { useEffect, useState } from 'react';
 
-const eventData = [
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'off',
-    message: 'Antenna DGS 1 went offline.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'serious',
-    message: 'USA-177 experienced solar panel misalignment.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'caution',
-    message: 'USA-168 suffered power degradation.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'standby',
-    message: 'Antenna DGS 2 has weak signal.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'off',
-    message: 'Black FEP 121 is offline.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'off',
-    message: 'Antenna DGS 1 went offline.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'serious',
-    message: 'USA-177 experienced solar panel misalignment.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'caution',
-    message: 'USA-168 suffered power degradation.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'standby',
-    message: 'Antenna DGS 2 has weak signal.',
-  },
-  {
-    timestamp: '2019-05-10T15:54:58.781Z',
-    status: 'off',
-    message: 'Black FEP 121 is offline.',
-  },
-];
+const EquipmentHeader = ({ equipment }) => {
+  const [events, setEvents] = useState(eventLog);
 
-const EquipmentHeader = ({ equipmentNumber, status }) => {
+  useEffect(() => {
+    let timeout;
+    timeout = setTimeout(() => {
+      const newEvents = events.concat([getOne()]);
+      setEvents(newEvents);
+    }, randInt(2000, 10000));
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [events]);
+
   return (
     <>
       <div className="grid-zone grid-zone--fixed grid-zone--equipment-header">
         <div className="grid-zone__content">
           <div className="equipment-name">
-            <RuxStatus className="rux-status" status={status} />
-            Equipment {equipmentNumber}
+            <RuxStatus className="rux-status" status={equipment.data.status} />
+            {equipment.data.label}
           </div>
           <div className="equipment-header">
             <div className="equipment-header__detail equipment-header__detail--equipment-states">
@@ -101,7 +63,7 @@ const EquipmentHeader = ({ equipmentNumber, status }) => {
             </div>
             <div className="equipment-header__detail equipment-header__detail--equipment-event-log">
               <div className="equipment-header__detail__label">Event Log</div>
-              <RuxLog className="rux-log" data={eventData}></RuxLog>
+              <RuxLog className="rux-log" data={events}></RuxLog>
             </div>
           </div>
         </div>

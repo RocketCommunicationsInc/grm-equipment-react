@@ -1,5 +1,5 @@
-export function randInt(max, min = 0) {
-  return Math.floor(Math.random() * max) + min;
+export function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export function loremIpsum() {
@@ -79,4 +79,47 @@ export function mapJobProgress(jobProgress) {
     default:
       return 'Submitted'; // also 1
   }
+}
+
+export function randIntDigits(digits) {
+  digits = parseInt(digits);
+  const min = Math.pow(10, digits - 1);
+  const max = Math.pow(10, digits) - 1;
+  const num = randInt(digits === 1 ? 0 : min, max);
+
+  return num;
+}
+
+export function shuffleArray(array) {
+  let counter = array.length;
+
+  // While there are elements in the array
+  while (counter > 0) {
+    // Pick a random index
+    let index = Math.floor(Math.random() * counter);
+
+    // Decrease counter by 1
+    counter--;
+
+    // And swap the last element with it
+    let temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+  }
+
+  return array;
+}
+
+export function getWorstStatus(statuses) {
+  const statusSeverity = ['normal', 'serious', 'caution', 'critical'];
+  let worstStatus = statusSeverity[0];
+
+  statuses.forEach((status) => {
+    worstStatus =
+      statusSeverity.indexOf(status) > statusSeverity.indexOf(worstStatus)
+        ? status
+        : worstStatus;
+  });
+
+  return worstStatus;
 }

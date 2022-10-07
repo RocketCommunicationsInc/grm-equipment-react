@@ -7,10 +7,8 @@ import {
   formatReadableTime,
 } from '../../util/util';
 
-import { populateLog as getAllLogs } from '../../services/log';
 import ConflictsTable from './ConflictsTable';
-
-let logs = getAllLogs();
+import { eventLog as logs } from '../../services/events';
 
 const ScheduleJob = (props) => {
   return (

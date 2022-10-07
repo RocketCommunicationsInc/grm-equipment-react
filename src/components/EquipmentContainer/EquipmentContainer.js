@@ -9,12 +9,13 @@ import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
 
-const EquipmentContainer = (props) => {
-  let equipmentData = props.data;
+const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
   let formattedData = [];
 
-  for (const category of equipmentData) {
+  // gather equipment from category components
+  for (const category of data.categories) {
     let equipObject = {};
+    equipObject.id = category.label;
     equipObject.label = category.label;
     equipObject.icon = category.icon;
     equipObject.children = [];
@@ -51,7 +52,7 @@ const EquipmentContainer = (props) => {
                 {formattedData.map((equipmentList) => {
                   return (
                     <div
-                      key={equipmentList.label}
+                      key={equipmentList.id}
                       className={`equipment-${equipmentList.label.toLowerCase()}`}
                     >
                       <h3>
@@ -60,12 +61,12 @@ const EquipmentContainer = (props) => {
                       <ul className="equipment-list">
                         {equipmentList.children.map((equipment) => {
                           return (
-                            <li key={equipment.id}>
+                            <li key={equipment.data.id}>
                               <RuxMonitoringIcon
                                 icon={equipmentList.icon}
-                                className={equipment.status}
-                                status={equipment.status}
-                                label={equipment.id}
+                                className={equipment.data.status}
+                                status={equipment.data.status}
+                                label={equipment.data.label}
                               />
                             </li>
                           );
@@ -81,10 +82,12 @@ const EquipmentContainer = (props) => {
           </div>
         </RuxTabPanel>
         <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
-          <EquipmentDetails />
+          <EquipmentDetails
+            equipment={data.categories[0].children[0].children[0]}
+          />
           <EquipmentMaintenance
-            changeView={props.changeView}
-            setCurrentJob={props.setCurrentJob}
+            changeView={changeView}
+            setCurrentJob={setCurrentJob}
           />
         </RuxTabPanel>
       </RuxTabPanels>

@@ -1,9 +1,11 @@
 import { RuxTree, RuxTreeNode, RuxStatus } from '@astrouxds/react';
+import { DataContext } from '../../DataContext';
+import { useContext } from 'react';
 
 import './Sidebar.scss';
 
-const SidebarTree = (props) => {
-  let sidebarObjects = props.sidebarObjects;
+const SidebarTree = () => {
+  const sidebarObjects = useContext(DataContext).data.categories;
 
   return (
     <>
@@ -23,18 +25,9 @@ const SidebarTree = (props) => {
                         {b.children &&
                           b.children.map(function (c) {
                             return (
-                              <RuxTreeNode key={c.label} slot="node">
-                                {c.status && <RuxStatus status={c.status} />}
-                                {c.label}
-                                {c.children &&
-                                  c.children.map(function (d) {
-                                    return (
-                                      <RuxTreeNode key={d.label} slot="node">
-                                        <RuxStatus status={d.status} />
-                                        {d.label}
-                                      </RuxTreeNode>
-                                    );
-                                  })}
+                              <RuxTreeNode key={c.data.id} slot="node">
+                                <RuxStatus status={c.data.status} />
+                                {c.data.label}
                               </RuxTreeNode>
                             );
                           })}

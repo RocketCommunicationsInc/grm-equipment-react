@@ -8,8 +8,32 @@ import {
   RuxIcon,
 } from '@astrouxds/react';
 import './GlobalStatusBar.scss';
+import { calcCategoryStatus, getCategoryAlerts } from '../../services/Data';
+import { useEffect, useState } from 'react';
 
-const GlobalStatusBar = () => {
+const GlobalStatusBar = ({ data }) => {
+  const [rfStatus, setRfStatus] = useState('');
+  const [rfAlerts, setRfAlerts] = useState(0);
+  const [digitalStatus, setDigitalStatus] = useState('');
+  const [digitalAlerts, setDigitalAlerts] = useState(0);
+  const [commsStatus, setCommsStatus] = useState('');
+  const [commsAlerts, setCommsAlerts] = useState(0);
+  const [facilitiesStatus, setFacilitiesStatus] = useState('');
+  const [facilitiesAlerts, setFacilitiesAlerts] = useState(0);
+
+  useEffect(() => {
+    if (data) {
+      setRfStatus(calcCategoryStatus(data.categories[3]));
+      setRfAlerts(getCategoryAlerts(data.categories[3]).length);
+      setDigitalStatus(calcCategoryStatus(data.categories[2]));
+      setDigitalAlerts(getCategoryAlerts(data.categories[2]).length);
+      setCommsStatus(calcCategoryStatus(data.categories[1]));
+      setCommsAlerts(getCategoryAlerts(data.categories[1]).length);
+      setFacilitiesStatus(calcCategoryStatus(data.categories[0]));
+      setFacilitiesAlerts(getCategoryAlerts(data.categories[0]).length);
+    }
+  }, [data]);
+
   return (
     <>
       <RuxGlobalStatusBar
@@ -36,29 +60,29 @@ const GlobalStatusBar = () => {
             className="status-indicators__indicator"
             icon="antenna"
             label="RF"
-            status="critical"
-            notifications={23}
+            status={rfStatus}
+            notifications={rfAlerts}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="processor-alt"
             label="Digital"
-            status="serious"
-            notifications={42}
+            status={digitalStatus}
+            notifications={digitalAlerts}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-transmit"
             label="Comms"
-            status="caution"
-            notifications={11}
+            status={commsStatus}
+            notifications={commsAlerts}
           />
           <RuxMonitoringIcon
             className="status-indicators__indicator"
             icon="antenna-receive"
             label="Facilities"
-            status="normal"
-            notifications={2}
+            status={facilitiesStatus}
+            notifications={facilitiesAlerts}
           />
         </div>
       </RuxGlobalStatusBar>
