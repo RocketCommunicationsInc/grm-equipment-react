@@ -10,7 +10,7 @@ import { mapJobType, formatDayOfYear, formatYear } from '../../util/util';
 
 import ConflictsTable from './ConflictsTable';
 
-const ScheduleJob = () => {
+const ScheduleJob = ({ cancelEdit }) => {
   return (
     <>
       <div className="grid-zone-wrap">
@@ -170,11 +170,11 @@ const ScheduleJob = () => {
       </div>
 
       <div className="job-details-request--edit-actions">
-        <rux-button className="rux-button" secondary="" on-click="cancelEdit">
+        <rux-button className="rux-button" secondary onClick={cancelEdit}>
           Cancel
         </rux-button>
 
-        <rux-button className="rux-button" on-click="saveJobDetails">
+        <rux-button className="rux-button" onClick={cancelEdit}>
           Submit Request
         </rux-button>
       </div>
