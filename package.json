@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@astrouxds/react": "^6.13.0",
+    "@astrouxds/react": "^7.2.0",
     "classnames": "^2.3.2",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
