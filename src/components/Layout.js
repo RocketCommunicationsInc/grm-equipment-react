@@ -5,6 +5,7 @@ import { DataService } from '../services/Data';
 import { useState } from 'react';
 
 const Layout = ({ children }) => {
+  // eslint-disable-next-line no-unused-vars
   const [dataService, setDataContext] = useState(new DataService());
 
   return (
