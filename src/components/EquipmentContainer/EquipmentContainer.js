@@ -31,7 +31,7 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
 
   return (
     <div className="equipment-container" data-test="equipment-container">
-      <RuxTabs id="equipment-container-tabs" small>
+      <RuxTabs id="tab-set-id-1" small>
         <RuxTab id="tab-inoperable" data-test="tab-inoperable">
           Inoperable
         </RuxTab>
