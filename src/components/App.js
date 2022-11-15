@@ -53,7 +53,10 @@ function App() {
     return (
       <>
         <GlobalStatusBar data={data} />
-        <JobDetails currentJob={currentJob} />
+        <JobDetails
+          currentJob={currentJob}
+          exitJobDetails={() => setCurrentView('main')}
+        />
       </>
     );
   }
