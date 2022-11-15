@@ -46,14 +46,17 @@ function App() {
       <>
         <GlobalStatusBar data={data} />
 
-        <ScheduleJob />
+        <ScheduleJob cancelEdit={() => setCurrentView('main')} />
       </>
     );
   } else if (currentView === 'viewJobDetails') {
     return (
       <>
         <GlobalStatusBar data={data} />
-        <JobDetails currentJob={currentJob} />
+        <JobDetails
+          currentJob={currentJob}
+          exitJobDetails={() => setCurrentView('main')}
+        />
       </>
     );
   }

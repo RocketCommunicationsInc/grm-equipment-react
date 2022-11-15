@@ -1,5 +1,5 @@
 import './ScheduleJob.scss';
-import { RuxLog, RuxCheckbox } from '@astrouxds/react';
+import { RuxLog, RuxCheckbox, RuxButton } from '@astrouxds/react';
 import {
   mapJobType,
   formatDayOfYear,
@@ -195,16 +195,16 @@ const ScheduleJob = (props) => {
         </div>
 
         <div className="job-details-request--edit-actions">
-          <rux-button
+          <RuxButton
             className="rux-button"
-            secondary=""
-            on-click="exitJobDetails"
+            secondary
+            onClick={props.exitJobDetails}
           >
             Cancel
-          </rux-button>
-          <rux-button className="rux-button" on-click="editJob">
+          </RuxButton>
+          <RuxButton className="rux-button" on-click="editJob">
             Modify
-          </rux-button>
+          </RuxButton>
         </div>
       </div>
     </>
