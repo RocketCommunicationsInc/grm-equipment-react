@@ -5,6 +5,7 @@ import {
   RuxTextarea,
   RuxCheckbox,
   RuxButton,
+  RuxButtonGroup,
 } from '@astrouxds/react';
 import { mapJobType, formatDayOfYear, formatYear } from '../../util/util';
 
@@ -169,15 +170,13 @@ const ScheduleJob = ({ cancelEdit }) => {
         </div>
       </div>
 
-      <div className="job-details-request--edit-actions">
-        <rux-button className="rux-button" secondary onClick={cancelEdit}>
+      <RuxButtonGroup className="job-details-request--edit-actions">
+        <RuxButton secondary onClick={cancelEdit}>
           Cancel
-        </rux-button>
+        </RuxButton>
 
-        <rux-button className="rux-button" onClick={cancelEdit}>
-          Submit Request
-        </rux-button>
-      </div>
+        <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
+      </RuxButtonGroup>
     </>
   );
 };

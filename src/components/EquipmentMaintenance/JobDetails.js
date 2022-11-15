@@ -1,5 +1,10 @@
 import './ScheduleJob.scss';
-import { RuxLog, RuxCheckbox, RuxButton } from '@astrouxds/react';
+import {
+  RuxLog,
+  RuxCheckbox,
+  RuxButton,
+  RuxButtonGroup,
+} from '@astrouxds/react';
 import {
   mapJobType,
   formatDayOfYear,
@@ -194,7 +199,10 @@ const ScheduleJob = (props) => {
           <ConflictsTable />
         </div>
 
-        <div className="job-details-request--edit-actions">
+        <RuxButtonGroup
+          hAlign="right"
+          className="job-details-request--edit-actions"
+        >
           <RuxButton
             className="rux-button"
             secondary
@@ -205,7 +213,7 @@ const ScheduleJob = (props) => {
           <RuxButton className="rux-button" on-click="editJob">
             Modify
           </RuxButton>
-        </div>
+        </RuxButtonGroup>
       </div>
     </>
   );
