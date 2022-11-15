@@ -2,6 +2,7 @@
 
 .equipment-container {
   overflow: hidden;
+  width: 100%;
 
   ul {
     padding-left: 0;
@@ -13,8 +14,7 @@
     height: 40px;
   }
 
-  h2,
-  h3 {
+  h2 {
     background-color: $darkest_blue;
     padding: 20px;
     margin-top: 0;

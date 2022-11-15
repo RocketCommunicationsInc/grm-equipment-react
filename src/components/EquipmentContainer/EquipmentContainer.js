@@ -4,6 +4,8 @@ import {
   RuxTabPanels,
   RuxTabPanel,
   RuxMonitoringIcon,
+  RuxAccordion,
+  RuxAccordionItem,
 } from '@astrouxds/react';
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
@@ -48,34 +50,30 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
           <h2>Inoperable Equipment</h2>
           <div className="equipment-inoperable">
             {formattedData.length > 0 ? (
-              <div>
-                {formattedData.map((equipmentList) => {
-                  return (
-                    <div
-                      key={equipmentList.id}
-                      className={`equipment-${equipmentList.label.toLowerCase()}`}
-                    >
-                      <h3>
-                        {equipmentList.label} ({equipmentList.children.length})
-                      </h3>
-                      <ul className="equipment-list">
-                        {equipmentList.children.map((equipment) => {
-                          return (
-                            <li key={equipment.data.id}>
-                              <RuxMonitoringIcon
-                                icon={equipmentList.icon}
-                                className={equipment.data.status}
-                                status={equipment.data.status}
-                                label={equipment.data.label}
-                              />
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
+              <RuxAccordion disallowMultiple>
+                {formattedData.map((equipmentList) => (
+                  <RuxAccordionItem
+                    key={equipmentList.id}
+                    className={`equipment-${equipmentList.label.toLowerCase()}`}
+                  >
+                    <h3 slot="label">
+                      {equipmentList.label} ({equipmentList.children.length})
+                    </h3>
+                    <ul className="equipment-list">
+                      {equipmentList.children.map((equipment) => (
+                        <li key={equipment.data.id}>
+                          <RuxMonitoringIcon
+                            icon={equipmentList.icon}
+                            className={equipment.data.status}
+                            status={equipment.data.status}
+                            label={equipment.data.label}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </RuxAccordionItem>
+                ))}
+              </RuxAccordion>
             ) : (
               <p>No Equipment found.</p>
             )}
