@@ -51,10 +51,11 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
           <div className="equipment-inoperable">
             {formattedData.length > 0 ? (
               <RuxAccordion disallowMultiple>
-                {formattedData.map((equipmentList) => (
+                {formattedData.map((equipmentList, i) => (
                   <RuxAccordionItem
                     key={equipmentList.id}
                     className={`equipment-${equipmentList.label.toLowerCase()}`}
+                    expanded={i === 0}
                   >
                     <h3 slot="label">
                       {equipmentList.label} ({equipmentList.children.length})
