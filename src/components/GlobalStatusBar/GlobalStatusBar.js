@@ -2,7 +2,7 @@ import {
   RuxClock,
   RuxGlobalStatusBar,
   RuxMonitoringIcon,
-  RuxPopUpMenu,
+  RuxPopUp,
   RuxMenuItem,
   RuxMenuItemDivider,
   RuxIcon,
@@ -47,12 +47,25 @@ const GlobalStatusBar = ({ data }) => {
         data-test="global-status-bar"
       >
         <div slot="left-side">
-          <RuxIcon
-            className="global-status-menu-icon"
-            icon="apps"
-            aria-controls="grm-popup-menu"
-            data-test="global-status-menu-btn"
-          ></RuxIcon>
+          <RuxPopUp
+            id="grm-popup-menu"
+            data-test="global-status-menu"
+            placement="bottom-start"
+          >
+            <RuxIcon
+              className="global-status-menu-icon"
+              icon="apps"
+              aria-controls="grm-popup-menu"
+              data-test="global-status-menu-btn"
+              slot="trigger"
+            />
+            <RuxMenuItem>GRM Dashboard</RuxMenuItem>
+            <RuxMenuItem>GRM Equipment Manager</RuxMenuItem>
+            <RuxMenuItem>GRM Schedule</RuxMenuItem>
+            <RuxMenuItemDivider></RuxMenuItemDivider>
+            <RuxMenuItem>Preferences...</RuxMenuItem>
+            <RuxMenuItem>Sign Out...</RuxMenuItem>
+          </RuxPopUp>
         </div>
         <RuxClock />
         <div className="status-indicators" slot="right-side">
@@ -86,14 +99,6 @@ const GlobalStatusBar = ({ data }) => {
           />
         </div>
       </RuxGlobalStatusBar>
-      <RuxPopUpMenu id="grm-popup-menu" data-test="global-status-menu">
-        <RuxMenuItem>GRM Dashboard</RuxMenuItem>
-        <RuxMenuItem>GRM Equipment Manager</RuxMenuItem>
-        <RuxMenuItem>GRM Schedule</RuxMenuItem>
-        <RuxMenuItemDivider></RuxMenuItemDivider>
-        <RuxMenuItem>Preferences...</RuxMenuItem>
-        <RuxMenuItem>Sign Out...</RuxMenuItem>
-      </RuxPopUpMenu>
     </>
   );
 };

@@ -62,6 +62,7 @@ const Alert = ({
 
 const EquipmentAlerts = (props) => {
   const [alerts, setAlerts] = useState(props.alerts.data || []);
+  // eslint-disable-next-line no-unused-vars
   const [alertsService, setAlertsService] = useState(props.alerts);
 
   function alertsSelected() {

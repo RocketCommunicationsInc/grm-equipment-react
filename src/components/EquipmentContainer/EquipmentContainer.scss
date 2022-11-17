@@ -21,8 +21,8 @@
   }
 }
 
-#equipment-container-tabs {
-  height: 40px;
+#tab-set-id-1 {
+  height: 60px;
 }
 
 .tab-panels {
@@ -41,6 +41,14 @@
     top: 15px;
     left: 30px;
     margin: 0;
+  }
+
+  rux-monitoring-icon {
+    min-height: 0;
+
+    &::part(monitoring-label) {
+      margin-top: 4px;
+    }
   }
 }
 

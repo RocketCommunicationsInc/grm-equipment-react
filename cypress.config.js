@@ -7,6 +7,7 @@ module.exports = defineConfig({
       bundler: 'webpack',
     },
     includeShadowDom: true,
+    specPattern: './src/**/*.cy.*',
   },
 
   e2e: {
