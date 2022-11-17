@@ -114,4 +114,14 @@ export class DataService extends Service {
       ],
     };
   }
+
+  onChange(cb) {
+    this.onChangeCallbacks.push(cb);
+  }
+
+  notifyChange() {
+    this.onChangeCallbacks.forEach((cb) => {
+      cb(this.data);
+    });
+  }
 }
