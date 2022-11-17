@@ -6,6 +6,10 @@ import {
   RuxCheckbox,
   RuxButton,
   RuxButtonGroup,
+  RuxSlider,
+  RuxCheckboxGroup,
+  RuxRadio,
+  RuxRadioGroup,
 } from '@astrouxds/react';
 import { mapJobType, formatDayOfYear, formatYear } from '../../util/util';
 
@@ -154,11 +158,67 @@ const ScheduleJob = ({ cancelEdit, submitRequest }) => {
                 you do not follow this job, you must view the job from the
                 Equipment Manager to be notified of any updates or alerts.
               </p>
+              <br />
+
               <div className="job-details__meta">
                 <div className="rux-checkbox">
                   <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
                 </div>
               </div>
+
+              <div className="job-details__meta">
+                <RuxSlider
+                  id="axis-labels"
+                  axisLabels={['0', '25', '50', '75', '100']}
+                  max="100"
+                  min="0"
+                  step="25"
+                  help-text="Example help text: Move the slider to update the value"
+                  error-text=""
+                  label="Adjust completion level of job:"
+                />
+              </div>
+              <br />
+
+              <div className="job-details__meta">
+                <div className="rux-checkbox">
+                  <RuxCheckboxGroup
+                    name="checkboxes"
+                    label="Follow these status indicators in this job:"
+                  >
+                    <RuxCheckbox name="checkbox">RF</RuxCheckbox>
+                    <RuxCheckbox name="checkbox">Digital</RuxCheckbox>
+                    <RuxCheckbox name="checkbox">Comms</RuxCheckbox>
+                    <RuxCheckbox name="checkbox">Facilities</RuxCheckbox>
+                  </RuxCheckboxGroup>
+                </div>
+              </div>
+              <br />
+              <div className="job-details__meta">
+                <RuxRadio value="one" name="radios">
+                  kjjj
+                </RuxRadio>
+                <div className="rux-checkbox">
+                  <RuxRadioGroup
+                    name="radios"
+                    label="Number of job status updates you would like to receive per day:"
+                  >
+                    <RuxRadio value="one" name="radios">
+                      One
+                    </RuxRadio>
+                    <RuxRadio value="two" name="radios">
+                      Two
+                    </RuxRadio>
+                    <RuxRadio value="three" name="radios">
+                      Three
+                    </RuxRadio>
+                    <RuxRadio value="four" name="radios">
+                      Four
+                    </RuxRadio>
+                  </RuxRadioGroup>
+                </div>
+              </div>
+
               <div className="job-details-request__actions">
                 <RuxButton className="rux-button">
                   Calculate Conflicts
