@@ -45,6 +45,10 @@
 
   rux-monitoring-icon {
     min-height: 0;
+
+    &::part(monitoring-label) {
+      margin-top: 4px;
+    }
   }
 }
 
