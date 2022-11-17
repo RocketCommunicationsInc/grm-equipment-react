@@ -195,6 +195,9 @@ const ScheduleJob = ({ cancelEdit }) => {
               </div>
               <br />
               <div className="job-details__meta">
+                <RuxRadio value="one" name="radios">
+                  kjjj
+                </RuxRadio>
                 <div className="rux-checkbox">
                   <RuxRadioGroup
                     name="radios"
@@ -209,7 +212,7 @@ const ScheduleJob = ({ cancelEdit }) => {
                     <RuxRadio value="three" name="radios">
                       Three
                     </RuxRadio>
-                    <RuxRadio value="three" name="radios">
+                    <RuxRadio value="four" name="radios">
                       Four
                     </RuxRadio>
                   </RuxRadioGroup>
