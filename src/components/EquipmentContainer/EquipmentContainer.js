@@ -4,7 +4,6 @@ import {
   RuxTabPanels,
   RuxTabPanel,
   RuxMonitoringIcon,
-  RuxCard,
 } from '@astrouxds/react';
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
@@ -63,14 +62,12 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
                         {equipmentList.children.map((equipment) => {
                           return (
                             <li key={equipment.data.id}>
-                              <RuxCard>
-                                <RuxMonitoringIcon
-                                  icon={equipmentList.icon}
-                                  className={equipment.data.status}
-                                  status={equipment.data.status}
-                                  label={equipment.data.label}
-                                />
-                              </RuxCard>
+                              <RuxMonitoringIcon
+                                icon={equipmentList.icon}
+                                className={equipment.data.status}
+                                status={equipment.data.status}
+                                label={equipment.data.label}
+                              />
                             </li>
                           );
                         })}
