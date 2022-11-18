@@ -210,7 +210,7 @@ const ScheduleJob = (props) => {
           >
             Cancel
           </RuxButton>
-          <RuxButton className="rux-button" onClick={props.modifyJob}>
+          <RuxButton className="rux-button" on-click="editJob">
             Modify
           </RuxButton>
         </RuxButtonGroup>
