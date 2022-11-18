@@ -129,9 +129,9 @@ export class AlertsService extends Service {
   data = [];
   constructor() {
     super();
-    // this.data = this.genAlerts(randInt(2, 3));
+    this.genAlerts(randInt(0, 1));
     if (!DataService.isStatic) {
-      this.genFutureAlert(10000, 60000);
+      this.genFutureAlert(5000, 60000);
     }
   }
 
@@ -143,10 +143,16 @@ export class AlertsService extends Service {
     return alert;
   }
 
+  addAlert(alert) {
+    this.data.push(alert);
+    this.notifyChange();
+  }
+
   genAlerts(num) {
     let alerts = [];
     for (let i = 0; i < num; i++) {
-      alerts.push(this.genAlert());
+      const a = this.genAlert();
+      this.addAlert(a);
     }
     return alerts;
   }

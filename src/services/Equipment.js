@@ -150,6 +150,7 @@ export class EquipmentService extends Service {
       this.calcEquipmentStatus(this.data);
       this.notifyChange();
     });
+    this.calcEquipmentStatus(this.data);
   }
 
   calcEquipmentStatus() {
