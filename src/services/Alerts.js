@@ -129,7 +129,7 @@ export class AlertsService extends Service {
   data = [];
   constructor() {
     super();
-    this.genAlerts(randInt(1, 1));
+    this.genAlerts(randInt(0, 1));
     if (!DataService.isStatic) {
       this.genFutureAlert(5000, 60000);
     }
