@@ -21,10 +21,8 @@ const Alert = ({
   onChange,
 }) => {
   const [expand, setExpand] = useState(expanded);
-  const [select, setSelect] = useState(selected);
 
   const handleChange = (e) => {
-    setSelect(e.target.checked);
     onChange(e.target.checked);
   };
 
@@ -38,11 +36,7 @@ const Alert = ({
         onClick={() => setExpand(!expand)}
       >
         <div className="alert-log__event__select">
-          <RuxCheckbox
-            className="rux-checkbox"
-            checked={select}
-            onRuxchange={handleChange}
-          />
+          <RuxCheckbox className="rux-checkbox" onRuxchange={handleChange} />
         </div>
         <div className="alert-log__event__status">
           <RuxStatus status={status} />
@@ -64,13 +58,44 @@ const EquipmentAlerts = (props) => {
   const [alerts, setAlerts] = useState(props.alerts.data || []);
   // eslint-disable-next-line no-unused-vars
   const [alertsService, setAlertsService] = useState(props.alerts);
+  const [selectedAll, setSelectedAll] = useState(false);
+  const [activeFilters, setActiveFilters] = useState({
+    status: 'all',
+    category: 'all',
+  });
 
   function alertsSelected() {
     return alerts.filter((alert) => alert.selected).length > 0;
   }
+
   const [buttonsEnabled, setButtonsEnabled] = useState(alertsSelected());
+
   function enableButtons() {
     return setButtonsEnabled(alertsSelected());
+  }
+
+  function filteredByStatusAndCategory() {
+    return alerts.filter(
+      (alert) =>
+        (alert.errorSeverity === activeFilters.status ||
+          activeFilters.status === 'all') &&
+        (alert.errorCategory === activeFilters.category ||
+          activeFilters.category === 'all')
+    );
+  }
+
+  function selectAll() {
+    let i = 0;
+    const alertCheckboxes = document.getElementsByClassName('rux-checkbox');
+
+    for (i = 0; i < alertCheckboxes.length; i++) {
+      alertCheckboxes[i].checked = !selectedAll;
+      alerts[i].selected = !selectedAll;
+    }
+
+    setSelectedAll(!selectedAll);
+    setAlerts(alerts);
+    enableButtons();
   }
 
   function dismissAlerts() {
@@ -115,7 +140,12 @@ const EquipmentAlerts = (props) => {
                   input-id="statusFilter"
                   className="rux-select"
                   required={false}
-                  value="all"
+                  onRuxchange={(e) =>
+                    setActiveFilters({
+                      status: e.target.value,
+                      category: activeFilters.category,
+                    })
+                  }
                 >
                   <RuxOption value="all" label="All" />
                   <RuxOption value="critical" label="Critical" />
@@ -130,7 +160,12 @@ const EquipmentAlerts = (props) => {
                   input-id="categoryFilter"
                   className="rux-select"
                   required={false}
-                  value="all"
+                  onRuxchange={(e) =>
+                    setActiveFilters({
+                      status: activeFilters.status,
+                      category: e.target.value,
+                    })
+                  }
                 >
                   <RuxOption value="all" label="All" />
                   <RuxOption value="hardware" label="Hardware" />
@@ -143,7 +178,12 @@ const EquipmentAlerts = (props) => {
           <div className="alert-log">
             <header className="alert-log-header">
               <div className="alert-log__header-labels">
-                <div className="alert-log__event__select">Select All</div>
+                <div
+                  onClick={() => selectAll()}
+                  className="alert-log__event__select"
+                >
+                  {selectedAll ? 'Select None' : 'Select All'}
+                </div>
                 <div className="alert-log__event__status"></div>
                 <div className="alert-log__event__message">Message</div>
                 <div className="alert-log__event__category">Category</div>
@@ -153,7 +193,7 @@ const EquipmentAlerts = (props) => {
 
             <ol className="alert-log__events">
               {alerts.length > 0 ? (
-                alerts.map((alert) => {
+                filteredByStatusAndCategory().map((alert) => {
                   return (
                     <Alert
                       key={alert.errorId}

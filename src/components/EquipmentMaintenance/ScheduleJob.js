@@ -29,7 +29,6 @@ const ScheduleJob = ({ cancelEdit }) => {
                     input-id="jobTypeSelect"
                     className="rux-select"
                     required={false}
-                    value="default"
                   >
                     <RuxOption value="default" label="Select" selected />
                     {[1, 2, 3, 4, 5].map((i) => {
@@ -114,7 +113,6 @@ const ScheduleJob = ({ cancelEdit }) => {
                     input-id="jobTypeSelect"
                     className="rux-select"
                     required={false}
-                    value="default"
                   >
                     <RuxOption
                       key="selectDefailt"
