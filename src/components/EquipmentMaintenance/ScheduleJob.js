@@ -7,11 +7,16 @@ import {
   RuxButton,
   RuxButtonGroup,
 } from '@astrouxds/react';
-import { mapJobType, formatDayOfYear, formatYear } from '../../util/util';
+import {
+  mapJobType,
+  formatDayOfYear,
+  formatYear,
+  formatReadableTime,
+} from '../../util/util';
 
 import ConflictsTable from './ConflictsTable';
 
-const ScheduleJob = ({ cancelEdit }) => {
+const ScheduleJob = ({ cancelEdit, currentJob }) => {
   return (
     <>
       <div className="grid-zone-wrap">
@@ -29,7 +34,6 @@ const ScheduleJob = ({ cancelEdit }) => {
                     input-id="jobTypeSelect"
                     className="rux-select"
                     required={false}
-                    value="default"
                   >
                     <RuxOption value="default" label="Select" selected />
                     {[1, 2, 3, 4, 5].map((i) => {
@@ -50,6 +54,7 @@ const ScheduleJob = ({ cancelEdit }) => {
                   <RuxTextarea
                     className="textarea"
                     placeholder="Enter Description"
+                    value={currentJob ? currentJob.description : ''}
                   ></RuxTextarea>
                 </div>
               </div>
@@ -64,7 +69,9 @@ const ScheduleJob = ({ cancelEdit }) => {
                     min="2019"
                     max="2050"
                     placeholder={formatYear(Date.now())}
-                    defaultValue=""
+                    defaultValue={
+                      currentJob ? formatYear(currentJob.startTime) : ''
+                    }
                   />
                 </div>
               </div>
@@ -77,7 +84,9 @@ const ScheduleJob = ({ cancelEdit }) => {
                     min="1"
                     max="366"
                     placeholder={formatDayOfYear(Date.now())}
-                    defaultValue=""
+                    defaultValue={
+                      currentJob ? formatDayOfYear(currentJob.startTime) : ''
+                    }
                   />
                 </div>
               </div>
@@ -88,7 +97,9 @@ const ScheduleJob = ({ cancelEdit }) => {
                     className="job-request__meta__value"
                     type="text"
                     placeholder="HH:MM:SS"
-                    defaultValue=""
+                    defaultValue={
+                      currentJob ? formatReadableTime(currentJob.startTime) : ''
+                    }
                   />
                 </div>
               </div>
@@ -99,7 +110,9 @@ const ScheduleJob = ({ cancelEdit }) => {
                     className="job-request__meta__value"
                     type="text"
                     placeholder="HH:MM:SS"
-                    defaultValue=""
+                    defaultValue={
+                      currentJob ? formatReadableTime(currentJob.endTime) : ''
+                    }
                   />
                 </div>
               </div>
@@ -114,13 +127,12 @@ const ScheduleJob = ({ cancelEdit }) => {
                     input-id="jobTypeSelect"
                     className="rux-select"
                     required={false}
-                    value="default"
                   >
                     <RuxOption
                       key="selectDefailt"
                       value="default"
                       label="Select"
-                      selected
+                      selected={true}
                     />
 
                     <RuxOption
