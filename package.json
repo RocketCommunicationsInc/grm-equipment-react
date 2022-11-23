@@ -39,7 +39,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^10.7.0",
+    "cypress": "^11.2.0",
     "eslint-plugin-cypress": "^2.12.1",
     "sass": "^1.54.9"
   }

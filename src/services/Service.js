@@ -1,8 +1,8 @@
 import { randInt } from '../util/util';
 export class Service {
   onChangeCallbacks = []; //todo: make private
-  #genTimeout;
-  static #lastId = 1;
+  genTimeout;
+  static lastId = 1;
   data = [];
   blueprints = [];
 
@@ -27,7 +27,7 @@ export class Service {
   }
 
   stopGeneration() {
-    clearTimeout(this.#genTimeout);
+    clearTimeout(this.genTimeout);
   }
 
   generateItem(blueprint) {
@@ -36,13 +36,13 @@ export class Service {
       blueprint = bp[randInt(0, bp.length - 1)];
     }
     const item = { ...blueprint };
-    item.id = Service.#lastId++;
+    item.id = Service.lastId++;
     this.data.push(item);
     return item;
   }
 
   genFutureItem(minTime = 1000, maxTime = 20000) {
-    this.#genTimeout = setTimeout(() => {
+    this.genTimeout = setTimeout(() => {
       this.generateItem();
       this.genFutureItem(minTime, maxTime);
       this.notifyChange();

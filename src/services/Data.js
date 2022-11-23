@@ -1,6 +1,6 @@
 import { randInt } from '../util/util';
 import { getWorstStatus } from '../util/util';
-import { EquipmentService } from '../services/Equipment';
+import { EquipmentService } from './Equipment';
 import { Service } from './Service';
 export class DataService extends Service {
   static isStatic = false;
