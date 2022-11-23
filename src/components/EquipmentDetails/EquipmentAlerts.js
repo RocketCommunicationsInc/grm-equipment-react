@@ -64,6 +64,20 @@ const EquipmentAlerts = (props) => {
     category: 'all',
   });
 
+  /* Upon switching a filter to "Critical", "Caution", etc, the previously enabled "Select All"
+  state should be disabled */
+  function switchFilterAndUnselectAll(activeFilterSettings) {
+    setActiveFilters({
+      status: activeFilterSettings.status,
+      category: activeFilterSettings.category,
+    });
+
+    if (selectedAll) {
+      // If all alerts are selected before filter applied, deselect/toggle the selections.
+      selectAll();
+    }
+  }
+
   function alertsSelected() {
     return alerts.filter((alert) => alert.selected).length > 0;
   }
@@ -141,7 +155,7 @@ const EquipmentAlerts = (props) => {
                   className="rux-select"
                   required={false}
                   onRuxchange={(e) =>
-                    setActiveFilters({
+                    switchFilterAndUnselectAll({
                       status: e.target.value,
                       category: activeFilters.category,
                     })
@@ -161,7 +175,7 @@ const EquipmentAlerts = (props) => {
                   className="rux-select"
                   required={false}
                   onRuxchange={(e) =>
-                    setActiveFilters({
+                    switchFilterAndUnselectAll({
                       status: activeFilters.status,
                       category: e.target.value,
                     })
