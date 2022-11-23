@@ -163,7 +163,7 @@ export class AlertsService extends Service {
 
   genFutureAlert(minTime, maxTime) {
     setTimeout(() => {
-      this.data.push(this.genAlert());
+      this.addAlert(this.genAlert());
       this.genFutureAlert(minTime, maxTime);
       this.notifyChange();
     }, randInt(minTime, maxTime));

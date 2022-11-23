@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { RuxOption, RuxSelect, RuxStatus } from '@astrouxds/react';
-import { getAll } from '../../services/contacts';
 import { formatReadableTime } from '../../util/util';
+import { useEffect } from 'react';
 import './EquipmentContacts.scss';
 
 const Contact = ({
@@ -71,9 +71,15 @@ const Contact = ({
   );
 };
 
-const contacts = getAll() || [];
+const EquipmentContacts = ({ contacts }) => {
+  useEffect(() => {
+    contacts.startGeneration();
 
-const EquipmentContacts = () => {
+    return () => {
+      contacts.stopGeneration();
+    };
+  }, [contacts]);
+
   return (
     <>
       <div className="grid-zone grid-zone--equipment-contacts grid-zone--fixed">
@@ -81,13 +87,13 @@ const EquipmentContacts = () => {
         <div className="grid-zone__content">
           <div className="contact-bin-header">
             <div className="contact-summary contact-summary--all">
-              <span className="contact-count">{contacts.length}</span>
+              <span className="contact-count">{contacts.data.length}</span>
               Contacts
             </div>
             <div className="contact-summary contact-summary--failed">
               <span className="contact-count">
                 {
-                  contacts.filter(
+                  contacts.data.filter(
                     (contact) => contact.contactState === 'failed'
                   ).length
                 }
@@ -97,7 +103,7 @@ const EquipmentContacts = () => {
             <div className="contact-summary contact-summary--executing">
               <span className="contact-count">
                 {
-                  contacts.filter(
+                  contacts.data.filter(
                     (contact) => contact.contactState === 'executing'
                   ).length
                 }
@@ -138,10 +144,10 @@ const EquipmentContacts = () => {
             </header>
 
             <ol className="contact-log__events">
-              {contacts.map((log) => {
+              {contacts.data.map((log) => {
                 return (
                   <Contact
-                    key={log.contactId}
+                    key={log.id}
                     name={log.contactName}
                     ground={log.contactGround}
                     equipment={log.contactEquipment}

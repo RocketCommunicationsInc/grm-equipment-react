@@ -2,6 +2,7 @@ import { loremIpsum, randIntDigits } from '../util/util';
 import { AlertsService } from './Alerts';
 import { getWorstStatus } from '../util/util';
 import { Service } from './Service';
+import { ContactsService } from './Contacts';
 
 export function getOne() {
   return {
@@ -136,7 +137,7 @@ export class EquipmentService extends Service {
       label: `${prefix} ${eNum}`,
       status: 'normal',
       events: [],
-      contacts: [],
+      contacts: new ContactsService(),
       jobs: [
         {
           id: '0001',
@@ -158,16 +159,4 @@ export class EquipmentService extends Service {
     this.data.status = getWorstStatus(statuses);
     return this.data.status;
   }
-}
-
-export function genManyEquipment(changeCallback, num, eqPrefix, numDigits) {
-  const equipments = [];
-
-  for (let i = 0; i < num; i++) {
-    const equipment = new EquipmentService(eqPrefix, numDigits);
-    equipment.onChange(changeCallback);
-    equipments.push(equipment);
-  }
-
-  return equipments;
 }

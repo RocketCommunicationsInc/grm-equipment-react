@@ -13,7 +13,7 @@ const EquipmentDetails = ({ equipment }) => {
         <div className="grid-zone__content equipment-details-grid">
           <EquipmentHeader equipment={equipment} status="critical" />
           <EquipmentAlerts alerts={equipment.data.alerts} />
-          <EquipmentContacts />
+          <EquipmentContacts contacts={equipment.data.contacts} />
         </div>
       </div>
     </>
