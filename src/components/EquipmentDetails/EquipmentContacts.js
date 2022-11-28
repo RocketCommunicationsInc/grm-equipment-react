@@ -56,11 +56,7 @@ const Contact = ({
         <div className="contact-log__detail__text">{details}</div>
         <div className="contact-log__detail__command-mode">
           <label htmlFor="commandModeSelector">Command Mode</label>
-          <RuxSelect
-            input-id="commandModeSelector"
-            className="rux-select"
-            value={commandMode}
-          >
+          <RuxSelect input-id="commandModeSelector" className="rux-select">
             <RuxOption value="manual" label="Manual" />
             <RuxOption value="semi-automated" label="Semi-Automated" />
             <RuxOption value="fully-automated" label="Fully Automated" />
@@ -72,6 +68,8 @@ const Contact = ({
 };
 
 const EquipmentContacts = ({ contacts }) => {
+  const [contactFilter, setContactFilter] = useState('all');
+
   useEffect(() => {
     contacts.startGeneration();
 
@@ -79,6 +77,13 @@ const EquipmentContacts = ({ contacts }) => {
       contacts.stopGeneration();
     };
   }, [contacts]);
+
+  function filteredByStatus() {
+    return contacts.data.filter(
+      (contact) =>
+        contact.contactState === contactFilter || contactFilter === 'all'
+    );
+  }
 
   return (
     <>
@@ -117,12 +122,11 @@ const EquipmentContacts = ({ contacts }) => {
                   input-id="stateFilter"
                   className="rux-select"
                   required={false}
-                  value="all"
+                  onRuxchange={(e) => setContactFilter(e.target.value)}
                 >
                   <RuxOption value="all" label="All" />
-                  <RuxOption value="critical" label="Critical" />
-                  <RuxOption value="serious" label="Serious" />
-                  <RuxOption value="caution" label="Caution" />
+                  <RuxOption value="executing" label="Executing" />
+                  <RuxOption value="failed" label="Failed" />
                 </RuxSelect>
               </div>
             </div>
@@ -144,7 +148,7 @@ const EquipmentContacts = ({ contacts }) => {
             </header>
 
             <ol className="contact-log__events">
-              {contacts.data.map((log) => {
+              {filteredByStatus().map((log) => {
                 return (
                   <Contact
                     key={log.id}
