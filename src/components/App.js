@@ -54,7 +54,7 @@ function App() {
         <GlobalStatusBar data={data} />
         <JobDetails
           currentJob={currentJob}
-          exitJobDetails={() => setCurrentView('main')}
+          cancelEdit={() => setCurrentView('main')}
         />
       </>
     );
