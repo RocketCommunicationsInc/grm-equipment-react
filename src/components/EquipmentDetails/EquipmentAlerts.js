@@ -116,11 +116,11 @@ const EquipmentAlerts = (props) => {
     const ids = [];
     alerts.forEach((alert) => {
       if (alert.selected) {
-        ids.push(alert.errorId);
+        ids.push(alert.id);
       }
     });
 
-    alertsService.remove(ids);
+    alertsService.removeItemsById(ids);
     setButtonsEnabled(false);
   }
 
@@ -210,7 +210,7 @@ const EquipmentAlerts = (props) => {
                 filteredByStatusAndCategory().map((alert) => {
                   return (
                     <Alert
-                      key={alert.errorId}
+                      key={alert.id}
                       selected={alert.selected}
                       expanded={alert.expanded}
                       status={alert.errorSeverity}

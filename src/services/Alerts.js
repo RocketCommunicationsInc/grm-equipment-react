@@ -3,7 +3,7 @@ import { DataService } from './Data';
 import { Service } from './Service';
 
 export class AlertsService extends Service {
-  static alerts = [
+  blueprints = [
     {
       errorSeverity: 'caution',
       errorCategory: 'software',
@@ -125,52 +125,13 @@ export class AlertsService extends Service {
       expanded: false,
     },
   ];
-  static uniqueAlertId = 1;
   data = [];
   constructor() {
     super();
-    this.genAlerts(randInt(0, 1));
+    super.childClass = AlertsService;
+    this.generateItems(randInt(0, 1));
     if (!DataService.isStatic) {
-      this.genFutureAlert(5000, 60000);
+      this.genFutureItem(5000, 60000);
     }
-  }
-
-  genAlert() {
-    const blueprint =
-      AlertsService.alerts[randInt(0, AlertsService.alerts.length - 1)];
-    const alert = { ...blueprint };
-    alert.errorId = AlertsService.uniqueAlertId++;
-    return alert;
-  }
-
-  addAlert(alert) {
-    this.data.push(alert);
-    this.notifyChange();
-  }
-
-  genAlerts(num) {
-    let alerts = [];
-    for (let i = 0; i < num; i++) {
-      const a = this.genAlert();
-      this.addAlert(a);
-    }
-    return alerts;
-  }
-
-  getAll() {
-    return this.data;
-  }
-
-  genFutureAlert(minTime, maxTime) {
-    setTimeout(() => {
-      this.addAlert(this.genAlert());
-      this.genFutureAlert(minTime, maxTime);
-      this.notifyChange();
-    }, randInt(minTime, maxTime));
-  }
-
-  remove(ids) {
-    this.data = this.data.filter((alert) => !ids.includes(alert.errorId));
-    this.notifyChange();
   }
 }

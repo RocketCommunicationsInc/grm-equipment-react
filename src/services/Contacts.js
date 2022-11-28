@@ -1,5 +1,4 @@
 import { Service } from './Service';
-import { randInt } from '../util/util';
 
 export class ContactsService extends Service {
   blueprints = [
@@ -52,4 +51,9 @@ export class ContactsService extends Service {
       expanded: false,
     },
   ];
+
+  constructor() {
+    super();
+    super.childClass = ContactsService;
+  }
 }

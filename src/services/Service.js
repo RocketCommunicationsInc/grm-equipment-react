@@ -1,8 +1,8 @@
 import { randInt } from '../util/util';
 export class Service {
-  onChangeCallbacks = []; //todo: make private
+  _childClass;
+  onChangeCallbacks = [];
   genTimeout;
-  static lastId = 1;
   data = [];
   blueprints = [];
 
@@ -22,6 +22,11 @@ export class Service {
     });
   }
 
+  set childClass(val) {
+    this._childClass = val;
+    this._childClass.lastId = 1;
+  }
+
   startGeneration() {
     this.genFutureItem();
   }
@@ -36,9 +41,18 @@ export class Service {
       blueprint = bp[randInt(0, bp.length - 1)];
     }
     const item = { ...blueprint };
-    item.id = Service.lastId++;
+    item.id = this._childClass.lastId++;
     this.data.push(item);
     return item;
+  }
+
+  generateItems(num) {
+    let items = [];
+    for (let i = 0; i < num; i++) {
+      this.generateItem();
+    }
+    this.notifyChange();
+    return items;
   }
 
   genFutureItem(minTime = 1000, maxTime = 20000) {
@@ -47,5 +61,10 @@ export class Service {
       this.genFutureItem(minTime, maxTime);
       this.notifyChange();
     }, randInt(minTime, maxTime));
+  }
+
+  removeItemsById(ids) {
+    this.data = this.data.filter((item) => !ids.includes(item.id));
+    this.notifyChange();
   }
 }
