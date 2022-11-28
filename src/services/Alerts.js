@@ -125,7 +125,6 @@ export class AlertsService extends Service {
       expanded: false,
     },
   ];
-  data = [];
   constructor() {
     super();
     super.childClass = AlertsService;

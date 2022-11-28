@@ -8,10 +8,6 @@ export class DataService extends Service {
   constructor() {
     super();
 
-    const ncWrapper = () => {
-      this.notifyChange();
-    };
-
     this.data = {
       categories: [
         {
@@ -19,33 +15,48 @@ export class DataService extends Service {
           label: 'Comms',
           payload: null,
           icon: 'antenna-receive',
-          children: generateComponents(ncWrapper, randInt(2, 5), 'E', 4),
+          components: generateComponents(
+            this.notifyChange.bind(this),
+            randInt(2, 5),
+            'E',
+            4
+          ),
         },
         {
           id: 'digital',
           label: 'Digital',
           payload: null,
           icon: 'processor-alt',
-          children: generateComponents(ncWrapper, randInt(2, 5), 'E', 3),
+          components: generateComponents(
+            this.notifyChange.bind(this),
+            randInt(2, 5),
+            'E',
+            3
+          ),
         },
         {
           id: 'facilities',
           label: 'Facilities',
           payload: null,
           icon: 'antenna-off',
-          children: generateComponents(ncWrapper, randInt(2, 5), 'E', 5),
+          components: generateComponents(
+            this.notifyChange.bind(this),
+            randInt(2, 5),
+            'E',
+            5
+          ),
         },
         {
           id: 'rf',
           label: 'RF',
           payload: null,
           icon: 'antenna',
-          children: [
+          components: [
             {
               id: 'Black FEP',
               label: 'Black FEP',
-              children: DataService.genManyEquipment(
-                ncWrapper,
+              equipment: DataService.genManyEquipment(
+                this.notifyChange.bind(this),
                 randInt(2, 5),
                 'Black FEP ',
                 4
@@ -54,8 +65,8 @@ export class DataService extends Service {
             {
               id: 'Red FEP',
               label: 'Red FEP',
-              children: DataService.genManyEquipment(
-                ncWrapper,
+              equipment: DataService.genManyEquipment(
+                this.notifyChange.bind(this),
                 randInt(2, 5),
                 'Red FEP ',
                 4
@@ -65,16 +76,6 @@ export class DataService extends Service {
         },
       ],
     };
-  }
-
-  onChange(cb) {
-    this.onChangeCallbacks.push(cb);
-  }
-
-  notifyChange() {
-    this.onChangeCallbacks.forEach((cb) => {
-      cb(this.data);
-    });
   }
 
   static genManyEquipment(changeCallback, num, eqPrefix, numDigits) {
@@ -106,7 +107,7 @@ function generateComponents(changeCallback, num, eqPrefix, numDigits) {
     components.push({
       id: label.toLowerCase(),
       label: label,
-      children: eq,
+      equipment: eq,
     });
   }
 
@@ -116,8 +117,8 @@ function generateComponents(changeCallback, num, eqPrefix, numDigits) {
 export function calcCategoryStatus(category) {
   let statuses = [];
   category &&
-    category.children.forEach((component) => {
-      component.children.forEach((equipment) => {
+    category.components.forEach((component) => {
+      component.equipment.forEach((equipment) => {
         statuses.push(equipment.calcEquipmentStatus());
       });
     });
@@ -128,8 +129,8 @@ export function calcCategoryStatus(category) {
 export function getCategoryAlerts(category) {
   let alerts = [];
   category &&
-    category.children.forEach((component) => {
-      component.children.forEach((equipment) => {
+    category.components.forEach((component) => {
+      component.equipment.forEach((equipment) => {
         alerts = alerts.concat(equipment.data.alerts.data);
       });
     });

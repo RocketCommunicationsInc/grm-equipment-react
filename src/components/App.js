@@ -55,6 +55,7 @@ function App() {
         <JobDetails
           currentJob={currentJob}
           cancelEdit={() => setCurrentView('main')}
+          events={data.categories[0].components[0].equipment[0].data.events}
         />
       </>
     );
