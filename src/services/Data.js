@@ -1,55 +1,7 @@
 import { randInt } from '../util/util';
-import { genManyEquipment } from './Equipment';
 import { getWorstStatus } from '../util/util';
+import { EquipmentService } from './Equipment';
 import { Service } from './Service';
-
-function generateComponents(changeCallback, num, eqPrefix, numDigits) {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let components = [];
-
-  for (let i = 0; i < num; i++) {
-    const label = `Component ${alphabet[i]}`;
-    const eq = genManyEquipment(
-      changeCallback,
-      randInt(2, 5),
-      eqPrefix,
-      numDigits
-    );
-
-    components.push({
-      id: label.toLowerCase(),
-      label: label,
-      children: eq,
-    });
-  }
-
-  return components;
-}
-
-export function calcCategoryStatus(category) {
-  let statuses = [];
-  category &&
-    category.children.forEach((component) => {
-      component.children.forEach((equipment) => {
-        statuses.push(equipment.calcEquipmentStatus());
-      });
-    });
-
-  return getWorstStatus(statuses);
-}
-
-export function getCategoryAlerts(category) {
-  let alerts = [];
-  category &&
-    category.children.forEach((component) => {
-      component.children.forEach((equipment) => {
-        alerts = alerts.concat(equipment.data.alerts.data);
-      });
-    });
-
-  return alerts;
-}
-
 export class DataService extends Service {
   static isStatic = false;
 
@@ -92,7 +44,7 @@ export class DataService extends Service {
             {
               id: 'Black FEP',
               label: 'Black FEP',
-              children: genManyEquipment(
+              children: DataService.genManyEquipment(
                 ncWrapper,
                 randInt(2, 5),
                 'Black FEP ',
@@ -102,7 +54,7 @@ export class DataService extends Service {
             {
               id: 'Red FEP',
               label: 'Red FEP',
-              children: genManyEquipment(
+              children: DataService.genManyEquipment(
                 ncWrapper,
                 randInt(2, 5),
                 'Red FEP ',
@@ -124,4 +76,63 @@ export class DataService extends Service {
       cb(this.data);
     });
   }
+
+  static genManyEquipment(changeCallback, num, eqPrefix, numDigits) {
+    const equipments = [];
+
+    for (let i = 0; i < num; i++) {
+      const equipment = new EquipmentService(eqPrefix, numDigits);
+      equipment.onChange(changeCallback);
+      equipments.push(equipment);
+    }
+
+    return equipments;
+  }
+}
+
+function generateComponents(changeCallback, num, eqPrefix, numDigits) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let components = [];
+
+  for (let i = 0; i < num; i++) {
+    const label = `Component ${alphabet[i]}`;
+    const eq = DataService.genManyEquipment(
+      changeCallback,
+      randInt(2, 5),
+      eqPrefix,
+      numDigits
+    );
+
+    components.push({
+      id: label.toLowerCase(),
+      label: label,
+      children: eq,
+    });
+  }
+
+  return components;
+}
+
+export function calcCategoryStatus(category) {
+  let statuses = [];
+  category &&
+    category.children.forEach((component) => {
+      component.children.forEach((equipment) => {
+        statuses.push(equipment.calcEquipmentStatus());
+      });
+    });
+
+  return getWorstStatus(statuses);
+}
+
+export function getCategoryAlerts(category) {
+  let alerts = [];
+  category &&
+    category.children.forEach((component) => {
+      component.children.forEach((equipment) => {
+        alerts = alerts.concat(equipment.data.alerts.data);
+      });
+    });
+
+  return alerts;
 }
