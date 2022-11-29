@@ -20,8 +20,8 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
     equipObject.icon = category.icon;
     equipObject.children = [];
 
-    for (const categoryChildren of category.children) {
-      for (const equipment of categoryChildren.children) {
+    for (const component of category.components) {
+      for (const equipment of component.equipment) {
         equipObject.children.push(equipment);
       }
     }
@@ -83,11 +83,12 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
         </RuxTabPanel>
         <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
           <EquipmentDetails
-            equipment={data.categories[0].children[0].children[0]}
+            equipment={data.categories[0].components[0].equipment[0]}
           />
           <EquipmentMaintenance
             changeView={changeView}
             setCurrentJob={setCurrentJob}
+            equipment={data.categories[0].components[0].equipment[0]}
           />
         </RuxTabPanel>
       </RuxTabPanels>

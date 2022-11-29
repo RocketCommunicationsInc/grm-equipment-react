@@ -5,7 +5,7 @@ describe('Equipment Details', () => {
   beforeEach(() => {
     DataService.isStatic = true;
     const data = new DataService().data;
-    const equipment = data.categories[0].children[0].children[0];
+    const equipment = data.categories[0].components[0].equipment[0];
     cy.mount(<EquipmentDetails equipment={equipment} />);
   });
 

@@ -1,22 +1,23 @@
 import { RuxLog, RuxSegmentedButton, RuxStatus } from '@astrouxds/react';
-import { loremIpsum, randInt } from '../../util/util';
 import './EquipmentHeader.scss';
-import { eventLog, getOne } from '../../services/events';
 import { useEffect, useState } from 'react';
 
 const EquipmentHeader = ({ equipment }) => {
-  const [events, setEvents] = useState(eventLog);
+  const [events, setEvents] = useState(equipment.data.events.data);
+
+  const onChange = (newEvents) => {
+    setEvents([...newEvents]);
+  };
 
   useEffect(() => {
-    let timeout;
-    timeout = setTimeout(() => {
-      const newEvents = events.concat([getOne()]);
-      setEvents(newEvents);
-    }, randInt(2000, 10000));
+    equipment.data.events.startGeneration(0, 10000);
+    equipment.data.events.onChange(onChange);
+
     return () => {
-      clearTimeout(timeout);
+      equipment.data.events.stopGeneration();
+      equipment.data.events.removeOnChange(onChange);
     };
-  }, [events]);
+  }, [equipment]);
 
   return (
     <>
@@ -58,7 +59,7 @@ const EquipmentHeader = ({ equipment }) => {
             <div className="equipment-header__detail equipment-header__detail--equipment-description">
               <div className="equipment-header__detail__label">Description</div>
               <div className="equipment-header__detail__content">
-                {loremIpsum()}
+                {equipment.data.description}
               </div>
             </div>
             <div className="equipment-header__detail equipment-header__detail--equipment-event-log">

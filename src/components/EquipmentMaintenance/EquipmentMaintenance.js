@@ -1,12 +1,13 @@
 import './EquipmentMaintenance.scss';
 import MaintenanceJobView from './MaintenanceJobView';
 
-const EquipmentMaintenance = (props) => {
+const EquipmentMaintenance = ({ changeView, setCurrentJob, equipment }) => {
   return (
     <>
       <MaintenanceJobView
-        changeView={props.changeView}
-        setCurrentJob={props.setCurrentJob}
+        changeView={changeView}
+        setCurrentJob={setCurrentJob}
+        equipment={equipment}
       />
     </>
   );

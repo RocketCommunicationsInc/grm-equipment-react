@@ -14,10 +14,9 @@ import {
 
 import { useState } from 'react';
 import ConflictsTable from './ConflictsTable';
-import { eventLog as logs } from '../../services/events';
 import ScheduleJob from './ScheduleJob';
 
-const JobDetails = (props) => {
+const JobDetails = ({ currentJob, cancelEdit, events }) => {
   const [allowModify, setAllowModify] = useState(false);
 
   function editJob() {
@@ -25,18 +24,13 @@ const JobDetails = (props) => {
   }
 
   if (allowModify) {
-    return (
-      <ScheduleJob
-        cancelEdit={props.cancelEdit}
-        currentJob={props.currentJob}
-      />
-    );
+    return <ScheduleJob cancelEdit={cancelEdit} currentJob={currentJob} />;
   } else {
     return (
       <>
         <div className="grid-zone-wrap">
           <div className="grid-zone__label">
-            Maintenance Job ID #{props.currentJob.id}
+            Maintenance Job ID #{currentJob.id}
           </div>
           <div className="grid-zone__content job-details">
             <div className="grid-zone grid-zone--fixed grid-zone--job-details">
@@ -45,7 +39,7 @@ const JobDetails = (props) => {
                 <div className="job-details-overview">
                   <svg
                     className={
-                      'progress progress--step-' + props.currentJob.progressStep
+                      'progress progress--step-' + currentJob.progressStep
                     }
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +159,7 @@ const JobDetails = (props) => {
                     <label className="job-details__meta__label">Job Type</label>
 
                     <div className="job-details__meta__value">
-                      {mapJobType(props.currentJob.type)}
+                      {mapJobType(currentJob.type)}
                     </div>
                   </div>
                   <div className="job-details__meta">
@@ -173,31 +167,31 @@ const JobDetails = (props) => {
                       Description
                     </label>
                     <div className="job-details__meta__value job-details__meta__value--extended">
-                      {props.currentJob.description}
+                      {currentJob.description}
                     </div>
                   </div>
                   <div className="job-details__meta">
                     <label className="job-details__meta__label">Year</label>
                     <div className="job-details__meta__value">
-                      {formatYear(props.currentJob.startTime)}
+                      {formatYear(currentJob.startTime)}
                     </div>
                   </div>
                   <div className="job-details__meta">
                     <label className="job-details__meta__label">DOY</label>
                     <div className="job-details__meta__value">
-                      {formatDayOfYear(props.currentJob.startTime)}
+                      {formatDayOfYear(currentJob.startTime)}
                     </div>
                   </div>
                   <div className="job-details__meta">
                     <label className="job-details__meta__label">Start</label>
                     <div className="job-details__meta__value">
-                      {formatReadableTime(props.currentJob.startTime)}
+                      {formatReadableTime(currentJob.startTime)}
                     </div>
                   </div>
                   <div className="job-details__meta">
                     <label className="job-details__meta__label">Stop</label>
                     <div className="job-details__meta__value">
-                      {formatReadableTime(props.currentJob.endTime)}
+                      {formatReadableTime(currentJob.endTime)}
                     </div>
                   </div>
                   <div className="job-details__meta">
@@ -216,7 +210,7 @@ const JobDetails = (props) => {
                   <div className="job-details__equipment-event-log__label">
                     Event Log
                   </div>
-                  <RuxLog className="rux-log" data={logs} />
+                  <RuxLog className="rux-log" data={events.data} />
                 </div>
               </div>
             </div>
@@ -227,11 +221,7 @@ const JobDetails = (props) => {
             hAlign="right"
             className="job-details-request--edit-actions"
           >
-            <RuxButton
-              className="rux-button"
-              secondary
-              onClick={props.cancelEdit}
-            >
+            <RuxButton className="rux-button" secondary onClick={cancelEdit}>
               Cancel
             </RuxButton>
             <RuxButton className="rux-button" onClick={editJob}>

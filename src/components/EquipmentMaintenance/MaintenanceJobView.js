@@ -1,5 +1,4 @@
 import { RuxButton } from '@astrouxds/react';
-import { getOne } from '../../services/Equipment';
 import {
   mapJobProgress,
   mapJobType,
@@ -9,11 +8,10 @@ import {
 } from '../../util/util';
 import './EquipmentMaintenance.scss';
 
-const maintenanceObject = getOne();
-const maintenanceJobs = maintenanceObject.maintenanceJobs;
-const maintenanceLog = maintenanceObject.maintenanceLog;
+const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
+  const maintenanceJobs = equipment.data.maintenanceJobs;
+  const maintenanceLog = equipment.data.maintenanceLog;
 
-const MaintenanceJobView = (props) => {
   return (
     <>
       <div className="grid-zone-wrap">
@@ -27,7 +25,7 @@ const MaintenanceJobView = (props) => {
                 <RuxButton
                   className="rux-button"
                   onClick={() => {
-                    props.changeView('scheduleJob');
+                    changeView('scheduleJob');
                   }}
                 >
                   Schedule Job
@@ -77,8 +75,8 @@ const MaintenanceJobView = (props) => {
                         <RuxButton
                           className="rux-button"
                           onClick={() => {
-                            props.changeView('viewJobDetails');
-                            props.setCurrentJob(job);
+                            changeView('viewJobDetails');
+                            setCurrentJob(job);
                           }}
                         >
                           View Details
