@@ -12,6 +12,11 @@ function App() {
   let [currentJob, setCurrentJob] = useState({});
   const dataService = useContext(DataContext);
   let [data, setData] = useState(dataService.data);
+  let [currentEq, setCurrentEq] = useState(null);
+
+  const selectEquip = (eq) => {
+    setCurrentEq(eq);
+  };
 
   useEffect(() => {
     function onDataChange(newData) {
@@ -25,40 +30,44 @@ function App() {
     };
   }, [dataService]);
 
-  if (currentView === 'main') {
-    return (
-      <>
-        <GlobalStatusBar data={data} />
-        <main key={currentView}>
-          <nav className="main-menu">
-            <SidebarTree />
-          </nav>
-          <EquipmentContainer
-            changeView={(view) => setCurrentView(view)}
-            setCurrentJob={(job) => setCurrentJob(job)}
-            data={data}
+  switch (currentView) {
+    case 'scheduleJob':
+      return (
+        <>
+          <GlobalStatusBar data={data} />
+          <ScheduleJob cancelEdit={() => setCurrentView('main')} />
+        </>
+      );
+    case 'viewJobDetails':
+      return (
+        <>
+          <GlobalStatusBar data={data} />
+          <JobDetails
+            currentJob={currentJob}
+            cancelEdit={() => setCurrentView('main')}
+            events={currentEq.data.events}
           />
-        </main>
-      </>
-    );
-  } else if (currentView === 'scheduleJob') {
-    return (
-      <>
-        <GlobalStatusBar data={data} />
-        <ScheduleJob cancelEdit={() => setCurrentView('main')} />
-      </>
-    );
-  } else if (currentView === 'viewJobDetails') {
-    return (
-      <>
-        <GlobalStatusBar data={data} />
-        <JobDetails
-          currentJob={currentJob}
-          cancelEdit={() => setCurrentView('main')}
-          events={data.categories[0].components[0].equipment[0].data.events}
-        />
-      </>
-    );
+        </>
+      );
+    default:
+      return (
+        <>
+          <GlobalStatusBar data={data} />
+          <main key={currentView}>
+            <nav className="main-menu">
+              <SidebarTree selectEquip={selectEquip} />
+            </nav>
+
+            <EquipmentContainer
+              changeView={(view) => setCurrentView(view)}
+              setCurrentJob={(job) => setCurrentJob(job)}
+              data={data}
+              currentEq={currentEq}
+              selectEquip={selectEquip}
+            />
+          </main>
+        </>
+      );
   }
 }
 
