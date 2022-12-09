@@ -9,7 +9,7 @@ import {
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 let selectedTabId;
 
@@ -19,28 +19,23 @@ const EquipmentContainer = ({
   setCurrentJob,
   currentEq,
   selectEquip,
+  openEqs,
+  removeTab,
 }) => {
   let formattedData = [];
   let tabRefs = useRef([]);
 
-  let [openEqs, setOpenEqs] = useState([]);
-
   useEffect(() => {
-    function addTab(eq) {
-      setOpenEqs([...openEqs, eq]);
+    if (!currentEq) {
+      tabRefs.current['inoperable'].click();
+      return;
     }
-
-    if (!currentEq) return;
 
     // eslint-disable-next-line eqeqeq
     if (selectedTabId != currentEq.data.id) {
       if (tabRefs.current[currentEq.data.id]) {
         tabRefs.current[currentEq.data.id].click();
       }
-    }
-
-    if (!hasTab(currentEq)) {
-      addTab(currentEq);
     }
   }, [currentEq, openEqs]);
 
@@ -51,18 +46,6 @@ const EquipmentContainer = ({
       return openEq.data.id == e.detail.getAttribute('data-key');
     });
     selectEquip(eq);
-  }
-
-  function hasTab(eq) {
-    return openEqs.includes(eq);
-  }
-
-  function removeTab(eq) {
-    if (hasTab(eq)) {
-      openEqs.splice(openEqs.indexOf(eq), 1);
-      setOpenEqs([...openEqs]);
-    }
-    selectEquip(null);
   }
 
   // gather equipment from category components
