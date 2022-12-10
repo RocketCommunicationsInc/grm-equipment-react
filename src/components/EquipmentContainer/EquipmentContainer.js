@@ -4,13 +4,49 @@ import {
   RuxTabPanels,
   RuxTabPanel,
   RuxMonitoringIcon,
+  RuxIcon,
 } from '@astrouxds/react';
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
+import { useEffect, useRef } from 'react';
 
-const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
+let selectedTabId;
+
+const EquipmentContainer = ({
+  data,
+  changeView,
+  setCurrentJob,
+  currentEq,
+  selectEquip,
+  openEqs,
+  removeTab,
+}) => {
   let formattedData = [];
+  let tabRefs = useRef([]);
+
+  useEffect(() => {
+    if (!currentEq) {
+      tabRefs.current['inoperable'].click();
+      return;
+    }
+
+    // eslint-disable-next-line eqeqeq
+    if (selectedTabId != currentEq.data.id) {
+      if (tabRefs.current[currentEq.data.id]) {
+        tabRefs.current[currentEq.data.id].click();
+      }
+    }
+  }, [currentEq, openEqs]);
+
+  function onTabSelect(e) {
+    selectedTabId = e.detail.getAttribute('data-key');
+    const eq = openEqs.find((openEq) => {
+      // eslint-disable-next-line eqeqeq
+      return openEq.data.id == e.detail.getAttribute('data-key');
+    });
+    selectEquip(eq);
+  }
 
   // gather equipment from category components
   for (const category of data.categories) {
@@ -31,14 +67,33 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
 
   return (
     <div className="equipment-container" data-test="equipment-container">
-      <RuxTabs id="tab-set-id-1" small>
-        <RuxTab id="tab-inoperable" data-test="tab-inoperable">
+      <RuxTabs id="tab-set-id-1" small onRuxselected={onTabSelect}>
+        <RuxTab
+          id="tab-inoperable"
+          data-test="tab-inoperable"
+          ref={(el) => (tabRefs.current['inoperable'] = el)}
+          data-key="inoperable"
+        >
           Inoperable
         </RuxTab>
-        <RuxTab id="tab-id-2" data-test="tab-id-2">
-          Test
-        </RuxTab>
+        {openEqs.map((openEq) => (
+          <RuxTab
+            id={`tab-id-${openEq.data.id}`}
+            data-test={`tab-id-${openEq.data.id}`}
+            key={openEq.data.id}
+            data-key={openEq.data.id}
+            ref={(el) => (tabRefs.current[openEq.data.id] = el)}
+          >
+            {openEq.data.label}
+            <RuxIcon
+              icon="close"
+              size="small"
+              onClick={() => removeTab(openEq)}
+            ></RuxIcon>
+          </RuxTab>
+        ))}
       </RuxTabs>
+
       <RuxTabPanels className="tab-panels" aria-labelledby="tab-set-id-1">
         <RuxTabPanel
           className="tab-inoperable"
@@ -67,6 +122,9 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
                                 className={equipment.data.status}
                                 status={equipment.data.status}
                                 label={equipment.data.label}
+                                onClick={() => {
+                                  selectEquip(equipment);
+                                }}
                               />
                             </li>
                           );
@@ -81,16 +139,20 @@ const EquipmentContainer = ({ data, changeView, setCurrentJob }) => {
             )}
           </div>
         </RuxTabPanel>
-        <RuxTabPanel aria-labelledby="tab-id-2" data-test="panel-id-2">
-          <EquipmentDetails
-            equipment={data.categories[0].components[0].equipment[0]}
-          />
-          <EquipmentMaintenance
-            changeView={changeView}
-            setCurrentJob={setCurrentJob}
-            equipment={data.categories[0].components[0].equipment[0]}
-          />
-        </RuxTabPanel>
+        {openEqs.map((openEq) => (
+          <RuxTabPanel
+            key={openEq.data.id}
+            aria-labelledby={`tab-id-${openEq.data.id}`}
+            data-test={`panel-id-${openEq.data.id}`}
+          >
+            <EquipmentDetails equipment={openEq} />
+            <EquipmentMaintenance
+              changeView={changeView}
+              setCurrentJob={setCurrentJob}
+              equipment={openEq}
+            />
+          </RuxTabPanel>
+        ))}
       </RuxTabPanels>
     </div>
   );

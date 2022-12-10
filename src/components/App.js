@@ -12,6 +12,30 @@ function App() {
   let [currentJob, setCurrentJob] = useState({});
   const dataService = useContext(DataContext);
   let [data, setData] = useState(dataService.data);
+  let [currentEq, setCurrentEq] = useState(null);
+  let [openEqs, setOpenEqs] = useState([]);
+
+  const selectEquip = (eq) => {
+    if (eq && !hasTab(eq) && openEqs.length >= 5) {
+      alert(
+        'This demo constrains the number of tabs to 5. This is not a recommended UX pattern.'
+      );
+      return;
+    }
+    setCurrentEq(eq);
+  };
+
+  function hasTab(eq) {
+    return openEqs.includes(eq);
+  }
+
+  function removeTab(eq) {
+    if (hasTab(eq)) {
+      openEqs.splice(openEqs.indexOf(eq), 1);
+      setOpenEqs([...openEqs]);
+    }
+    selectEquip(null);
+  }
 
   useEffect(() => {
     function onDataChange(newData) {
@@ -20,45 +44,59 @@ function App() {
 
     dataService.onChange(onDataChange);
 
+    function addTab(eq) {
+      setOpenEqs([...openEqs, eq]);
+    }
+
+    if (currentEq && !hasTab(currentEq)) {
+      addTab(currentEq);
+    }
+
     return () => {
       dataService.removeOnChange(onDataChange);
     };
-  }, [dataService]);
+  }, [dataService, currentEq, openEqs]);
 
-  if (currentView === 'main') {
-    return (
-      <>
-        <GlobalStatusBar data={data} />
-        <main key={currentView}>
-          <nav className="main-menu">
-            <SidebarTree />
-          </nav>
-          <EquipmentContainer
-            changeView={(view) => setCurrentView(view)}
-            setCurrentJob={(job) => setCurrentJob(job)}
-            data={data}
+  switch (currentView) {
+    case 'scheduleJob':
+      return (
+        <>
+          <GlobalStatusBar data={data} />
+          <ScheduleJob cancelEdit={() => setCurrentView('main')} />
+        </>
+      );
+    case 'viewJobDetails':
+      return (
+        <>
+          <GlobalStatusBar data={data} />
+          <JobDetails
+            currentJob={currentJob}
+            cancelEdit={() => setCurrentView('main')}
+            events={currentEq.data.events}
           />
-        </main>
-      </>
-    );
-  } else if (currentView === 'scheduleJob') {
-    return (
-      <>
-        <GlobalStatusBar data={data} />
-        <ScheduleJob cancelEdit={() => setCurrentView('main')} />
-      </>
-    );
-  } else if (currentView === 'viewJobDetails') {
-    return (
-      <>
-        <GlobalStatusBar data={data} />
-        <JobDetails
-          currentJob={currentJob}
-          cancelEdit={() => setCurrentView('main')}
-          events={data.categories[0].components[0].equipment[0].data.events}
-        />
-      </>
-    );
+        </>
+      );
+    default:
+      return (
+        <>
+          <GlobalStatusBar data={data} />
+          <main key={currentView}>
+            <nav className="main-menu">
+              <SidebarTree selectEquip={selectEquip} />
+            </nav>
+
+            <EquipmentContainer
+              changeView={(view) => setCurrentView(view)}
+              setCurrentJob={(job) => setCurrentJob(job)}
+              data={data}
+              currentEq={currentEq}
+              selectEquip={selectEquip}
+              openEqs={openEqs}
+              removeTab={removeTab}
+            />
+          </main>
+        </>
+      );
   }
 }
 
