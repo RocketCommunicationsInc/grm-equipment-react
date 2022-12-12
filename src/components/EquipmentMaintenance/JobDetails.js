@@ -4,6 +4,7 @@ import {
   RuxCheckbox,
   RuxButton,
   RuxButtonGroup,
+  RuxIcon,
 } from '@astrouxds/react';
 import {
   mapJobType,
@@ -28,7 +29,14 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
   } else {
     return (
       <>
-        <div className="grid-zone-wrap">
+        <div className="path-above-grid">
+          <span onClick={cancelEdit} className="home-page-link">
+            <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
+            Equipment Manager
+          </span>
+          <span> / Maintenance Details </span>
+        </div>
+        <div className="grid-zone-wrap-job-details">
           <div className="grid-zone__label">
             Maintenance Job ID #{currentJob.id}
           </div>

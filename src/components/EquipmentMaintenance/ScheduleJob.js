@@ -6,6 +6,7 @@ import {
   RuxCheckbox,
   RuxButton,
   RuxButtonGroup,
+  RuxIcon,
 } from '@astrouxds/react';
 import {
   mapJobType,
@@ -15,11 +16,26 @@ import {
 } from '../../util/util';
 
 import ConflictsTable from './ConflictsTable';
+import { useState } from 'react';
 
 const ScheduleJob = ({ cancelEdit, currentJob }) => {
+  const [jobDescription, setJobDescription] = useState(
+    currentJob ? currentJob.description : ''
+  );
+
+  const handleTextareaChange = (jobDescription) => {
+    setJobDescription(jobDescription);
+  };
   return (
     <>
-      <div className="grid-zone-wrap">
+      <div className="path-above-grid">
+        <span onClick={cancelEdit} className="home-page-link">
+          <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
+          Equipment Manager
+        </span>
+        <span> / Schedule Maintenance </span>
+      </div>
+      <div className="grid-zone-wrap-job-details">
         <div className="grid-zone__label">Schedule Maintenance Job</div>
         <div className="grid-zone__content job-details">
           <div className="grid-zone grid-zone--fixed grid-zone--job-details">
@@ -53,8 +69,9 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
                 <div className="job-details__meta__input job-details__meta__value--extended">
                   <RuxTextarea
                     className="textarea"
+                    onRuxinput={(e) => handleTextareaChange(e.target.value)}
                     placeholder="Enter Description"
-                    value={currentJob ? currentJob.description : ''}
+                    value={jobDescription}
                   ></RuxTextarea>
                 </div>
               </div>
@@ -180,15 +197,15 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
           </div>
           <ConflictsTable />
         </div>
+
+        <RuxButtonGroup className="job-details-request--edit-actions">
+          <RuxButton secondary onClick={cancelEdit}>
+            Cancel
+          </RuxButton>
+
+          <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
+        </RuxButtonGroup>
       </div>
-
-      <RuxButtonGroup className="job-details-request--edit-actions">
-        <RuxButton secondary onClick={cancelEdit}>
-          Cancel
-        </RuxButton>
-
-        <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
-      </RuxButtonGroup>
     </>
   );
 };
