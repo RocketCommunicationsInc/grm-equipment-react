@@ -9,9 +9,10 @@ import {
 import './EquipmentContainer.scss';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 let selectedTabId;
+let lastEq;
 
 const EquipmentContainer = ({
   data,
@@ -19,13 +20,28 @@ const EquipmentContainer = ({
   setCurrentJob,
   currentEq,
   selectEquip,
-  openEqs,
-  removeTab,
 }) => {
   let formattedData = [];
   let tabRefs = useRef([]);
+  let [openEqs, setOpenEqs] = useState([]);
 
   useEffect(() => {
+    function addTab(eq) {
+      setOpenEqs([...openEqs, eq]);
+    }
+
+    if (currentEq && !hasTab(currentEq) && openEqs.length >= 5) {
+      alert(
+        'This demo constrains the number of tabs to 5. This is not a recommended UX pattern.'
+      );
+      selectEquip(lastEq);
+      return;
+    }
+
+    if (currentEq && !hasTab(currentEq)) {
+      addTab(currentEq);
+    }
+
     if (!currentEq) {
       tabRefs.current['inoperable'].click();
       return;
@@ -34,9 +50,15 @@ const EquipmentContainer = ({
     // eslint-disable-next-line eqeqeq
     if (selectedTabId != currentEq.data.id) {
       if (tabRefs.current[currentEq.data.id]) {
-        tabRefs.current[currentEq.data.id].click();
+        // adding a 100ms delay to allow rux-tabs to initialize
+        setTimeout(() => {
+          tabRefs.current[currentEq.data.id].click();
+        }, 100);
       }
     }
+
+    lastEq = currentEq;
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentEq, openEqs]);
 
   function onTabSelect(e) {
@@ -46,6 +68,17 @@ const EquipmentContainer = ({
       return openEq.data.id == e.detail.getAttribute('data-key');
     });
     selectEquip(eq);
+  }
+  function hasTab(eq) {
+    return openEqs.includes(eq);
+  }
+
+  function removeTab(eq) {
+    if (hasTab(eq)) {
+      openEqs.splice(openEqs.indexOf(eq), 1);
+      setOpenEqs([...openEqs]);
+    }
+    selectEquip(null);
   }
 
   // gather equipment from category components
@@ -104,7 +137,7 @@ const EquipmentContainer = ({
           <div className="equipment-inoperable">
             {formattedData.length > 0 ? (
               <div>
-                {formattedData.map((equipmentList) => {
+                {formattedData.map((equipmentList, upperIndex) => {
                   return (
                     <div
                       key={equipmentList.id}
@@ -114,15 +147,17 @@ const EquipmentContainer = ({
                         {equipmentList.label} ({equipmentList.children.length})
                       </h3>
                       <ul className="equipment-list">
-                        {equipmentList.children.map((equipment) => {
+                        {equipmentList.children.map((equipment, index) => {
                           return (
                             <li key={equipment.data.id}>
                               <RuxMonitoringIcon
+                                data-test={`equipment-${upperIndex}-${index}`}
                                 icon={equipmentList.icon}
                                 className={equipment.data.status}
                                 status={equipment.data.status}
                                 label={equipment.data.label}
                                 onClick={() => {
+                                  console.log('clicked RuxMonitoringIcon');
                                   selectEquip(equipment);
                                 }}
                               />
