@@ -157,7 +157,6 @@ const EquipmentContainer = ({
                                 status={equipment.data.status}
                                 label={equipment.data.label}
                                 onClick={() => {
-                                  console.log('clicked RuxMonitoringIcon');
                                   selectEquip(equipment);
                                 }}
                               />
