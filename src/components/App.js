@@ -12,29 +12,11 @@ function App() {
   let [currentJob, setCurrentJob] = useState({});
   const dataService = useContext(DataContext);
   let [data, setData] = useState(dataService.data);
+
   let [currentEq, setCurrentEq] = useState(null);
-  let [openEqs, setOpenEqs] = useState([]);
 
-  const selectEquip = (eq) => {
-    if (eq && !hasTab(eq) && openEqs.length >= 5) {
-      alert(
-        'This demo constrains the number of tabs to 5. This is not a recommended UX pattern.'
-      );
-      return;
-    }
-    setCurrentEq(eq);
-  };
-
-  function hasTab(eq) {
-    return openEqs.includes(eq);
-  }
-
-  function removeTab(eq) {
-    if (hasTab(eq)) {
-      openEqs.splice(openEqs.indexOf(eq), 1);
-      setOpenEqs([...openEqs]);
-    }
-    selectEquip(null);
+  function selectEquip(e) {
+    setCurrentEq(e);
   }
 
   useEffect(() => {
@@ -44,18 +26,10 @@ function App() {
 
     dataService.onChange(onDataChange);
 
-    function addTab(eq) {
-      setOpenEqs([...openEqs, eq]);
-    }
-
-    if (currentEq && !hasTab(currentEq)) {
-      addTab(currentEq);
-    }
-
     return () => {
       dataService.removeOnChange(onDataChange);
     };
-  }, [dataService, currentEq, openEqs]);
+  }, [dataService, currentEq]);
 
   switch (currentView) {
     case 'scheduleJob':
@@ -91,8 +65,6 @@ function App() {
               data={data}
               currentEq={currentEq}
               selectEquip={selectEquip}
-              openEqs={openEqs}
-              removeTab={removeTab}
             />
           </main>
         </>
