@@ -27,8 +27,8 @@ export class Service {
     this._childClass.lastId = 1;
   }
 
-  startGeneration() {
-    this.genFutureItem();
+  startGeneration(minTime, maxTime) {
+    this.genFutureItem(minTime, maxTime);
   }
 
   stopGeneration() {

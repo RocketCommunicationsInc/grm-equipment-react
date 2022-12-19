@@ -1,68 +1,17 @@
 import { useEffect, useState } from 'react';
-import classNames from 'classnames';
-import {
-  RuxButton,
-  RuxCheckbox,
-  RuxOption,
-  RuxSelect,
-  RuxStatus,
-} from '@astrouxds/react';
-import { formatReadableTime } from '../../util/util';
+import { RuxButton, RuxOption, RuxSelect } from '@astrouxds/react';
 import './EquipmentAlerts.scss';
-
-const Alert = ({
-  selected,
-  expanded,
-  status,
-  message,
-  category,
-  timestamp,
-  details,
-  onChange,
-}) => {
-  const [expand, setExpand] = useState(expanded);
-
-  const handleChange = (e) => {
-    onChange(e.target.checked);
-  };
-
-  return (
-    <>
-      <li
-        className={classNames('alert-log__event', {
-          'alert-log--collapsed': !expand,
-          'alert-log--expanded': expand,
-        })}
-        onClick={() => setExpand(!expand)}
-      >
-        <div className="alert-log__event__select">
-          <RuxCheckbox className="rux-checkbox" onRuxchange={handleChange} />
-        </div>
-        <div className="alert-log__event__status">
-          <RuxStatus status={status} />
-        </div>
-        <div className="alert-log__event__message">{message}</div>
-        <div className="alert-log__event__category">{category}</div>
-        <div className="alert-log__event__timestamp">
-          {formatReadableTime(timestamp)}
-        </div>
-      </li>
-      <div className="alert-log__detail">
-        <div>{details}</div>
-      </div>
-    </>
-  );
-};
+import EquipmentAlert from './EquipmentAlert';
 
 const EquipmentAlerts = (props) => {
   const [alerts, setAlerts] = useState(props.alerts.data || []);
   // eslint-disable-next-line no-unused-vars
   const [alertsService, setAlertsService] = useState(props.alerts);
-  const [selectedAll, setSelectedAll] = useState(false);
   const [activeFilters, setActiveFilters] = useState({
     status: 'all',
     category: 'all',
   });
+  const [buttonsEnabled, setButtonsEnabled] = useState(evalAnySelected());
 
   /* Upon switching a filter to "Critical", "Caution", etc, the previously enabled "Select All"
   state should be disabled */
@@ -72,20 +21,21 @@ const EquipmentAlerts = (props) => {
       category: activeFilterSettings.category,
     });
 
-    if (selectedAll) {
-      // If all alerts are selected before filter applied, deselect/toggle the selections.
-      selectAll();
-    }
+    setSelectAll(false);
   }
 
-  function alertsSelected() {
-    return alerts.filter((alert) => alert.selected).length > 0;
+  function evalAnySelected() {
+    return alerts.filter((alert) => {
+      return alert.selected;
+    }).length;
   }
 
-  const [buttonsEnabled, setButtonsEnabled] = useState(alertsSelected());
+  function evalAllSelected() {
+    return evalAnySelected() === alerts.length;
+  }
 
-  function enableButtons() {
-    return setButtonsEnabled(alertsSelected());
+  function evalButtons() {
+    return setButtonsEnabled(evalAnySelected());
   }
 
   function filteredByStatusAndCategory() {
@@ -98,18 +48,16 @@ const EquipmentAlerts = (props) => {
     );
   }
 
-  function selectAll() {
-    let i = 0;
-    const alertCheckboxes = document.getElementsByClassName('rux-checkbox');
+  function toggleSelectAll() {
+    setSelectAll(!evalAllSelected());
+  }
 
-    for (i = 0; i < alertCheckboxes.length; i++) {
-      alertCheckboxes[i].checked = !selectedAll;
-      alerts[i].selected = !selectedAll;
+  function setSelectAll(selected) {
+    for (let i = 0; i < alerts.length; i++) {
+      alerts[i].selected = selected;
     }
 
-    setSelectedAll(!selectedAll);
-    setAlerts(alerts);
-    enableButtons();
+    setAlerts([...alerts]);
   }
 
   function dismissAlerts() {
@@ -193,10 +141,10 @@ const EquipmentAlerts = (props) => {
             <header className="alert-log-header">
               <div className="alert-log__header-labels">
                 <div
-                  onClick={() => selectAll()}
+                  onClick={() => toggleSelectAll()}
                   className="alert-log__event__select"
                 >
-                  {selectedAll ? 'Select None' : 'Select All'}
+                  {evalAllSelected() ? 'Select None' : 'Select All'}
                 </div>
                 <div className="alert-log__event__status"></div>
                 <div className="alert-log__event__message">Message</div>
@@ -204,25 +152,19 @@ const EquipmentAlerts = (props) => {
                 <div className="alert-log__event__timestamp">Time</div>
               </div>
             </header>
-
             <ol className="alert-log__events">
               {alerts.length > 0 ? (
                 filteredByStatusAndCategory().map((alert) => {
                   return (
-                    <Alert
-                      key={alert.id}
-                      selected={alert.selected}
-                      expanded={alert.expanded}
-                      status={alert.errorSeverity}
-                      message={alert.errorMessage}
-                      category={alert.errorCategory}
-                      timestamp={alert.errorTime}
-                      details={alert.longMessage}
-                      onChange={(selected) => {
-                        alert.selected = selected;
-                        enableButtons();
-                      }}
-                    />
+                    <div key={alert.id}>
+                      <EquipmentAlert
+                        key={alert.id}
+                        alert={alert}
+                        onChange={() => {
+                          evalButtons();
+                        }}
+                      />
+                    </div>
                   );
                 })
               ) : (

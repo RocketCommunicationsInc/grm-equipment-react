@@ -67,19 +67,26 @@ const Contact = ({
   );
 };
 
-const EquipmentContacts = ({ contacts }) => {
+const EquipmentContacts = ({ contactsService }) => {
   const [contactFilter, setContactFilter] = useState('all');
+  const [contacts, setContacts] = useState(contactsService.data);
+
+  function onChangeContacts(contacts) {
+    setContacts([...contacts]);
+  }
 
   useEffect(() => {
-    contacts.startGeneration();
+    contactsService.startGeneration();
+    contactsService.onChange(onChangeContacts);
 
     return () => {
-      contacts.stopGeneration();
+      contactsService.stopGeneration();
+      contactsService.removeOnChange(onChangeContacts);
     };
-  }, [contacts]);
+  }, [contactsService]);
 
   function filteredByStatus() {
-    return contacts.data.filter(
+    return contacts.filter(
       (contact) =>
         contact.contactState === contactFilter || contactFilter === 'all'
     );
@@ -92,13 +99,13 @@ const EquipmentContacts = ({ contacts }) => {
         <div className="grid-zone__content">
           <div className="contact-bin-header">
             <div className="contact-summary contact-summary--all">
-              <span className="contact-count">{contacts.data.length}</span>
+              <span className="contact-count">{contacts.length}</span>
               Contacts
             </div>
             <div className="contact-summary contact-summary--failed">
               <span className="contact-count">
                 {
-                  contacts.data.filter(
+                  contacts.filter(
                     (contact) => contact.contactState === 'failed'
                   ).length
                 }
@@ -108,7 +115,7 @@ const EquipmentContacts = ({ contacts }) => {
             <div className="contact-summary contact-summary--executing">
               <span className="contact-count">
                 {
-                  contacts.data.filter(
+                  contacts.filter(
                     (contact) => contact.contactState === 'executing'
                   ).length
                 }
