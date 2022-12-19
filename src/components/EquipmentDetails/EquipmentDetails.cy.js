@@ -20,8 +20,9 @@ describe('Equipment Details', () => {
         .invoke('prop', 'selected')
         .should('eq', 'Online');
 
-      cy.get('[for=offline]').click();
-      cy.getByData('online-offline')
+      cy.get('[for=offline]')
+        .click()
+        .getByData('online-offline')
         .invoke('prop', 'selected')
         .should('eq', 'Offline');
     });
@@ -32,8 +33,9 @@ describe('Equipment Details', () => {
         .invoke('prop', 'selected')
         .should('eq', 'Considered');
 
-      cy.get('[for=deconsidered]').click();
-      cy.getByData('considered-deconsidered')
+      cy.get('[for=deconsidered]')
+        .click()
+        .getByData('considered-deconsidered')
         .invoke('prop', 'selected')
         .should('eq', 'Deconsidered');
     });
