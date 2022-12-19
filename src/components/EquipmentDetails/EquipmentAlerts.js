@@ -156,15 +156,13 @@ const EquipmentAlerts = (props) => {
               {alerts.length > 0 ? (
                 filteredByStatusAndCategory().map((alert) => {
                   return (
-                    <div key={alert.id}>
-                      <EquipmentAlert
-                        key={alert.id}
-                        alert={alert}
-                        onChange={() => {
-                          evalButtons();
-                        }}
-                      />
-                    </div>
+                    <EquipmentAlert
+                      key={alert.id}
+                      alert={alert}
+                      onChange={() => {
+                        evalButtons();
+                      }}
+                    />
                   );
                 })
               ) : (
