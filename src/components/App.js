@@ -35,14 +35,14 @@ function App() {
     case 'scheduleJob':
       return (
         <>
-          <GlobalStatusBar data={data} />
+          <GlobalStatusBar />
           <ScheduleJob cancelEdit={() => setCurrentView('main')} />
         </>
       );
     case 'viewJobDetails':
       return (
         <>
-          <GlobalStatusBar data={data} />
+          <GlobalStatusBar />
           <JobDetails
             currentJob={currentJob}
             cancelEdit={() => setCurrentView('main')}
@@ -53,7 +53,7 @@ function App() {
     default:
       return (
         <>
-          <GlobalStatusBar data={data} />
+          <GlobalStatusBar />
           <main key={currentView}>
             <nav className="main-menu">
               <SidebarTree selectEquip={selectEquip} />
