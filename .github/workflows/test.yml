@@ -19,4 +19,5 @@ jobs:
         with:
           record: false
           browser: chrome
+          component: true
           
