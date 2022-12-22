@@ -5,6 +5,7 @@ export class Service {
   genTimeout;
   data = [];
   blueprints = [];
+  maxItems = 10;
 
   onChange(cb) {
     this.onChangeCallbacks.push(cb);
@@ -57,9 +58,11 @@ export class Service {
 
   genFutureItem(minTime = 1000, maxTime = 20000) {
     this.genTimeout = setTimeout(() => {
-      this.generateItem();
+      if (this.data.length < this.maxItems) {
+        this.generateItem();
+        this.notifyChange();
+      }
       this.genFutureItem(minTime, maxTime);
-      this.notifyChange();
     }, randInt(minTime, maxTime));
   }
 
