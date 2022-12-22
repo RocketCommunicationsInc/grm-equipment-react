@@ -1,58 +1,68 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { RuxButton, RuxOption, RuxSelect } from '@astrouxds/react';
 import './EquipmentAlerts.scss';
 import EquipmentAlert from './EquipmentAlert';
 
-const EquipmentAlerts = (props) => {
-  const [alerts, setAlerts] = useState(props.alerts.data || []);
-  // eslint-disable-next-line no-unused-vars
-  const [alertsService, setAlertsService] = useState(props.alerts);
-  const [activeFilters, setActiveFilters] = useState({
+const EquipmentAlerts = ({ alertsService }) => {
+  const [alerts, setAlerts] = useState(alertsService.data || []);
+  const [filteredAlerts, setFilteredAlerts] = useState(
+    alertsService.data || []
+  );
+  const [filters, setFilters] = useState({
     status: 'all',
     category: 'all',
   });
   const [buttonsEnabled, setButtonsEnabled] = useState(evalAnySelected());
 
-  /* Upon switching a filter to "Critical", "Caution", etc, the previously enabled "Select All"
-  state should be disabled */
-  function switchFilterAndUnselectAll(activeFilterSettings) {
-    setActiveFilters({
-      status: activeFilterSettings.status,
-      category: activeFilterSettings.category,
+  function switchFilters({ status, category }) {
+    setFilters({
+      status,
+      category,
     });
-
-    setSelectAll(false);
+    evalButtons();
   }
 
+  const runFilters = useCallback(() => {
+    setFilteredAlerts(
+      alertsService.data.filter((alert) => {
+        return (
+          (alert.errorSeverity === filters.status ||
+            filters.status === 'all') &&
+          (alert.errorCategory === filters.category ||
+            filters.category === 'all')
+        );
+      })
+    );
+  }, [alertsService.data, filters]);
+
   function evalAnySelected() {
-    return alerts.filter((alert) => {
+    return filteredAlerts.filter((alert) => {
       return alert.selected;
     }).length;
   }
 
   function evalAllSelected() {
-    return evalAnySelected() === alerts.length;
+    return evalAnySelected() === filteredAlerts.length;
   }
 
   function evalButtons() {
     return setButtonsEnabled(evalAnySelected());
   }
 
-  function filteredByStatusAndCategory() {
-    return alerts.filter(
-      (alert) =>
-        (alert.errorSeverity === activeFilters.status ||
-          activeFilters.status === 'all') &&
-        (alert.errorCategory === activeFilters.category ||
-          activeFilters.category === 'all')
-    );
+  function toggleSelectFiltered() {
+    selectFiltered(!evalAllSelected());
+    evalButtons();
   }
 
-  function toggleSelectAll() {
-    setSelectAll(!evalAllSelected());
+  function selectFiltered(selected) {
+    filteredAlerts.forEach((alert) => {
+      alert.selected = selected;
+    });
+
+    setAlerts([...alerts]);
   }
 
-  function setSelectAll(selected) {
+  function selectAll(selected) {
     for (let i = 0; i < alerts.length; i++) {
       alerts[i].selected = selected;
     }
@@ -62,7 +72,7 @@ const EquipmentAlerts = (props) => {
 
   function dismissAlerts() {
     const ids = [];
-    alerts.forEach((alert) => {
+    filteredAlerts.forEach((alert) => {
       if (alert.selected) {
         ids.push(alert.id);
       }
@@ -75,14 +85,18 @@ const EquipmentAlerts = (props) => {
   useEffect(() => {
     function onAlertsChange(newAlerts) {
       setAlerts([...newAlerts]);
+      runFilters();
     }
-
     alertsService.onChange(onAlertsChange);
 
     return () => {
       alertsService.removeOnChange(onAlertsChange);
     };
   }, [alertsService]);
+
+  useEffect(() => {
+    runFilters();
+  }, [filters, runFilters]);
 
   return (
     <>
@@ -103,9 +117,9 @@ const EquipmentAlerts = (props) => {
                   className="rux-select"
                   required={false}
                   onRuxchange={(e) =>
-                    switchFilterAndUnselectAll({
+                    switchFilters({
                       status: e.target.value,
-                      category: activeFilters.category,
+                      category: filters.category,
                     })
                   }
                 >
@@ -123,8 +137,8 @@ const EquipmentAlerts = (props) => {
                   className="rux-select"
                   required={false}
                   onRuxchange={(e) =>
-                    switchFilterAndUnselectAll({
-                      status: activeFilters.status,
+                    switchFilters({
+                      status: filters.status,
                       category: e.target.value,
                     })
                   }
@@ -141,7 +155,7 @@ const EquipmentAlerts = (props) => {
             <header className="alert-log-header">
               <div className="alert-log__header-labels">
                 <div
-                  onClick={() => toggleSelectAll()}
+                  onClick={() => toggleSelectFiltered()}
                   className="alert-log__event__select"
                 >
                   {evalAllSelected() ? 'Select None' : 'Select All'}
@@ -154,7 +168,7 @@ const EquipmentAlerts = (props) => {
             </header>
             <ol className="alert-log__events">
               {alerts.length > 0 ? (
-                filteredByStatusAndCategory().map((alert) => {
+                filteredAlerts.map((alert) => {
                   return (
                     <EquipmentAlert
                       key={alert.id}
