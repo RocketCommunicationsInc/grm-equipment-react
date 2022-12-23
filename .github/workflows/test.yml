@@ -12,12 +12,11 @@ jobs:
           node-version: 16
       - name: Checkout
         uses: actions/checkout@v2.6.0
-      - name: NPM or Yarn install with caching
-        uses: bahmutov/npm-install@v1.6.0
       - name: Cypress.io
         uses: cypress-io/github-action@v5.0.2
         with:
           record: false
           browser: chrome
           component: true
+          config: video=false
           
