@@ -1,10 +1,13 @@
-import './ScheduleJob.scss';
+import './JobDetails.scss';
 import {
   RuxLog,
   RuxCheckbox,
   RuxButton,
   RuxButtonGroup,
   RuxIcon,
+  RuxInput,
+  RuxTextarea,
+  RuxContainer,
 } from '@astrouxds/react';
 import {
   mapJobType,
@@ -16,6 +19,7 @@ import {
 import { useState } from 'react';
 import ConflictsTable from './ConflictsTable';
 import ScheduleJob from './ScheduleJob';
+import PanelHeader from '../../common/PanelHeader';
 
 const JobDetails = ({ currentJob, cancelEdit, events }) => {
   const [allowModify, setAllowModify] = useState(false);
@@ -29,21 +33,21 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
   } else {
     return (
       <>
-        <div className="path-above-grid">
+        <div className="Job-details__path">
           <span onClick={cancelEdit} className="home-page-link">
             <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
             Equipment Manager
           </span>
           <span> / Maintenance Details </span>
         </div>
-        <div className="grid-zone-wrap-job-details">
-          <div className="grid-zone__label">
-            Maintenance Job ID #{currentJob.id}
-          </div>
-          <div className="grid-zone__content job-details">
+        <div className="Job-details__parent">
+          <PanelHeader
+            heading={'Maintenance Job ID #' + currentJob.id}
+          ></PanelHeader>
+          <div className="Job-details__container job-details">
             <div className="grid-zone grid-zone--fixed grid-zone--job-details">
-              <div className="grid-zone__label">Job Details</div>
-              <div className="job-details__content">
+              <p>Job Details</p>
+              <div className="">
                 <div className="job-details-overview">
                   <svg
                     className={
@@ -163,56 +167,57 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
                     </text>
                   </svg>
 
-                  <div className="job-details__meta">
-                    <label className="job-details__meta__label">Job Type</label>
+                  <RuxInput
+                    className="Job-details__input"
+                    value={mapJobType(currentJob.type)}
+                    readonly={true}
+                    label="Job Type"
+                  ></RuxInput>
 
-                    <div className="job-details__meta__value">
-                      {mapJobType(currentJob.type)}
-                    </div>
-                  </div>
-                  <div className="job-details__meta">
-                    <label className="job-details__meta__label">
-                      Description
-                    </label>
-                    <div className="job-details__meta__value job-details__meta__value--extended">
-                      {currentJob.description}
-                    </div>
-                  </div>
-                  <div className="job-details__meta">
-                    <label className="job-details__meta__label">Year</label>
-                    <div className="job-details__meta__value">
-                      {formatYear(currentJob.startTime)}
-                    </div>
-                  </div>
-                  <div className="job-details__meta">
-                    <label className="job-details__meta__label">DOY</label>
-                    <div className="job-details__meta__value">
-                      {formatDayOfYear(currentJob.startTime)}
-                    </div>
-                  </div>
-                  <div className="job-details__meta">
-                    <label className="job-details__meta__label">Start</label>
-                    <div className="job-details__meta__value">
-                      {formatReadableTime(currentJob.startTime)}
-                    </div>
-                  </div>
-                  <div className="job-details__meta">
-                    <label className="job-details__meta__label">Stop</label>
-                    <div className="job-details__meta__value">
-                      {formatReadableTime(currentJob.endTime)}
-                    </div>
-                  </div>
-                  <div className="job-details__meta">
-                    <label className="job-details__meta__label">
-                      Technician
-                    </label>
-                    <div className="job-details__meta__value">Ahmet Ducat</div>
-                  </div>
-                  <div className="job-details__meta">
-                    <div className="rux-checkbox">
-                      <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
-                    </div>
-                  </div>
+                  <RuxTextarea
+                    className="Job-details__input"
+                    label="Description"
+                    value={currentJob.description}
+                    readonly={true}
+                    size="large"
+                  ></RuxTextarea>
+
+                  <RuxInput
+                    className="Job-details__input"
+                    value={formatYear(currentJob.startTime)}
+                    readonly={true}
+                    label="Year"
+                  ></RuxInput>
+
+                  <RuxInput
+                    className="Job-details__input"
+                    value={formatDayOfYear(currentJob.startTime)}
+                    readonly={true}
+                    label="DOY"
+                  ></RuxInput>
+
+                  <RuxInput
+                    className="Job-details__input"
+                    value={formatReadableTime(currentJob.startTime)}
+                    readonly={true}
+                    label="Start"
+                  ></RuxInput>
+
+                  <RuxInput
+                    className="Job-details__input"
+                    value={formatReadableTime(currentJob.endTime)}
+                    readonly={true}
+                    label="Stop"
+                  ></RuxInput>
+
+                  <RuxInput
+                    className="Job-details__input"
+                    value="Ahmet Ducat"
+                    readonly={true}
+                    label="Technician"
+                  ></RuxInput>
+
+                  <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
                 </div>
                 <div className="job-details__equipment-event-log">
                   <div className="job-details__equipment-event-log__label">
@@ -222,6 +227,7 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
                 </div>
               </div>
             </div>
+
             <ConflictsTable />
           </div>
 

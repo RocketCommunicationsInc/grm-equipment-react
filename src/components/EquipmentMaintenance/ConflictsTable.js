@@ -4,76 +4,79 @@ import {
   formatReadableTime,
   capitalize,
 } from '../../util/util';
-
+import {
+  RuxContainer,
+  RuxTable,
+  RuxTableHeader,
+  RuxTableBody,
+  RuxTableRow,
+  RuxTableCell,
+} from '@astrouxds/react';
 import { getAll as getAllConflicts } from '../../services/jobs';
 
 let conflicts = getAllConflicts();
 
 const ConflictsTable = (props) => {
   return (
-    <>
-      <div className="grid-zone grid-zone--fixed grid-zone--conflicts">
-        <div className="grid-zone__label">Conflicts</div>
-        <div className="grid-zone__content">
-          <div className="grid-zone__content conflict-log">
-            <header className="conflict-log-header">
-              <div className="conflict-log__header-labels">
-                <div className="conflict-log__event__iron">IRON</div>
-                <div className="conflict-log__event__ground">GS</div>
-                <div className="conflict-log__event__rev">Rev</div>
-                <div className="conflict-log__event__equipment">
-                  Equipment String
-                </div>
-                <div className="conflict-log__event__state">State</div>
-                <div className="conflict-log__event__doy">DOY</div>
-                <div className="conflict-log__event__start">Start</div>
-                <div className="conflict-log__event__aos">AOS</div>
-                <div className="conflict-log__event__los">LOS</div>
-                <div className="conflict-log__event__stop">Stop</div>
-              </div>
-            </header>
-            <ol className="conflict-log__events">
-              {conflicts.map((conflict) => {
-                return (
-                  <li key={conflict.iron} className="conflict-log__event">
-                    <div className="conflict-log__event__iron">
-                      {conflict.iron}
-                    </div>
-                    <div className="conflict-log__event__ground">
-                      {conflict.groundStation}
-                    </div>
-                    <div className="conflict-log__event__rev">
-                      {conflict.rev}
-                    </div>
-                    <div className="conflict-log__event__equipment">
-                      {conflict.equipmentString}
-                    </div>
-                    <div className="conflict-log__event__state">
-                      {capitalize(conflict.state)}
-                    </div>
-                    <div className="conflict-log__event__doy">
-                      {formatDayOfYear(conflict.startTime)}
-                    </div>
-                    <div className="conflict-log__event__start">
-                      {formatReadableTime(conflict.startTime)}
-                    </div>
-                    <div className="conflict-log__event__aos">
-                      {formatReadableTime(conflict.aos)}
-                    </div>
-                    <div className="conflict-log__event__los">
-                      {formatReadableTime(conflict.los)}
-                    </div>
-                    <div className="conflict-log__event__stop">
-                      {formatReadableTime(conflict.endTime)}
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
-        </div>
-      </div>
-    </>
+    <RuxContainer>
+      <h2 slot="header">Conflicts</h2>
+      <RuxTable>
+        <RuxTableHeader>
+          <RuxTableCell>IRON</RuxTableCell>
+          <RuxTableCell>GS</RuxTableCell>
+          <RuxTableCell>Rev</RuxTableCell>
+          <RuxTableCell>Equipment String</RuxTableCell>
+          <RuxTableCell>State</RuxTableCell>
+          <RuxTableCell>DOY</RuxTableCell>
+          <RuxTableCell>Start</RuxTableCell>
+          <RuxTableCell>AOS</RuxTableCell>
+          <RuxTableCell>LOS</RuxTableCell>
+          <RuxTableCell>Stop</RuxTableCell>
+        </RuxTableHeader>
+        <RuxTableBody>
+          {conflicts.map((c) => (
+            <RuxTableRow key={c.aos}>
+              <RuxTableCell>
+                <p>{c.iron}</p>
+              </RuxTableCell>
+              <RuxTableCell>
+                <p>{c.groundStation}</p>
+              </RuxTableCell>
+              <RuxTableCell>
+                <p>{c.rev}</p>
+              </RuxTableCell>
+              <RuxTableCell>
+                <p>{c.equipmentString}</p>{' '}
+              </RuxTableCell>
+
+              <RuxTableCell>
+                <p> {capitalize(c.state)}</p>{' '}
+              </RuxTableCell>
+
+              <RuxTableCell>
+                <p> {formatDayOfYear(c.startTime)}</p>{' '}
+              </RuxTableCell>
+
+              <RuxTableCell>
+                <p> {formatReadableTime(c.startTime)}</p>{' '}
+              </RuxTableCell>
+
+              <RuxTableCell>
+                <p> {formatReadableTime(c.aos)}</p>{' '}
+              </RuxTableCell>
+
+              <RuxTableCell>
+                <p> {formatReadableTime(c.los)}</p>{' '}
+              </RuxTableCell>
+
+              <RuxTableCell>
+                <p> {formatReadableTime(c.endTime)}</p>{' '}
+              </RuxTableCell>
+            </RuxTableRow>
+          ))}
+        </RuxTableBody>
+      </RuxTable>
+    </RuxContainer>
   );
 };
 

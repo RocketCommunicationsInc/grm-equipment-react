@@ -1,50 +1,27 @@
-:host {
-  flex-grow: 1;
-  flex-flow: column;
-  display: flex;
-  padding-right: 1.5rem;
-  overflow: hidden;
-}
-
-.grid-zone__label {
-  flex: none;
-  background: rgba(20, 31, 44, 0.5);
-  padding: 0.625rem 0.938rem;
-  color: white;
-  font-size: 1.35rem;
-  font-weight: 300;
-  flex-flow: row nowrap;
-  justify-items: start;
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-}
-:host > .grid-zone__label {
-  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-}
-
-.grid-zone__content {
-  padding: 1rem;
-}
 .grid-zone--fixed {
   flex-flow: column;
   display: flex;
 }
 
-.grid-zone--fixed .grid-zone__label {
-  background: rgba(113, 189, 255, 0.03);
-}
-.grid-zone--fixed .grid-zone__content {
-  flex-flow: column;
-  display: flex;
-  flex-grow: 1;
-  padding: 0;
-}
+.Schedule-job {
+  &__path {
+    margin: 1.5rem;
+  }
 
-.path-above-grid {
-  margin: 1.5rem;
+  &__parent {
+    background-color: var(--color-background-surface-default);
+    box-shadow: var(--container-color-border) 0 0 0 1px;
+    flex-flow: column;
+    display: flex;
+    overflow: hidden;
+    margin: 1rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-grow: 1;
+  }
 }
 
 .home-page-link {
@@ -60,27 +37,13 @@
   margin-top: -0.5rem;
 }
 
-.grid-zone-wrap-job-details {
-  background: #1d2f41;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  flex-flow: column;
-  flex-grow: 1;
-  display: flex;
-  overflow: hidden;
-  margin: 1rem;
-}
-
-.job-details {
-  display: flex;
-  flex-flow: row nowrap;
-  flex-grow: 1;
-}
 .grid-zone--job-details {
   flex: 1 1 40%;
   margin-right: 1rem;
   height: 60vh;
   overflow: auto;
 }
+
 .job-details-overview {
   background: rgba(113, 189, 255, 0.03);
   padding: 0 2rem;
@@ -89,41 +52,6 @@
   background: rgba(113, 189, 255, 0.03);
   padding: 0 2rem;
   flex-grow: 1;
-}
-
-.progress {
-  padding: 1rem 0.25rem;
-}
-.progress .current {
-  fill: #4dacff;
-  opacity: 0;
-}
-.progress .complete {
-  fill: #fff;
-  opacity: 0;
-}
-.progress--step-1 .step1 {
-  opacity: 1;
-}
-.progress--step-2 .step2 {
-  opacity: 1;
-}
-.progress--step-3 .step3 {
-  opacity: 1;
-}
-.progress--step-4 .step4 {
-  opacity: 1;
-}
-.progress--step-5 .step5 {
-  opacity: 1;
-}
-
-.job-details__content {
-  height: 100%;
-  flex-flow: column;
-  display: flex;
-  flex-grow: 1;
-  padding: 0;
 }
 
 .job-details__meta {

@@ -1,4 +1,6 @@
 import './ScheduleJob.scss';
+import PanelHeader from '../../common/PanelHeader';
+
 import {
   RuxSelect,
   RuxOption,
@@ -28,16 +30,16 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
   };
   return (
     <>
-      <div className="path-above-grid">
+      <div className="Schedule-job__path">
         <span onClick={cancelEdit} className="home-page-link">
           <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
           Equipment Manager
         </span>
         <span> / Schedule Maintenance </span>
       </div>
-      <div className="grid-zone-wrap-job-details">
-        <div className="grid-zone__label">Schedule Maintenance Job</div>
-        <div className="grid-zone__content job-details">
+      <div className="Schedule-job__parent">
+        <PanelHeader heading={'Schedule Maintenance Job'} />
+        <div className="Schedule-job__container grid-zone__content job-details">
           <div className="grid-zone grid-zone--fixed grid-zone--job-details">
             <div className="job-details-request">
               <h4 className="job-details-request__subheader">

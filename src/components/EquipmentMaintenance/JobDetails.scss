@@ -1,0 +1,71 @@
+.Job-details {
+  &__path {
+    margin: 1.5rem;
+  }
+
+  &__parent {
+    background-color: var(--color-background-surface-default);
+    box-shadow: var(--container-color-border) 0 0 0 1px;
+    flex-flow: column;
+    display: flex;
+    overflow: hidden;
+    margin: 1rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-grow: 1;
+  }
+
+  &__input {
+    padding-bottom: 1rem;
+  }
+}
+
+.home-page-link {
+  color: rgb(89, 122, 231);
+}
+
+.home-page-link:hover {
+  color: rgb(143, 164, 235);
+}
+
+.rux-icon {
+  float: left;
+  margin-top: -0.5rem;
+}
+
+.progress {
+  padding: 1rem 0.25rem;
+}
+.progress .current {
+  fill: #4dacff;
+  opacity: 0;
+}
+.progress .complete {
+  fill: #fff;
+  opacity: 0;
+}
+.progress--step-1 .step1 {
+  opacity: 1;
+}
+.progress--step-2 .step2 {
+  opacity: 1;
+}
+.progress--step-3 .step3 {
+  opacity: 1;
+}
+.progress--step-4 .step4 {
+  opacity: 1;
+}
+.progress--step-5 .step5 {
+  opacity: 1;
+}
+
+.job-details-request--edit-actions {
+  display: flex;
+  padding: 0 1rem 1.5rem;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
