@@ -3,6 +3,14 @@
     margin: 1.5rem;
   }
 
+  &__input {
+    padding: 0.5rem;
+  }
+
+  &__path {
+    margin: 1.5rem;
+  }
+
   &__parent {
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;

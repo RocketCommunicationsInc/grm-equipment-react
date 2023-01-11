@@ -31,6 +31,13 @@
 
 .tab-inoperable {
   background-color: $dark_blue;
+  height: calc(100vh - 14rem);
+  overflow: auto;
+}
+
+.open-tab-bla {
+  height: calc(100vh - 14rem);
+  overflow: auto;
 }
 
 .equipment-inoperable {

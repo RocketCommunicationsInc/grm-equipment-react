@@ -175,6 +175,7 @@ const EquipmentContainer = ({
         </RuxTabPanel>
         {openEqs.map((openEq) => (
           <RuxTabPanel
+            className="open-tab-bla"
             key={openEq.data.id}
             aria-labelledby={`tab-id-${openEq.data.id}`}
             data-test={`panel-id-${openEq.data.id}`}
