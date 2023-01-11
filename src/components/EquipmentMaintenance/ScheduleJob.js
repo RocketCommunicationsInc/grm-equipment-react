@@ -31,7 +31,7 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
   };
   return (
     <main className="Schedule-grid">
-      <section>
+      <section className="Schedule-grid__left-panel">
         <div className="Schedule-job__parent">
           <div>
             <PanelHeader heading={'Schedule Maintenance Job'} />
@@ -158,7 +158,7 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
         </div>
       </section>
 
-      <section>
+      <section className="Schedule-grid__right-panel">
         <ConflictsTable />
       </section>
     </main>
