@@ -10,7 +10,7 @@ main {
   background-color: $dark_blue;
   min-width: 15rem;
 
-  height: calc(100vh - 8rem);
+  max-height: calc(100vh - 8rem);
   overflow: auto;
 
   rux-status {
