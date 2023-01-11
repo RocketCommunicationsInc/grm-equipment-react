@@ -9,7 +9,7 @@ import {
   RuxButton,
   RuxInput,
   RuxButtonGroup,
-  RuxIcon,
+  RuxContainer,
 } from '@astrouxds/react';
 import {
   mapJobType,
@@ -32,130 +32,131 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
   return (
     <main className="Schedule-grid">
       <section className="Schedule-grid__left-panel">
-        <div className="Schedule-job__parent">
-          <div>
-            <PanelHeader heading={'Schedule Maintenance Job'} />
-            <div className="Schedule-job__jobDetails">
-              <h4>1. Select Job type</h4>
+        <RuxContainer className="Schedule-job__parent">
+          <PanelHeader heading={'Schedule Maintenance Job'} />
+          <div className="Schedule-job__jobDetails">
+            <h4>1. Select Job type</h4>
 
-              <RuxSelect className="Schedule-job__input" label="Job Type">
-                <RuxOption value="default" label="Select" selected />
-                {[1, 2, 3, 4, 5].map((i) => {
-                  return (
-                    <RuxOption
-                      key={i}
-                      value={mapJobType(i)}
-                      label={mapJobType(i)}
-                    />
-                  );
-                })}
-              </RuxSelect>
-              <RuxTextarea
-                label="Description"
-                className="Schedule-job__input"
-                onRuxinput={(e) => handleTextareaChange(e.target.value)}
-                placeholder="Enter Description"
-                value={jobDescription}
-              ></RuxTextarea>
+            <RuxSelect
+              className="Schedule-job__input"
+              label="Job Type"
+              value={currentJob ? mapJobType(currentJob.type) : 'default'}
+            >
+              <RuxOption value="default" label="Select" selected />
+              {[1, 2, 3, 4, 5].map((i) => {
+                return (
+                  <RuxOption
+                    key={i}
+                    value={mapJobType(i)}
+                    label={mapJobType(i)}
+                  />
+                );
+              })}
+            </RuxSelect>
+            <RuxTextarea
+              label="Description"
+              className="Schedule-job__input"
+              onRuxinput={(e) => handleTextareaChange(e.target.value)}
+              placeholder="Enter Description"
+              value={jobDescription}
+            ></RuxTextarea>
 
-              <h4>2. Select Time</h4>
-              <RuxInput
-                label="Year"
-                className="Schedule-job__input"
-                value={
-                  currentJob
-                    ? formatYear(currentJob.startTime)
-                    : formatYear(Date.now())
-                }
-              ></RuxInput>
+            <h4>2. Select Time</h4>
+            <RuxInput
+              label="Year"
+              className="Schedule-job__input"
+              value={
+                currentJob
+                  ? formatYear(currentJob.startTime)
+                  : formatYear(Date.now())
+              }
+            ></RuxInput>
 
-              <RuxInput
-                label="DOY"
-                className="Schedule-job__input"
-                value={
-                  currentJob
-                    ? formatDayOfYear(currentJob.startTime)
-                    : formatDayOfYear(Date.now())
-                }
-              ></RuxInput>
+            <RuxInput
+              label="DOY"
+              className="Schedule-job__input"
+              value={
+                currentJob
+                  ? formatDayOfYear(currentJob.startTime)
+                  : formatDayOfYear(Date.now())
+              }
+            ></RuxInput>
 
-              <RuxInput
-                label="Start"
-                className="Schedule-job__input"
-                value={
-                  currentJob
-                    ? formatReadableTime(currentJob.startTime)
-                    : 'HH:MM:SS'
-                }
-              ></RuxInput>
+            <RuxInput
+              label="Start"
+              className="Schedule-job__input"
+              value={
+                currentJob
+                  ? formatReadableTime(currentJob.startTime)
+                  : 'HH:MM:SS'
+              }
+            ></RuxInput>
 
-              <RuxInput
-                label="End"
-                className="Schedule-job__input"
-                value={
-                  currentJob
-                    ? formatReadableTime(currentJob.endTime)
-                    : 'HH:MM:SS'
-                }
-              ></RuxInput>
+            <RuxInput
+              label="End"
+              className="Schedule-job__input"
+              value={
+                currentJob ? formatReadableTime(currentJob.endTime) : 'HH:MM:SS'
+              }
+            ></RuxInput>
 
-              <h4>3. Select Technician</h4>
-              <RuxSelect
-                className="Schedule-job__input"
-                label="Technician"
-                required={false}
-              >
-                <RuxOption
-                  key="selectDefailt"
-                  value="default"
-                  label="Select"
-                  selected={true}
-                />
+            <h4>3. Select Technician</h4>
+            <RuxSelect
+              className="Schedule-job__input"
+              label="Technician"
+              required={false}
+              value={currentJob ? currentJob.technician : 'default'}
+            >
+              <RuxOption
+                key="selectDefailt"
+                value="default"
+                label="Select"
+                selected={true}
+              />
 
-                <RuxOption
-                  key="Ahmet Ducat"
-                  value="Ahmet Ducat"
-                  label="Ahmet Ducat"
-                />
-                <RuxOption
-                  key="Lara Pazzi"
-                  value="Lara Pazzi"
-                  label="Lara Pazzi"
-                />
-                <RuxOption
-                  key="Cristofer Sandoval"
-                  value="Cristofer Sandoval"
-                  label="Cristofer Sandoval"
-                />
-                <RuxOption
-                  key="Andie Spatzig"
-                  value="Andie Spatzig"
-                  label="Andie Spatzig"
-                />
-              </RuxSelect>
+              <RuxOption
+                key="Ahmet Ducat"
+                value="Ahmet Ducat"
+                label="Ahmet Ducat"
+              />
+              <RuxOption
+                key="Lara Pazzi"
+                value="Lara Pazzi"
+                label="Lara Pazzi"
+              />
+              <RuxOption
+                key="Cristofer Sandoval"
+                value="Cristofer Sandoval"
+                label="Cristofer Sandoval"
+              />
+              <RuxOption
+                key="Andie Spatzig"
+                value="Andie Spatzig"
+                label="Andie Spatzig"
+              />
+            </RuxSelect>
 
-              <h4>4. Follow Job</h4>
-              <p>
-                Would you like to follow this job? Following will send all
-                updates and alerts regarding this job to the GRM Dashboard. If
-                you do not follow this job, you must view the job from the
-                Equipment Manager to be notified of any updates or alerts.
-              </p>
-              <br />
-              <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
-              <br />
-              <br />
-              <RuxButtonGroup>
-                <RuxButton>Calculate Conflicts</RuxButton>
-                <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
+            <h4>4. Follow Job</h4>
+            <p>
+              Would you like to follow this job? Following will send all updates
+              and alerts regarding this job to the GRM Dashboard. If you do not
+              follow this job, you must view the job from the Equipment Manager
+              to be notified of any updates or alerts.
+            </p>
+            <br />
+            <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
+            <br />
+            <br />
+            <RuxButtonGroup>
+              <RuxButton>Calculate Conflicts</RuxButton>
+              <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
 
-                <RuxButton secondary onClick={cancelEdit}>
-                  Cancel
-                </RuxButton>
-              </RuxButtonGroup>
-            </div>
+              <RuxButton secondary onClick={cancelEdit}>
+                Cancel
+              </RuxButton>
+            </RuxButtonGroup>
           </div>
-        </div>
+        </RuxContainer>
       </section>
 
       <section className="Schedule-grid__right-panel">

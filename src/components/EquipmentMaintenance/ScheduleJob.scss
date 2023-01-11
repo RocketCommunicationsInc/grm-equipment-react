@@ -20,8 +20,6 @@ rux-textarea::part(label) {
 
 .Schedule-grid {
   display: grid;
-  // Screen height minus the height of the Global Status Bar
-
   grid-template-columns: 35% 65%;
   padding: var(--spacing-3);
 
