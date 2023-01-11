@@ -1,7 +1,8 @@
 @import '../colors';
 
 .equipment-container {
-  overflow: hidden;
+  overflow: auto;
+  height: calc(100vh - 8rem);
 
   ul {
     padding-left: 0;
@@ -31,13 +32,6 @@
 
 .tab-inoperable {
   background-color: $dark_blue;
-  height: calc(100vh - 14rem);
-  overflow: auto;
-}
-
-.open-tab-bla {
-  height: calc(100vh - 14rem);
-  overflow: auto;
 }
 
 .equipment-inoperable {

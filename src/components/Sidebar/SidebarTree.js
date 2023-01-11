@@ -1,7 +1,6 @@
 import { RuxTree, RuxTreeNode, RuxStatus } from '@astrouxds/react';
 import { DataContext } from '../../DataContext';
 import { useContext } from 'react';
-import './Sidebar.scss';
 
 const SidebarTree = ({ selectEquip }) => {
   const sidebarObjects = useContext(DataContext).data.categories;

@@ -30,40 +30,26 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
     setJobDescription(jobDescription);
   };
   return (
-    <>
-      <div className="Schedule-job__path">
-        <span onClick={cancelEdit} className="home-page-link">
-          <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
-          Equipment Manager
-        </span>
-        <span> / Schedule Maintenance </span>
-      </div>
-      <div className="Schedule-job__parent">
-        <PanelHeader heading={'Schedule Maintenance Job'} />
-        <div className="Schedule-job__container grid-zone__content job-details">
-          <div className="grid-zone grid-zone--fixed grid-zone--job-details">
-            <div className="job-details-request">
+    <main className="Schedule-grid">
+      <section>
+        <div className="Schedule-job__parent">
+          <div>
+            <PanelHeader heading={'Schedule Maintenance Job'} />
+            <div className="Schedule-job__jobDetails">
               <h4>1. Select Job type</h4>
-              <div>
-                <div className="job-details__meta__input">
-                  <RuxSelect
-                    input-id="jobTypeSelect"
-                    className="Schedule-job__input"
-                    label="Job Type"
-                  >
-                    <RuxOption value="default" label="Select" selected />
-                    {[1, 2, 3, 4, 5].map((i) => {
-                      return (
-                        <RuxOption
-                          key={i}
-                          value={mapJobType(i)}
-                          label={mapJobType(i)}
-                        />
-                      );
-                    })}
-                  </RuxSelect>
-                </div>
-              </div>
+
+              <RuxSelect className="Schedule-job__input" label="Job Type">
+                <RuxOption value="default" label="Select" selected />
+                {[1, 2, 3, 4, 5].map((i) => {
+                  return (
+                    <RuxOption
+                      key={i}
+                      value={mapJobType(i)}
+                      label={mapJobType(i)}
+                    />
+                  );
+                })}
+              </RuxSelect>
               <RuxTextarea
                 label="Description"
                 className="Schedule-job__input"
@@ -113,73 +99,69 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
                 }
               ></RuxInput>
 
-              <h4 className="job-details-request__subheader">
-                3. Select Technician
-              </h4>
-              <div className="job-details__meta rux-form-field">
-                <div className="job-details__meta__input">
-                  <RuxSelect
-                    className="Schedule-job__input"
-                    label="Technician"
-                    input-id="jobTypeSelect"
-                    required={false}
-                  >
-                    <RuxOption
-                      key="selectDefailt"
-                      value="default"
-                      label="Select"
-                      selected={true}
-                    />
+              <h4>3. Select Technician</h4>
+              <RuxSelect
+                className="Schedule-job__input"
+                label="Technician"
+                required={false}
+              >
+                <RuxOption
+                  key="selectDefailt"
+                  value="default"
+                  label="Select"
+                  selected={true}
+                />
 
-                    <RuxOption
-                      key="Ahmet Ducat"
-                      value="Ahmet Ducat"
-                      label="Ahmet Ducat"
-                    />
-                    <RuxOption
-                      key="Lara Pazzi"
-                      value="Lara Pazzi"
-                      label="Lara Pazzi"
-                    />
-                    <RuxOption
-                      key="Cristofer Sandoval"
-                      value="Cristofer Sandoval"
-                      label="Cristofer Sandoval"
-                    />
-                    <RuxOption
-                      key="Andie Spatzig"
-                      value="Andie Spatzig"
-                      label="Andie Spatzig"
-                    />
-                  </RuxSelect>
-                </div>
-              </div>
+                <RuxOption
+                  key="Ahmet Ducat"
+                  value="Ahmet Ducat"
+                  label="Ahmet Ducat"
+                />
+                <RuxOption
+                  key="Lara Pazzi"
+                  value="Lara Pazzi"
+                  label="Lara Pazzi"
+                />
+                <RuxOption
+                  key="Cristofer Sandoval"
+                  value="Cristofer Sandoval"
+                  label="Cristofer Sandoval"
+                />
+                <RuxOption
+                  key="Andie Spatzig"
+                  value="Andie Spatzig"
+                  label="Andie Spatzig"
+                />
+              </RuxSelect>
 
-              <h4 className="job-details-request__subheader">4. Follow Job</h4>
-              <p className="job-details-request__content">
+              <h4>4. Follow Job</h4>
+              <p>
                 Would you like to follow this job? Following will send all
                 updates and alerts regarding this job to the GRM Dashboard. If
                 you do not follow this job, you must view the job from the
                 Equipment Manager to be notified of any updates or alerts.
               </p>
+              <br />
               <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
               <br />
               <br />
-              <RuxButton className="rux-button">Calculate Conflicts</RuxButton>
+              <RuxButtonGroup>
+                <RuxButton>Calculate Conflicts</RuxButton>
+                <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
+
+                <RuxButton secondary onClick={cancelEdit}>
+                  Cancel
+                </RuxButton>
+              </RuxButtonGroup>
             </div>
           </div>
-          <ConflictsTable />
         </div>
+      </section>
 
-        <RuxButtonGroup className="job-details-request--edit-actions">
-          <RuxButton secondary onClick={cancelEdit}>
-            Cancel
-          </RuxButton>
-
-          <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
-        </RuxButtonGroup>
-      </div>
-    </>
+      <section>
+        <ConflictsTable />
+      </section>
+    </main>
   );
 };
 

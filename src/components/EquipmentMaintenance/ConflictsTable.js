@@ -1,4 +1,4 @@
-import './ScheduleJob.scss';
+import './ConflictsTable.scss';
 import {
   formatDayOfYear,
   formatReadableTime,
@@ -16,9 +16,9 @@ import { getAll as getAllConflicts } from '../../services/jobs';
 
 let conflicts = getAllConflicts();
 
-const ConflictsTable = (props) => {
+const ConflictsTable = () => {
   return (
-    <RuxContainer>
+    <RuxContainer className="jobsConflictContainer">
       <h2 slot="header">Conflicts</h2>
       <RuxTable>
         <RuxTableHeader>

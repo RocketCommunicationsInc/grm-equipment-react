@@ -32,21 +32,14 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
     return <ScheduleJob cancelEdit={cancelEdit} currentJob={currentJob} />;
   } else {
     return (
-      <>
-        <div className="Job-details__path">
-          <span onClick={cancelEdit} className="home-page-link">
-            <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
-            Equipment Manager
-          </span>
-          <span> / Maintenance Details </span>
-        </div>
-        <div className="Job-details__parent">
-          <PanelHeader
-            heading={'Maintenance Job ID #' + currentJob.id}
-          ></PanelHeader>
-          <div className="Job-details__container job-details">
-            <div className="grid-zone grid-zone--fixed grid-zone--job-details">
-              <p>Job Details</p>
+      <main className="Job-Detail-grid">
+        <section>
+          <div className="Schedule-job__parent">
+            <PanelHeader
+              heading={'Maintenance Job ID #' + currentJob.id}
+            ></PanelHeader>
+            <div className="Job-details__jobDetails">
+              <h4>Job Details</h4>
               <div className="">
                 <div className="job-details-overview">
                   <svg
@@ -219,31 +212,33 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
 
                   <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
                 </div>
+                <br />
                 <div className="job-details__equipment-event-log">
-                  <div className="job-details__equipment-event-log__label">
-                    Event Log
-                  </div>
+                  <p>Event Log</p>
+                  <br />
                   <RuxLog className="rux-log" data={events.data} />
                 </div>
+                <br />
+                <RuxButtonGroup>
+                  <RuxButton
+                    className="rux-button"
+                    secondary
+                    onClick={cancelEdit}
+                  >
+                    Cancel
+                  </RuxButton>
+                  <RuxButton className="rux-button" onClick={editJob}>
+                    Modify
+                  </RuxButton>
+                </RuxButtonGroup>
               </div>
             </div>
-
-            <ConflictsTable />
           </div>
-
-          <RuxButtonGroup
-            hAlign="right"
-            className="job-details-request--edit-actions"
-          >
-            <RuxButton className="rux-button" secondary onClick={cancelEdit}>
-              Cancel
-            </RuxButton>
-            <RuxButton className="rux-button" onClick={editJob}>
-              Modify
-            </RuxButton>
-          </RuxButtonGroup>
-        </div>
-      </>
+        </section>
+        <section>
+          <ConflictsTable />
+        </section>
+      </main>
     );
   }
 };
