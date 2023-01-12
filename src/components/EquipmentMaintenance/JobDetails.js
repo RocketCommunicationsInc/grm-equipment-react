@@ -203,26 +203,21 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
                 ></RuxInput>
 
                 <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
-              </div>
-              <br />
-              <div className="job-details__equipment-event-log">
+                <br />
+                <br />
+
                 <p>Event Log</p>
                 <br />
-                <RuxLog className="rux-log" data={events.data} />
+
+                <RuxLog className="Job-details__event-log" data={events.data} />
+                <br />
+                <RuxButtonGroup>
+                  <RuxButton secondary onClick={cancelEdit}>
+                    Cancel
+                  </RuxButton>
+                  <RuxButton onClick={editJob}>Modify</RuxButton>
+                </RuxButtonGroup>
               </div>
-              <br />
-              <RuxButtonGroup>
-                <RuxButton
-                  className="rux-button"
-                  secondary
-                  onClick={cancelEdit}
-                >
-                  Cancel
-                </RuxButton>
-                <RuxButton className="rux-button" onClick={editJob}>
-                  Modify
-                </RuxButton>
-              </RuxButtonGroup>
             </RuxContainer>
           </div>
         </section>

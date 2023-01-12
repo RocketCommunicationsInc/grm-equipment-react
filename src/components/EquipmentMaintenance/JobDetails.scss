@@ -32,7 +32,11 @@
   }
 
   &__jobDetails {
-    margin: 2rem;
+    margin: 1.5rem;
+  }
+
+  &__event-log {
+    overflow: auto;
   }
 }
 
