@@ -1,39 +1,21 @@
-rux-input::part(form-field) {
-  flex-direction: row;
-  align-items: center;
-}
-rux-input::part(label) {
-  margin-right: var(--spacing-10);
-}
-
-rux-textarea::part(form-field) {
-  flex-direction: row;
-  align-items: center;
-}
-rux-textarea::part(label) {
-  margin-right: var(--spacing-10);
-}
-
 .Job-Detail-grid {
   display: grid;
   // Screen height minus the height of the Global Status Bar
   grid-template-columns: 35% 65%;
-  padding: var(--spacing-3);
-
+  padding: var(--spacing-4) var(--spacing-6);
+  gap: var(--spacing-3);
   grid-template-areas: 'left-panel right-panel';
 
   &__left-panel {
     grid-area: left-panel;
-    min-height: calc(100vh - 9rem);
-    max-height: calc(100vh - 9rem);
+    max-height: calc(100vh - 10rem);
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
   }
 
   &__right-panel {
     grid-area: right-panel;
-    min-height: calc(100vh - 9rem);
-    max-height: calc(100vh - 9rem);
+    max-height: calc(100vh - 10rem);
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
   }
@@ -94,9 +76,18 @@ rux-textarea::part(label) {
   opacity: 1;
 }
 
-.job-details-request--edit-actions {
-  display: flex;
-  padding: 0 1rem 1.5rem;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
+rux-input::part(form-field) {
+  flex-direction: row;
+  align-items: center;
+}
+rux-input::part(label) {
+  margin-right: var(--spacing-10);
+}
+
+rux-textarea::part(form-field) {
+  flex-direction: row;
+  align-items: center;
+}
+rux-textarea::part(label) {
+  margin-right: var(--spacing-10);
 }

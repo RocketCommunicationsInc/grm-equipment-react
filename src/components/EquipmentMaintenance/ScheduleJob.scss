@@ -1,42 +1,20 @@
-body {
-  overflow: hidden;
-}
-
-rux-input::part(form-field) {
-  flex-direction: row;
-  align-items: center;
-}
-rux-input::part(label) {
-  margin-right: var(--spacing-10);
-}
-
-rux-textarea::part(form-field) {
-  flex-direction: row;
-  align-items: center;
-}
-rux-textarea::part(label) {
-  margin-right: var(--spacing-10);
-}
-
 .Schedule-grid {
   display: grid;
   grid-template-columns: 35% 65%;
-  padding: var(--spacing-3);
-
   grid-template-areas: 'left-panel right-panel';
+  padding: var(--spacing-4) var(--spacing-6);
+  gap: var(--spacing-3);
 
   &__left-panel {
     grid-area: left-panel;
-    min-height: calc(100vh - 9rem);
-    max-height: calc(100vh - 9rem);
+    max-height: calc(100vh - 10rem);
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
   }
 
   &__right-panel {
     grid-area: right-panel;
-    min-height: calc(100vh - 9rem);
-    max-height: calc(100vh - 9rem);
+    max-height: calc(100vh - 10rem);
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
   }
@@ -63,4 +41,20 @@ rux-textarea::part(label) {
 
 .home-page-link:hover {
   color: rgb(143, 164, 235);
+}
+
+rux-input::part(form-field) {
+  flex-direction: row;
+  align-items: center;
+}
+rux-input::part(label) {
+  margin-right: var(--spacing-10);
+}
+
+rux-textarea::part(form-field) {
+  flex-direction: row;
+  align-items: center;
+}
+rux-textarea::part(label) {
+  margin-right: var(--spacing-10);
 }
