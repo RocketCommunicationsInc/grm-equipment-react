@@ -1,147 +1,27 @@
 @import '../colors';
 
-.maintenance-jobs__actions {
-  flex: 0 1 8rem;
-  margin-left: 1.5em;
-}
-.maintenance-jobs__actions .rux-button {
-  margin: auto;
-}
-.maintenance-jobs__list {
-  flex: 1 1 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 17rem);
-  grid-gap: 1.5rem;
-  margin-left: 1.5rem;
+.MaintenanceJobView {
+  &__jobCardsContainer {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 25rem);
+    grid-gap: 3rem;
+    padding-left: 1.5rem;
+  }
+
+  &__cardDetails {
+    padding: 0.5rem;
+  }
+
+  &__job-card {
+    box-shadow: var(--container-color-border) 0 0 0 0.5px;
+  }
+
+  &__schedule-button {
+    padding: 1.5rem;
+  }
 }
 
-.job-card__meta {
-  display: flex;
-  flex-flow: row nowrap;
-  margin-bottom: 0.5rem;
-}
-.job-card__meta__label {
-  font-size: 0.875rem;
-  color: #fff;
-  padding: 0.5rem 0;
-  flex: 1 1 40%;
-}
-.job-card__meta__value {
-  flex: 1 1 60%;
-  font-size: 0.875rem;
-  padding: 0.5rem 0.75rem;
-  background: rgba(23, 38, 53, 0.6);
-  line-height: 1.3;
-}
 .job-card .rux-button {
   margin: 1.5rem auto 0.5rem;
-}
-
-.grid-zone__content.maintenance-log {
-  background: rgba(113, 189, 255, 0.03);
-  padding: 1rem 0.5rem 0.5rem;
-}
-
-.maintenance-log {
-  display: flex;
-  flex-flow: column;
-  font-size: 0.9rem;
-  height: 15rem;
-}
-
-.maintenance-log-header {
-  display: flex;
-  flex: none;
-  flex-wrap: wrap;
-  position: relative;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
-  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25); /* perhaps just when scroll isn't at top? */
-}
-
-.maintenance-log__header-labels {
-  display: flex;
-  flex-grow: 1;
-  color: var(--logHeaderTextColor, rgb(169, 178, 188));
-  font-weight: bold;
-  flex-shrink: 0;
-  align-content: flex-start;
-  align-items: flex-start;
-  padding: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.0625);
-  border-width: 1px 0;
-}
-
-.maintenance-log__events {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  height: 100%;
-  min-height: 0rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.maintenance-log__event {
-  display: flex;
-  align-content: flex-start;
-  flex-shrink: 0;
-  align-items: flex-start;
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
-}
-
-.maintenance-log__event:last-child {
-  border-bottom: none;
-}
-
-.maintenance-log__event__status {
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 2rem;
-  overflow: hidden;
-  text-align: center;
-  align-self: center;
-}
-
-.maintenance-log__event__name,
-.maintenance-log__event__type,
-.maintenance-log__event__created,
-.maintenance-log__event__start,
-.maintenance-log__event__stop,
-.maintenance-log__event__technician,
-.maintenance-log__event__description {
-  flex: 0 0 15%;
-  text-align: left;
-  padding: 0 0.7rem;
-  align-self: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.maintenance-log__event__name {
-  flex: 0 0 5rem;
-}
-.maintenance-log__event__type {
-  flex: 0 0 5rem;
-}
-.maintenance-log__event__created,
-.maintenance-log__event__start,
-.maintenance-log__event__stop {
-  flex: 0 0 8rem;
-}
-.maintenance-log__event__technician {
-  flex: 0 0 12rem;
-}
-.maintenance-log__event__description {
-  flex: 1 1 50%;
-}
-
-rux-input::part(form-field) {
-  flex-direction: row;
-  align-items: center;
-}
-rux-input::part(label) {
-  margin-right: var(--spacing-10);
 }

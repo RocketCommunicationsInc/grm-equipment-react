@@ -179,12 +179,17 @@ const EquipmentContainer = ({
             aria-labelledby={`tab-id-${openEq.data.id}`}
             data-test={`panel-id-${openEq.data.id}`}
           >
-            <EquipmentDetails equipment={openEq} />
-            <EquipmentMaintenance
-              changeView={changeView}
-              setCurrentJob={setCurrentJob}
-              equipment={openEq}
-            />
+            <section className="Dashboard-grid__right-top-panel">
+              <EquipmentDetails equipment={openEq} />
+            </section>
+
+            <section className="Dashboard-grid__right-bottom-panel">
+              <EquipmentMaintenance
+                changeView={changeView}
+                setCurrentJob={setCurrentJob}
+                equipment={openEq}
+              />
+            </section>
           </RuxTabPanel>
         ))}
       </RuxTabPanels>

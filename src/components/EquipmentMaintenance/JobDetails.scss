@@ -11,6 +11,22 @@
     max-height: calc(100vh - 10rem);
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
+
+    rux-input::part(form-field) {
+      flex-direction: row;
+      align-items: center;
+    }
+    rux-input::part(label) {
+      margin-right: var(--spacing-10);
+    }
+
+    rux-textarea::part(form-field) {
+      flex-direction: row;
+      align-items: center;
+    }
+    rux-textarea::part(label) {
+      margin-right: var(--spacing-10);
+    }
   }
 
   &__right-panel {
@@ -78,20 +94,4 @@
 }
 .progress--step-5 .step5 {
   opacity: 1;
-}
-
-rux-input::part(form-field) {
-  flex-direction: row;
-  align-items: center;
-}
-rux-input::part(label) {
-  margin-right: var(--spacing-10);
-}
-
-rux-textarea::part(form-field) {
-  flex-direction: row;
-  align-items: center;
-}
-rux-textarea::part(label) {
-  margin-right: var(--spacing-10);
 }
