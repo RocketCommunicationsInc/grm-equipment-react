@@ -36,7 +36,10 @@ function App() {
       return (
         <>
           <GlobalStatusBar data={data} />
-          <ScheduleJob cancelEdit={() => setCurrentView('main')} />
+          <ScheduleJob
+            currentEq={currentEq}
+            cancelEdit={() => setCurrentView('main')}
+          />
         </>
       );
     case 'viewJobDetails':
@@ -45,6 +48,7 @@ function App() {
           <GlobalStatusBar data={data} />
           <JobDetails
             currentJob={currentJob}
+            currentEq={currentEq}
             cancelEdit={() => setCurrentView('main')}
             events={currentEq.data.events}
           />

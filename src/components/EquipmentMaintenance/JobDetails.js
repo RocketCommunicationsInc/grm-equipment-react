@@ -20,7 +20,7 @@ import ConflictsTable from './ConflictsTable';
 import ScheduleJob from './ScheduleJob';
 import PanelHeader from '../../common/PanelHeader';
 
-const JobDetails = ({ currentJob, cancelEdit, events }) => {
+const JobDetails = ({ currentJob, cancelEdit, events, currentEq }) => {
   const [allowModify, setAllowModify] = useState(false);
 
   function editJob() {
@@ -28,7 +28,13 @@ const JobDetails = ({ currentJob, cancelEdit, events }) => {
   }
 
   if (allowModify) {
-    return <ScheduleJob cancelEdit={cancelEdit} currentJob={currentJob} />;
+    return (
+      <ScheduleJob
+        cancelEdit={cancelEdit}
+        currentJob={currentJob}
+        currentEq={currentEq}
+      />
+    );
   } else {
     return (
       <main className="Job-Detail-grid">

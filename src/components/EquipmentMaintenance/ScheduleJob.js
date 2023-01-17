@@ -21,10 +21,16 @@ import {
 import ConflictsTable from './ConflictsTable';
 import { useState } from 'react';
 
-const ScheduleJob = ({ cancelEdit, currentJob }) => {
+const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
   const [jobDescription, setJobDescription] = useState(
     currentJob ? currentJob.description : ''
   );
+
+  /* Here, we retrieve all technicians dynamically, replacing the earlier hardcoding. The Set filters out duplicate technician names from the array of
+  technicians, and prevents duplicate key errors */
+  const technicians = [
+    ...new Set(currentEq.data.maintenanceJobs.map((job) => job.technician)),
+  ];
 
   const handleTextareaChange = (jobDescription) => {
     setJobDescription(jobDescription);
@@ -64,6 +70,7 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
               ></RuxTextarea>
 
               <h4>2. Select Time</h4>
+
               <RuxInput
                 label="Year"
                 className="Schedule-job__input"
@@ -108,36 +115,18 @@ const ScheduleJob = ({ cancelEdit, currentJob }) => {
               <RuxSelect
                 className="Schedule-job__input"
                 label="Technician"
-                required={false}
                 value={currentJob ? currentJob.technician : 'default'}
               >
-                <RuxOption
-                  key="selectDefailt"
-                  value="default"
-                  label="Select"
-                  selected={true}
-                />
-
-                <RuxOption
-                  key="Ahmet Ducat"
-                  value="Ahmet Ducat"
-                  label="Ahmet Ducat"
-                />
-                <RuxOption
-                  key="Lara Pazzi"
-                  value="Lara Pazzi"
-                  label="Lara Pazzi"
-                />
-                <RuxOption
-                  key="Cristofer Sandoval"
-                  value="Cristofer Sandoval"
-                  label="Cristofer Sandoval"
-                />
-                <RuxOption
-                  key="Andie Spatzig"
-                  value="Andie Spatzig"
-                  label="Andie Spatzig"
-                />
+                <RuxOption value="default" label="Select" selected={true} />
+                {technicians.map((technician) => {
+                  return (
+                    <RuxOption
+                      key={technician}
+                      value={technician}
+                      label={technician}
+                    />
+                  );
+                })}
               </RuxSelect>
 
               <h4>4. Follow Job</h4>

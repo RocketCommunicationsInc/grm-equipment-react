@@ -1,6 +1,6 @@
 @import '../colors';
 
-.equipment-container {
+.Equipment-container {
   overflow: auto;
   height: calc(100vh - 8rem);
 
@@ -20,45 +20,45 @@
     padding: 20px;
     margin-top: 0;
   }
+
+  &__tab-panels {
+    padding-top: 30px;
+  }
+
+  &__tab-inoperable {
+    background-color: $dark_blue;
+  }
+
+  &__equipment-inoperable {
+    padding: 20px 20px 150px;
+
+    rux-status {
+      position: absolute;
+      top: 15px;
+      left: 30px;
+      margin: 0;
+    }
+
+    rux-monitoring-icon {
+      cursor: pointer;
+    }
+  }
+
+  &__equipment-list li {
+    list-style: none;
+    justify-content: space-evenly;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
 }
 
 #tab-set-id-1 {
   height: 60px;
 }
 
-.tab-panels {
-  padding-top: 30px;
-}
-
-.tab-inoperable {
-  background-color: $dark_blue;
-}
-
-.equipment-inoperable {
-  padding: 20px 20px 150px;
-
-  rux-status {
-    position: absolute;
-    top: 15px;
-    left: 30px;
-    margin: 0;
-  }
-
-  rux-monitoring-icon {
-    cursor: pointer;
-  }
-}
-
 rux-icon {
   cursor: pointer;
-}
-
-.equipment-list li {
-  list-style: none;
-  justify-content: space-evenly;
-  padding: 20px;
-  text-align: center;
-  position: relative;
 }
 
 .critical {

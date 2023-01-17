@@ -1,6 +1,5 @@
 .Job-Detail-grid {
   display: grid;
-  // Screen height minus the height of the Global Status Bar
   grid-template-columns: 35% 65%;
   padding: var(--spacing-4) var(--spacing-6);
   gap: var(--spacing-3);
