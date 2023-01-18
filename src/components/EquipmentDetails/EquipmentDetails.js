@@ -8,7 +8,9 @@ const EquipmentDetails = ({ equipment }) => {
   return (
     <>
       <RuxContainer>
-        <div slot="header">Equipment Details</div>
+        <div slot="header" data-test="panel-label">
+          Equipment Details
+        </div>
 
         <div className="equipment-details-grid">
           <EquipmentHeader equipment={equipment} status="critical" />
