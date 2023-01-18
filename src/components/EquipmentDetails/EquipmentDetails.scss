@@ -1,47 +1,4 @@
-:host {
-  overflow-y: auto;
-  padding-right: 0.5rem;
-}
-
-.grid-zone__label {
-  flex: none;
-  background: rgba(20, 31, 44, 0.5);
-  padding: 0.625rem 0.9375rem;
-  color: white;
-  font-size: 1.35rem;
-  font-weight: 300;
-  flex-flow: row nowrap;
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-}
-:host > .grid-zone__label {
-  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-}
-
-.grid-zone__content {
-  overflow-y: auto;
-  padding: 1rem;
-}
 .grid-zone--fixed {
-  overflow: hidden;
-}
-
-.grid-zone--fixed .grid-zone__content {
-  flex-flow: column;
-  display: flex;
-  flex-grow: 1;
-  overflow: hidden;
-  padding: 0;
-}
-.grid-zone--fixed .grid-zone__label {
-  background: rgba(113, 189, 255, 0.03);
-}
-
-.grid-zone-wrap {
-  background: #1d2f41;
-  margin-bottom: 1rem;
   overflow: hidden;
 }
 

@@ -7,21 +7,22 @@
     grid-template-columns: repeat(auto-fill, 25rem);
     grid-gap: 3rem;
     padding-left: 1.5rem;
+    padding-bottom: 3rem;
   }
 
   &__cardDetails {
     padding: 0 0.5rem 0.5rem 0.5rem;
   }
 
+  &__cardButtons {
+    padding: 0.5rem;
+  }
+
   &__job-card {
-    box-shadow: var(--container-color-border) 0 0 0 0.5px;
+    box-shadow: var(--container-color-border) 0 0 0 1px;
   }
 
   &__schedule-button {
     padding: 1.5rem;
   }
-}
-
-.job-card .rux-button {
-  margin: 1.5rem auto 0.5rem;
 }
