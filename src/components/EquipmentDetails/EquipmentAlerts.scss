@@ -37,6 +37,17 @@
 
   &__filter {
     margin: 0 0.5rem;
+
+    .rux-select {
+      line-height: 1.5rem;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
   }
 
   &__log {
@@ -46,18 +57,14 @@
   &__log-header {
     display: flex;
     position: relative;
-    border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
-    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.5rem 1.25rem var(--color-background-base-default);
   }
 
   &__log-header-labels {
     display: flex;
     flex-grow: 1;
-    color: var(--logHeaderTextColor, rgb(169, 178, 188));
-    font-weight: bold;
+    color: var(--color-palette-grey-100);
     padding: 0.5rem 1.75rem 0.5rem 0.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.0625);
-    border-width: 1px 0;
   }
 
   &__log-status {
@@ -108,8 +115,7 @@
     flex: none;
     flex-wrap: wrap;
     justify-content: center;
-    border-top: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
-    box-shadow: 0 -0.5rem 1.25rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 -0.5rem 1.25rem var(--color-background-base-default);
     padding: 2rem;
     margin-top: auto;
     z-index: 1;
@@ -123,8 +129,7 @@
   &__events-container {
     padding: 0;
     margin: 0;
-    list-style: none;
-    background: rgb(26, 40, 56);
+    background-color: var(--color-palette-brightblue-850);
     height: 10rem;
     overflow: auto;
   }

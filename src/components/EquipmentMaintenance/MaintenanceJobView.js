@@ -17,6 +17,7 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
     <>
       <RuxContainer>
         <div slot="header">Maintenance Jobs</div>
+
         <RuxButton
           className="MaintenanceJobView__schedule-button"
           onClick={() => {

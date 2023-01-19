@@ -48,23 +48,13 @@
     overflow: hidden;
     padding: 0 1rem 0 2.5rem;
     height: 0;
-    border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
-    background: rgba(20, 32, 44, 0.5);
+    background: var(--color-background-base-default);
   }
 
   &__log-row {
     display: flex;
     padding: 0.25rem 0.5rem;
-    border-bottom: 1px solid var(--color-palette-neutral-1000);
     cursor: pointer;
-  }
-
-  &__log-row:hover {
-    background-color: var(--color-background-surface-hover);
-  }
-
-  &__log-row-expanded {
-    background: var(--colorTertiary, rgb(40, 63, 88));
   }
 
   &__log-row-expanded + &__expanded-detail {

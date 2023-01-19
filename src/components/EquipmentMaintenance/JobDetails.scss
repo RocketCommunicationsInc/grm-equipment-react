@@ -72,11 +72,11 @@
   padding: 1rem 0.25rem;
 }
 .progress .current {
-  fill: #4dacff;
+  fill: var(--color-palette-brightblue-500);
   opacity: 0;
 }
 .progress .complete {
-  fill: #fff;
+  fill: var(--color-palette-neutral-000);
   opacity: 0;
 }
 .progress--step-1 .step1 {

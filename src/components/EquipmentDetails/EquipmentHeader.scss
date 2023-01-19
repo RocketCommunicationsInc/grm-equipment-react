@@ -10,6 +10,9 @@
 
   &__buttons-container {
     padding: 0.625rem 0.9375rem;
+    max-width: 20rem;
+    max-height: 5.5rem;
+    overflow: auto;
   }
 
   &__description-container {
@@ -23,12 +26,13 @@
 
   &__event-log {
     overflow: auto;
+    color: var(--color-palette-grey-500);
     height: 80%;
   }
 
   &__description-label {
     font-size: 0.875rem;
-    color: #989898;
+    color: var(--color-palette-grey-500);
     margin-bottom: 0.5rem;
   }
 

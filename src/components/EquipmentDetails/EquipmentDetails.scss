@@ -3,8 +3,8 @@
   display: grid;
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.5rem;
-  grid-template-columns: minmax(30%, 600px) auto;
-  grid-template-rows: fit-content(100%) 500px;
+  grid-template-columns: minmax(45%, 45%) auto;
+  grid-template-rows: fit-content(100%);
   grid-template-areas: 'eqd-left eqd-right';
 
   &__left {

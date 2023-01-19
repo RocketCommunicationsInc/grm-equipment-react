@@ -28,32 +28,34 @@ const Contact = ({
   return (
     <>
       <li
-        className={classNames('contact-log__event', {
-          'contact-log--collapsed': !expand,
-          'contact-log--expanded': expand,
+        className={classNames('Equipment-contacts__event', {
+          'Equipment-contacts__collapsed-log': !expand,
+          'Equipment-contacts__expanded-log': expand,
         })}
         onClick={() => setExpand(!expand)}
       >
-        <div className="contact-log__event__status">
+        <div className="Equipment-contacts__status">
           <RuxStatus status={status} />
         </div>
-        <div className="contact-log__event__name">{name}</div>
-        <div className="contact-log__event__ground">{ground}</div>
-        <div className="contact-log__event__equipment">{equipment}</div>
+        <div className="Equipment-contacts__name">{name}</div>
+        <div className="Equipment-contacts__ground">{ground}</div>
+        <div className="Equipment-contacts__equipment">{equipment}</div>
         <div
-          className={`contact-log__event__state contact-log__event__state--${status}`}
+          className={`Equipment-contacts__state Equipment-contacts__state--${status}`}
         >
           {state} (Step: {step})
         </div>
-        <div className="contact-log__event__timestamp">
+        <div className="Equipment-contacts__timestamp">
           <span>{formatReadableTime(begin)}</span>
           &ndash;
           <span>{formatReadableTime(end)}</span>
         </div>
       </li>
-      <div className="contact-log__detail">
-        <div className="contact-log__detail__text">{details}</div>
-        <div className="contact-log__detail__command-mode">
+      <div className="Equipment-contacts__expanded-detail">
+        <div className="Equipment-contacts__expanded-detail-text">
+          {details}
+        </div>
+        <div className="Equipment-contacts__expanded-detail-command-mode">
           <label htmlFor="commandModeSelector">Command Mode</label>
           <RuxSelect input-id="commandModeSelector" className="rux-select">
             <RuxOption value="manual" label="Manual" />
@@ -99,11 +101,13 @@ const EquipmentContacts = ({ contactsService }) => {
 
           <div className="Equipment-contacts__main-header">
             <div className="Equipment-contacts__summary">
-              <span className="contact-count">{contacts.length}</span>
+              <span className="Equipment-contacts__count">
+                {contacts.length}
+              </span>
               Contacts
             </div>
             <div className="Equipment-contacts__summary Equipment-contacts__summary-failed">
-              <span className="contact-count">
+              <span className="Equipment-contacts__count">
                 {
                   contacts.filter(
                     (contact) => contact.contactState === 'failed'
@@ -113,7 +117,7 @@ const EquipmentContacts = ({ contactsService }) => {
               Failed
             </div>
             <div className="Equipment-contacts__summary">
-              <span className="contact-count">
+              <span className="Equipment-contacts__count">
                 {
                   contacts.filter(
                     (contact) => contact.contactState === 'executing'
@@ -122,8 +126,8 @@ const EquipmentContacts = ({ contactsService }) => {
               </span>
               Executing
             </div>
-            <div className="contact-filters">
-              <div className="contact-filter">
+            <div className="Equipment-contacts__filters">
+              <div className="Equipment-contacts__filter">
                 <label htmlFor="stateFilter">Status</label>
                 <RuxSelect
                   input-id="stateFilter"
@@ -138,42 +142,43 @@ const EquipmentContacts = ({ contactsService }) => {
               </div>
             </div>
           </div>
-          <div className="contact-log">
-            <header className="contact-log-header">
-              <div className="contact-log__header-labels">
-                <div className="contact-log__event__status"></div>
-                <div className="contact-log__event__name">Name</div>
-                <div className="contact-log__event__ground">GS</div>
-                <div className="contact-log__event__equipment">
-                  Equipment String
-                </div>
-                <div className="contact-log__event__state">Status</div>
-                <div className="contact-log__event__timestamp">
-                  AOS &ndash; LOS
-                </div>
-              </div>
-            </header>
+        </div>
 
-            <ol className="contact-log__events">
-              {filteredByStatus().map((log) => {
-                return (
-                  <Contact
-                    key={log.id}
-                    name={log.contactName}
-                    ground={log.contactGround}
-                    equipment={log.contactEquipment}
-                    state={log.contactState}
-                    step={log.contactStep}
-                    begin={log.contactBeginTimestamp}
-                    end={log.contactEndTimestamp}
-                    details={log.contactDetail}
-                    expanded={log.expanded}
-                    commandMode="manual"
-                  />
-                );
-              })}
-            </ol>
-          </div>
+        <div className="Equipment-contacts__log">
+          <header className="Equipment-contacts__log-header">
+            <div className="Equipment-contacts__log-header-labels">
+              <div className="Equipment-contacts__status"></div>
+              <div className="Equipment-contacts__name">Name</div>
+              <div className="Equipment-contacts__ground">GS</div>
+              <div className="Equipment-contacts__equipment">
+                Equipment String
+              </div>
+              <div className="Equipment-contacts__state">Status</div>
+              <div className="Equipment-contacts__timestamp">
+                AOS &ndash; LOS
+              </div>
+            </div>
+          </header>
+
+          <ol className="Equipment-contacts__events-container">
+            {filteredByStatus().map((log) => {
+              return (
+                <Contact
+                  key={log.id}
+                  name={log.contactName}
+                  ground={log.contactGround}
+                  equipment={log.contactEquipment}
+                  state={log.contactState}
+                  step={log.contactStep}
+                  begin={log.contactBeginTimestamp}
+                  end={log.contactEndTimestamp}
+                  details={log.contactDetail}
+                  expanded={log.expanded}
+                  commandMode="manual"
+                />
+              );
+            })}
+          </ol>
         </div>
       </div>
     </>

@@ -182,11 +182,11 @@ const EquipmentContainer = ({
             aria-labelledby={`tab-id-${openEq.data.id}`}
             data-test={`panel-id-${openEq.data.id}`}
           >
-            <section className="Dashboard-grid__right-top-panel">
+            <section>
               <EquipmentDetails equipment={openEq} />
             </section>
 
-            <section className="Dashboard-grid__right-bottom-panel">
+            <section>
               <EquipmentMaintenance
                 changeView={changeView}
                 setCurrentJob={setCurrentJob}

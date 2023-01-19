@@ -6,8 +6,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 25rem);
     grid-gap: 3rem;
-    padding-left: 1.5rem;
-    padding-bottom: 3rem;
+    padding: 1.5rem;
   }
 
   &__cardDetails {
@@ -19,7 +18,8 @@
   }
 
   &__job-card {
-    box-shadow: var(--container-color-border) 0 0 0 1px;
+    box-shadow: var(--container-color-border) 0 0 0 0.2px;
+    background-color: var(--color-background-surface-header);
   }
 
   &__schedule-button {
