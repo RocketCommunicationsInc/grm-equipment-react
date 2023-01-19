@@ -32,7 +32,6 @@ const EquipmentHeader = ({ equipment }) => {
               data={[
                 {
                   label: 'Online',
-                  selected: true,
                 },
                 {
                   label: 'Offline',
@@ -44,7 +43,6 @@ const EquipmentHeader = ({ equipment }) => {
               data={[
                 {
                   label: 'Considered',
-                  selected: true,
                 },
                 {
                   label: 'Deconsidered',
