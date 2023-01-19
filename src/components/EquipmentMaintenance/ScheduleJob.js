@@ -67,7 +67,7 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                 onRuxinput={(e) => handleTextareaChange(e.target.value)}
                 placeholder="Enter Description"
                 value={jobDescription}
-              ></RuxTextarea>
+              />
 
               <h4>2. Select Time</h4>
 
@@ -130,16 +130,15 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
               </RuxSelect>
 
               <h4>4. Follow Job</h4>
-              <p>
+              <p className="">
                 Would you like to follow this job? Following will send all
                 updates and alerts regarding this job to the GRM Dashboard. If
                 you do not follow this job, you must view the job from the
                 Equipment Manager to be notified of any updates or alerts.
               </p>
-              <br />
-              <RuxCheckbox name="checkbox">Follow</RuxCheckbox>
-              <br />
-              <br />
+              <RuxCheckbox className="follow-checkbox" name="checkbox">
+                Follow
+              </RuxCheckbox>
               <RuxButtonGroup>
                 <RuxButton>Calculate Conflicts</RuxButton>
                 <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>

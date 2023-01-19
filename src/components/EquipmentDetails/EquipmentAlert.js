@@ -32,7 +32,7 @@ const EquipmentAlert = ({ alert, onChange }) => {
             />
           </div>
           <div className="Equipment-alert__status">
-            <RuxStatus status={alert.status} />
+            <RuxStatus status={alert.errorSeverity} />
           </div>
           <div className="Equipment-alert__message">{alert.errorMessage}</div>
           <div className="Equipment-alert__category">{alert.errorCategory}</div>

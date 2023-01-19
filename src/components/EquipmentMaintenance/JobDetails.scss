@@ -49,10 +49,11 @@
   &__jobDetails {
     margin: 1.5rem;
   }
+}
 
-  &__event-log {
-    overflow: auto;
-  }
+.event-log {
+  overflow: auto;
+  margin-bottom: 1rem;
 }
 
 .home-page-link {
@@ -66,6 +67,15 @@
 .rux-icon {
   float: left;
   margin-top: -0.5rem;
+}
+
+.follow-checkbox {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.event-log-header {
+  margin-bottom: 0.5rem;
 }
 
 .progress {
