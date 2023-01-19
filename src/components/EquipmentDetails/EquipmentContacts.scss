@@ -1,3 +1,5 @@
+@import '../colors';
+
 .Equipment-contacts {
   &__header-container {
     background-color: var(--color-palette-brightblue-850);
@@ -6,8 +8,8 @@
   &__header-title {
     padding-top: 0.625rem;
     padding-left: 0.9375rem;
-    font-size: 1.35rem;
-    font-weight: 300;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-control-body-1-font-weight);
   }
 
   &__main-header {
@@ -23,7 +25,7 @@
   }
 
   &__summary-failed {
-    color: var(--colorSerious, rgb(255, 176, 0));
+    color: var(--status-symbol-color-fill-serious-on-dark);
   }
 
   &__name,
@@ -58,9 +60,9 @@
   }
 
   &__count {
-    font-size: 2.75rem;
+    font-size: var(--font-size-5xl);
     line-height: 2.6rem;
-    font-weight: 600;
+    font-weight: var(--font-control-body-1-bold-font-weight);
   }
 
   &__filters {
@@ -79,8 +81,8 @@
     }
 
     label {
-      font-weight: bold;
-      font-size: 0.9rem;
+      font-weight: var(--font-control-body-1-bold-font-weight);
+      font-size: var(--font-size-base);
       margin-bottom: 0.5rem;
       display: block;
     }
@@ -103,14 +105,14 @@
   }
 
   &__state--serious {
-    font-weight: bold;
-    color: var(--colorSerious, rgb(255, 176, 0));
+    font-weight: var(--font-control-body-1-bold-font-weight);
+    color: var(--status-symbol-color-fill-serious-on-dark);
   }
 
   &__log {
     display: flex;
     flex-flow: column;
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
     overflow: hidden;
     flex-grow: 1;
   }
@@ -137,8 +139,8 @@
     flex: auto;
 
     label {
-      font-weight: bold;
-      font-size: 0.9rem;
+      font-weight: var(--font-control-body-1-bold-font-weight);
+      font-size: var(--font-size-base);
       margin-bottom: 0.5rem;
       display: block;
     }

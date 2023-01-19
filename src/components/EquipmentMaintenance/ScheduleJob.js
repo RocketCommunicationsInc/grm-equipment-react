@@ -8,6 +8,7 @@ import {
   RuxCheckbox,
   RuxButton,
   RuxInput,
+  RuxIcon,
   RuxButtonGroup,
   RuxContainer,
 } from '@astrouxds/react';
@@ -42,8 +43,17 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
           <PanelHeader heading={'Schedule Maintenance Job'} />
 
           <RuxContainer>
+            <div className="path-above-grid">
+              <span onClick={cancelEdit} className="home-page-link">
+                <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
+                Equipment Manager
+              </span>
+              <span> / Maintenance Details </span>
+            </div>
             <div className="Schedule-job__jobDetails">
-              <h4>1. Select Job type</h4>
+              <h4 className="Schedule-job__section-header">
+                1. Select Job type
+              </h4>
 
               <RuxSelect
                 className="Schedule-job__input"
@@ -69,7 +79,7 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                 value={jobDescription}
               />
 
-              <h4>2. Select Time</h4>
+              <h4 className="Schedule-job__section-header">2. Select Time</h4>
 
               <RuxInput
                 label="Year"
@@ -79,7 +89,7 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                     ? formatYear(currentJob.startTime)
                     : formatYear(Date.now())
                 }
-              ></RuxInput>
+              />
 
               <RuxInput
                 label="DOY"
@@ -89,7 +99,7 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                     ? formatDayOfYear(currentJob.startTime)
                     : formatDayOfYear(Date.now())
                 }
-              ></RuxInput>
+              />
 
               <RuxInput
                 label="Start"
@@ -99,7 +109,7 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                     ? formatReadableTime(currentJob.startTime)
                     : 'HH:MM:SS'
                 }
-              ></RuxInput>
+              />
 
               <RuxInput
                 label="End"
@@ -109,9 +119,11 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                     ? formatReadableTime(currentJob.endTime)
                     : 'HH:MM:SS'
                 }
-              ></RuxInput>
+              />
 
-              <h4>3. Select Technician</h4>
+              <h4 className="Schedule-job__section-header">
+                3. Select Technician
+              </h4>
               <RuxSelect
                 className="Schedule-job__input"
                 label="Technician"
@@ -129,7 +141,7 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                 })}
               </RuxSelect>
 
-              <h4>4. Follow Job</h4>
+              <h4 className="Schedule-job__section-header">4. Follow Job</h4>
               <p className="">
                 Would you like to follow this job? Following will send all
                 updates and alerts regarding this job to the GRM Dashboard. If

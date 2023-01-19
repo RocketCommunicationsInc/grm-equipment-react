@@ -45,35 +45,35 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
                     className="MaintenanceJobView__cardDetails"
                     value={mapJobType(job.type)}
                     readonly={true}
-                  ></RuxInput>
+                  />
 
                   <RuxInput
                     label="Year"
                     className="MaintenanceJobView__cardDetails"
                     value={formatYear(job.startTime)}
                     readonly={true}
-                  ></RuxInput>
+                  />
 
                   <RuxInput
                     label="DOY"
                     className="MaintenanceJobView__cardDetails"
                     value={formatDayOfYear(job.endTime)}
                     readonly={true}
-                  ></RuxInput>
+                  />
 
                   <RuxInput
                     label="Start"
                     className="MaintenanceJobView__cardDetails"
                     value={formatReadableTime(job.startTime)}
                     readonly={true}
-                  ></RuxInput>
+                  />
 
                   <RuxInput
                     label="End"
                     className="MaintenanceJobView__cardDetails"
                     value={formatReadableTime(job.endTime)}
                     readonly={true}
-                  ></RuxInput>
+                  />
 
                   <RuxButton
                     className="MaintenanceJobView__cardButtons"

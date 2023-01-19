@@ -8,8 +8,8 @@
   &__header-title {
     padding-top: 0.625rem;
     padding-left: 0.9375rem;
-    font-size: 1.35rem;
-    font-weight: 300;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-control-body-1-font-weight);
   }
 
   &__main-header {
@@ -25,9 +25,9 @@
   }
 
   &__count {
-    font-size: 2.75rem;
+    font-size: var(--font-size-5xl);
     line-height: 2.6rem;
-    font-weight: 600;
+    font-weight: var(--font-control-body-1-bold-font-weight);
   }
 
   &__filters {
@@ -43,15 +43,15 @@
     }
 
     label {
-      font-weight: bold;
-      font-size: 0.9rem;
+      font-weight: var(--font-control-body-1-bold-font-weight);
+      font-size: var(--font-size-base);
       margin-bottom: 0.5rem;
       display: block;
     }
   }
 
   &__log {
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
   }
 
   &__log-header {

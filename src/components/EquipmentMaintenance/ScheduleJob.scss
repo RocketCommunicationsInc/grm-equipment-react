@@ -49,12 +49,21 @@
   &__jobDetails {
     margin: 1.5rem;
   }
+
+  &__section-header {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+.path-above-grid {
+  margin: 1rem;
 }
 
 .home-page-link {
-  color: rgb(89, 122, 231);
+  color: var(--color-palette-brightblue-500);
 }
 
 .home-page-link:hover {
-  color: rgb(143, 164, 235);
+  color: var(--color-palette-brightblue-300);
 }

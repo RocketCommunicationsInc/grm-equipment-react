@@ -31,15 +31,15 @@
   }
 
   &__description-label {
-    font-size: 0.875rem;
+    font-size: var(--font-size-base);
     color: var(--color-palette-grey-500);
     margin-bottom: 0.5rem;
   }
 
   &__equipment-name {
     padding: 0.625rem 0.9375rem;
-    font-size: 1.35rem;
-    font-weight: 300;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-control-body-1-font-weight);
     margin-bottom: 1rem;
     background-color: var(--color-palette-brightblue-850);
 

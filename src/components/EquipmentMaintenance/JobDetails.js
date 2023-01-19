@@ -6,6 +6,7 @@ import {
   RuxButtonGroup,
   RuxInput,
   RuxTextarea,
+  RuxIcon,
   RuxContainer,
 } from '@astrouxds/react';
 import {
@@ -43,8 +44,21 @@ const JobDetails = ({ currentJob, cancelEdit, events, currentEq }) => {
             <PanelHeader heading={'Job Details'}></PanelHeader>
 
             <RuxContainer>
+              <div className="path-above-grid">
+                <span onClick={cancelEdit} className="home-page-link">
+                  <RuxIcon
+                    className="rux-icon"
+                    icon="arrow-back"
+                    size="small"
+                  />
+                  Equipment Manager
+                </span>
+                <span> / Maintenance Details </span>
+              </div>
               <div className="Job-details__jobDetails">
-                <h4>{'Maintenance Job ID #' + currentJob.id}</h4>
+                <h4 className="Job-details__section-header">
+                  {'Maintenance Job ID #' + currentJob.id}
+                </h4>
                 <svg
                   className={
                     'progress progress--step-' + currentJob.progressStep
@@ -163,7 +177,7 @@ const JobDetails = ({ currentJob, cancelEdit, events, currentEq }) => {
                   value={mapJobType(currentJob.type)}
                   readonly={true}
                   label="Job Type"
-                ></RuxInput>
+                />
 
                 <RuxTextarea
                   className="Job-details__input"
@@ -171,42 +185,42 @@ const JobDetails = ({ currentJob, cancelEdit, events, currentEq }) => {
                   value={currentJob.description}
                   disabled={true}
                   size="large"
-                ></RuxTextarea>
+                />
 
                 <RuxInput
                   className="Job-details__input"
                   value={formatYear(currentJob.startTime)}
                   readonly={true}
                   label="Year"
-                ></RuxInput>
+                />
 
                 <RuxInput
                   className="Job-details__input"
                   value={formatDayOfYear(currentJob.startTime)}
                   readonly={true}
                   label="DOY"
-                ></RuxInput>
+                />
 
                 <RuxInput
                   className="Job-details__input"
                   value={formatReadableTime(currentJob.startTime)}
                   readonly={true}
                   label="Start"
-                ></RuxInput>
+                />
 
                 <RuxInput
                   className="Job-details__input"
                   value={formatReadableTime(currentJob.endTime)}
                   readonly={true}
                   label="Stop"
-                ></RuxInput>
+                />
 
                 <RuxInput
                   className="Job-details__input"
                   value={currentJob.technician}
                   readonly={true}
                   label="Technician"
-                ></RuxInput>
+                />
 
                 <RuxCheckbox className="follow-checkbox" name="checkbox">
                   Follow
