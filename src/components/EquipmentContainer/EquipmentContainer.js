@@ -99,13 +99,13 @@ const EquipmentContainer = ({
   }
 
   return (
-    <div className="Equipment-container" data-test="equipment-container">
-      <RuxTabs id="tab-set-id-1" small onRuxselected={onTabSelect}>
+    <div className='Equipment-container' data-test='equipment-container'>
+      <RuxTabs id='tab-set-id-1' small onRuxselected={onTabSelect}>
         <RuxTab
-          id="tab-inoperable"
-          data-test="tab-inoperable"
+          id='tab-inoperable'
+          data-test='tab-inoperable'
           ref={(el) => (tabRefs.current['inoperable'] = el)}
-          data-key="inoperable"
+          data-key='inoperable'
         >
           Inoperable
         </RuxTab>
@@ -119,8 +119,8 @@ const EquipmentContainer = ({
           >
             {openEq.data.label}
             <RuxIcon
-              icon="close"
-              size="small"
+              icon='close'
+              size='small'
               onClick={() => removeTab(openEq)}
             ></RuxIcon>
           </RuxTab>
@@ -128,16 +128,16 @@ const EquipmentContainer = ({
       </RuxTabs>
 
       <RuxTabPanels
-        className="Equipment-container__tab-panels"
-        aria-labelledby="tab-set-id-1"
+        className='Equipment-container__tab-panels'
+        aria-labelledby='tab-set-id-1'
       >
         <RuxTabPanel
-          className="Equipment-container__tab-inoperable"
-          aria-labelledby="tab-inoperable"
-          data-test="panel-inoperable"
+          className='Equipment-container__tab-inoperable'
+          aria-labelledby='tab-inoperable'
+          data-test='panel-inoperable'
         >
           <h2>Inoperable Equipment</h2>
-          <div className="Equipment-container__equipment-inoperable">
+          <div className='Equipment-container__equipment-inoperable'>
             {formattedData.length > 0 ? (
               <div>
                 {formattedData.map((equipmentList, upperIndex) => {
@@ -149,7 +149,7 @@ const EquipmentContainer = ({
                       <h3>
                         {equipmentList.label} ({equipmentList.children.length})
                       </h3>
-                      <ul className="Equipment-container__equipment-list">
+                      <ul className='Equipment-container__equipment-list'>
                         {equipmentList.children.map((equipment, index) => {
                           return (
                             <li key={equipment.data.id}>

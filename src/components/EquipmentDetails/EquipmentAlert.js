@@ -16,7 +16,7 @@ const EquipmentAlert = ({ alert, onChange }) => {
 
   return (
     <>
-      <div className="Equipment-alert">
+      <div className='Equipment-alert'>
         <li
           className={classNames('Equipment-alert__log-row', {
             'alert-log--collapsed': !expand,
@@ -24,23 +24,23 @@ const EquipmentAlert = ({ alert, onChange }) => {
           })}
           onClick={() => setExpand(!expand)}
         >
-          <div className="Equipment-alert__select-alert">
+          <div className='Equipment-alert__select-alert'>
             <RuxCheckbox
-              className="rux-checkbox"
+              className='rux-checkbox'
               onRuxchange={handleChange}
               checked={alert.selected}
             />
           </div>
-          <div className="Equipment-alert__status">
+          <div className='Equipment-alert__status'>
             <RuxStatus status={alert.errorSeverity} />
           </div>
-          <div className="Equipment-alert__message">{alert.errorMessage}</div>
-          <div className="Equipment-alert__category">{alert.errorCategory}</div>
-          <div className="Equipment-alert__timestamp">
+          <div className='Equipment-alert__message'>{alert.errorMessage}</div>
+          <div className='Equipment-alert__category'>{alert.errorCategory}</div>
+          <div className='Equipment-alert__timestamp'>
             {formatReadableTime(alert.errorTime)}
           </div>
         </li>
-        <div className="Equipment-alert__expanded-detail">
+        <div className='Equipment-alert__expanded-detail'>
           <div>{alert.longMessage}</div>
         </div>
       </div>

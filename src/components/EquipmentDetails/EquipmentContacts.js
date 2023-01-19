@@ -34,33 +34,33 @@ const Contact = ({
         })}
         onClick={() => setExpand(!expand)}
       >
-        <div className="Equipment-contacts__status">
+        <div className='Equipment-contacts__status'>
           <RuxStatus status={status} />
         </div>
-        <div className="Equipment-contacts__name">{name}</div>
-        <div className="Equipment-contacts__ground">{ground}</div>
-        <div className="Equipment-contacts__equipment">{equipment}</div>
+        <div className='Equipment-contacts__name'>{name}</div>
+        <div className='Equipment-contacts__ground'>{ground}</div>
+        <div className='Equipment-contacts__equipment'>{equipment}</div>
         <div
           className={`Equipment-contacts__state Equipment-contacts__state--${status}`}
         >
           {state} (Step: {step})
         </div>
-        <div className="Equipment-contacts__timestamp">
+        <div className='Equipment-contacts__timestamp'>
           <span>{formatReadableTime(begin)}</span>
           &ndash;
           <span>{formatReadableTime(end)}</span>
         </div>
       </li>
-      <div className="Equipment-contacts__expanded-detail">
-        <div className="Equipment-contacts__expanded-detail-text">
+      <div className='Equipment-contacts__expanded-detail'>
+        <div className='Equipment-contacts__expanded-detail-text'>
           {details}
         </div>
-        <div className="Equipment-contacts__expanded-detail-command-mode">
-          <label htmlFor="commandModeSelector">Command Mode</label>
-          <RuxSelect input-id="commandModeSelector" className="rux-select">
-            <RuxOption value="manual" label="Manual" />
-            <RuxOption value="semi-automated" label="Semi-Automated" />
-            <RuxOption value="fully-automated" label="Fully Automated" />
+        <div className='Equipment-contacts__expanded-detail-command-mode'>
+          <label htmlFor='commandModeSelector'>Command Mode</label>
+          <RuxSelect input-id='commandModeSelector' className='rux-select'>
+            <RuxOption value='manual' label='Manual' />
+            <RuxOption value='semi-automated' label='Semi-Automated' />
+            <RuxOption value='fully-automated' label='Fully Automated' />
           </RuxSelect>
         </div>
       </div>
@@ -95,19 +95,19 @@ const EquipmentContacts = ({ contactsService }) => {
 
   return (
     <>
-      <div className="Equipment-contacts">
-        <div className="Equipment-contacts__header-container">
-          <p className="Equipment-contacts__header-title">Current Conflicts</p>
+      <div className='Equipment-contacts'>
+        <div className='Equipment-contacts__header-container'>
+          <p className='Equipment-contacts__header-title'>Current Conflicts</p>
 
-          <div className="Equipment-contacts__main-header">
-            <div className="Equipment-contacts__summary">
-              <span className="Equipment-contacts__count">
+          <div className='Equipment-contacts__main-header'>
+            <div className='Equipment-contacts__summary'>
+              <span className='Equipment-contacts__count'>
                 {contacts.length}
               </span>
               Contacts
             </div>
-            <div className="Equipment-contacts__summary Equipment-contacts__summary-failed">
-              <span className="Equipment-contacts__count">
+            <div className='Equipment-contacts__summary Equipment-contacts__summary-failed'>
+              <span className='Equipment-contacts__count'>
                 {
                   contacts.filter(
                     (contact) => contact.contactState === 'failed'
@@ -116,8 +116,8 @@ const EquipmentContacts = ({ contactsService }) => {
               </span>
               Failed
             </div>
-            <div className="Equipment-contacts__summary">
-              <span className="Equipment-contacts__count">
+            <div className='Equipment-contacts__summary'>
+              <span className='Equipment-contacts__count'>
                 {
                   contacts.filter(
                     (contact) => contact.contactState === 'executing'
@@ -126,41 +126,41 @@ const EquipmentContacts = ({ contactsService }) => {
               </span>
               Executing
             </div>
-            <div className="Equipment-contacts__filters">
-              <div className="Equipment-contacts__filter">
-                <label htmlFor="stateFilter">Status</label>
+            <div className='Equipment-contacts__filters'>
+              <div className='Equipment-contacts__filter'>
+                <label htmlFor='stateFilter'>Status</label>
                 <RuxSelect
-                  input-id="stateFilter"
-                  className="rux-select"
+                  input-id='stateFilter'
+                  className='rux-select'
                   required={false}
                   onRuxchange={(e) => setContactFilter(e.target.value)}
                 >
-                  <RuxOption value="all" label="All" />
-                  <RuxOption value="executing" label="Executing" />
-                  <RuxOption value="failed" label="Failed" />
+                  <RuxOption value='all' label='All' />
+                  <RuxOption value='executing' label='Executing' />
+                  <RuxOption value='failed' label='Failed' />
                 </RuxSelect>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="Equipment-contacts__log">
-          <header className="Equipment-contacts__log-header">
-            <div className="Equipment-contacts__log-header-labels">
-              <div className="Equipment-contacts__status"></div>
-              <div className="Equipment-contacts__name">Name</div>
-              <div className="Equipment-contacts__ground">GS</div>
-              <div className="Equipment-contacts__equipment">
+        <div className='Equipment-contacts__log'>
+          <header className='Equipment-contacts__log-header'>
+            <div className='Equipment-contacts__log-header-labels'>
+              <div className='Equipment-contacts__status'></div>
+              <div className='Equipment-contacts__name'>Name</div>
+              <div className='Equipment-contacts__ground'>GS</div>
+              <div className='Equipment-contacts__equipment'>
                 Equipment String
               </div>
-              <div className="Equipment-contacts__state">Status</div>
-              <div className="Equipment-contacts__timestamp">
+              <div className='Equipment-contacts__state'>Status</div>
+              <div className='Equipment-contacts__timestamp'>
                 AOS &ndash; LOS
               </div>
             </div>
           </header>
 
-          <ol className="Equipment-contacts__events-container">
+          <ol className='Equipment-contacts__events-container'>
             {filteredByStatus().map((log) => {
               return (
                 <Contact
@@ -174,7 +174,7 @@ const EquipmentContacts = ({ contactsService }) => {
                   end={log.contactEndTimestamp}
                   details={log.contactDetail}
                   expanded={log.expanded}
-                  commandMode="manual"
+                  commandMode='manual'
                 />
               );
             })}

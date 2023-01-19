@@ -37,30 +37,30 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
     setJobDescription(jobDescription);
   };
   return (
-    <div className="Schedule-grid">
-      <section className="Schedule-grid__left-panel">
-        <div className="Schedule-job__parent">
+    <div className='Schedule-grid'>
+      <section className='Schedule-grid__left-panel'>
+        <div className='Schedule-job__parent'>
           <PanelHeader heading={'Schedule Maintenance Job'} />
 
           <RuxContainer>
-            <div className="path-above-grid">
-              <span onClick={cancelEdit} className="home-page-link">
-                <RuxIcon className="rux-icon" icon="arrow-back" size="small" />
+            <div className='path-above-grid'>
+              <span onClick={cancelEdit} className='home-page-link'>
+                <RuxIcon className='rux-icon' icon='arrow-back' size='small' />
                 Equipment Manager
               </span>
               <span> / Maintenance Details </span>
             </div>
-            <div className="Schedule-job__jobDetails">
-              <h4 className="Schedule-job__section-header">
+            <div className='Schedule-job__jobDetails'>
+              <h4 className='Schedule-job__section-header'>
                 1. Select Job type
               </h4>
 
               <RuxSelect
-                className="Schedule-job__input"
-                label="Job Type"
+                className='Schedule-job__input'
+                label='Job Type'
                 value={currentJob ? mapJobType(currentJob.type) : 'default'}
               >
-                <RuxOption value="default" label="Select" selected />
+                <RuxOption value='default' label='Select' selected />
                 {[1, 2, 3, 4, 5].map((i) => {
                   return (
                     <RuxOption
@@ -72,18 +72,18 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                 })}
               </RuxSelect>
               <RuxTextarea
-                label="Description"
-                className="Schedule-job__input"
+                label='Description'
+                className='Schedule-job__input'
                 onRuxinput={(e) => handleTextareaChange(e.target.value)}
-                placeholder="Enter Description"
+                placeholder='Enter Description'
                 value={jobDescription}
               />
 
-              <h4 className="Schedule-job__section-header">2. Select Time</h4>
+              <h4 className='Schedule-job__section-header'>2. Select Time</h4>
 
               <RuxInput
-                label="Year"
-                className="Schedule-job__input"
+                label='Year'
+                className='Schedule-job__input'
                 value={
                   currentJob
                     ? formatYear(currentJob.startTime)
@@ -92,8 +92,8 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
               />
 
               <RuxInput
-                label="DOY"
-                className="Schedule-job__input"
+                label='DOY'
+                className='Schedule-job__input'
                 value={
                   currentJob
                     ? formatDayOfYear(currentJob.startTime)
@@ -102,8 +102,8 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
               />
 
               <RuxInput
-                label="Start"
-                className="Schedule-job__input"
+                label='Start'
+                className='Schedule-job__input'
                 value={
                   currentJob
                     ? formatReadableTime(currentJob.startTime)
@@ -112,8 +112,8 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
               />
 
               <RuxInput
-                label="End"
-                className="Schedule-job__input"
+                label='End'
+                className='Schedule-job__input'
                 value={
                   currentJob
                     ? formatReadableTime(currentJob.endTime)
@@ -121,15 +121,15 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                 }
               />
 
-              <h4 className="Schedule-job__section-header">
+              <h4 className='Schedule-job__section-header'>
                 3. Select Technician
               </h4>
               <RuxSelect
-                className="Schedule-job__input"
-                label="Technician"
+                className='Schedule-job__input'
+                label='Technician'
                 value={currentJob ? currentJob.technician : 'default'}
               >
-                <RuxOption value="default" label="Select" selected={true} />
+                <RuxOption value='default' label='Select' selected={true} />
                 {technicians.map((technician) => {
                   return (
                     <RuxOption
@@ -141,14 +141,14 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
                 })}
               </RuxSelect>
 
-              <h4 className="Schedule-job__section-header">4. Follow Job</h4>
-              <p className="">
+              <h4 className='Schedule-job__section-header'>4. Follow Job</h4>
+              <p className=''>
                 Would you like to follow this job? Following will send all
                 updates and alerts regarding this job to the GRM Dashboard. If
                 you do not follow this job, you must view the job from the
                 Equipment Manager to be notified of any updates or alerts.
               </p>
-              <RuxCheckbox className="follow-checkbox" name="checkbox">
+              <RuxCheckbox className='follow-checkbox' name='checkbox'>
                 Follow
               </RuxCheckbox>
               <RuxButtonGroup>
@@ -164,7 +164,7 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
         </div>
       </section>
 
-      <section className="Schedule-grid__right-panel">
+      <section className='Schedule-grid__right-panel'>
         <ConflictsTable />
       </section>
     </div>

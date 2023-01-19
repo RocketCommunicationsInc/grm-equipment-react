@@ -58,12 +58,12 @@ function App() {
       return (
         <>
           <GlobalStatusBar data={data} />
-          <main className="Dashboard-grid" key={currentView}>
-            <nav className="main-menu Dashboard-grid__left-panel">
+          <main className='Dashboard-grid' key={currentView}>
+            <nav className='main-menu Dashboard-grid__left-panel'>
               <SidebarTree selectEquip={selectEquip} />
             </nav>
 
-            <section className="Dashboard-grid__right-panel">
+            <section className='Dashboard-grid__right-panel'>
               <EquipmentContainer
                 changeView={(view) => setCurrentView(view)}
                 setCurrentJob={(job) => setCurrentJob(job)}

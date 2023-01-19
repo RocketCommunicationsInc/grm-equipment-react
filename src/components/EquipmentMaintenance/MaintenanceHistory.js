@@ -15,7 +15,7 @@ import {
 
 const MaintenanceHistory = ({ maintenanceLog }) => {
   return (
-    <div className="maintenance-history">
+    <div className='maintenance-history'>
       <RuxTable>
         <RuxTableHeader>
           <RuxTableCell>Name</RuxTableCell>

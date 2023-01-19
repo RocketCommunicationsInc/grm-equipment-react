@@ -16,67 +16,67 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
   return (
     <>
       <RuxContainer>
-        <div slot="header">Maintenance Jobs</div>
+        <div slot='header'>Maintenance Jobs</div>
 
         <RuxButton
-          className="MaintenanceJobView__schedule-button"
+          className='MaintenanceJobView__schedule-button'
           onClick={() => {
             changeView('scheduleJob');
           }}
         >
           Schedule Job
         </RuxButton>
-        <div className="MaintenanceJobView__jobCardsContainer">
+        <div className='MaintenanceJobView__jobCardsContainer'>
           {maintenanceJobs &&
             maintenanceJobs.map(function (job) {
               return (
                 <RuxContainer
                   key={job.id}
-                  className="MaintenanceJobView__job-card"
+                  className='MaintenanceJobView__job-card'
                 >
-                  <div slot="header">{'Job ID #' + job.id}</div>
+                  <div slot='header'>{'Job ID #' + job.id}</div>
 
-                  <h4 className="MaintenanceJobView__cardDetails">
+                  <h4 className='MaintenanceJobView__cardDetails'>
                     {mapJobProgress(job.progressStep)}
                   </h4>
 
                   <RuxInput
-                    label="Job Type"
-                    className="MaintenanceJobView__cardDetails"
+                    label='Job Type'
+                    className='MaintenanceJobView__cardDetails'
                     value={mapJobType(job.type)}
                     readonly={true}
                   />
 
                   <RuxInput
-                    label="Year"
-                    className="MaintenanceJobView__cardDetails"
+                    label='Year'
+                    className='MaintenanceJobView__cardDetails'
                     value={formatYear(job.startTime)}
                     readonly={true}
                   />
 
                   <RuxInput
-                    label="DOY"
-                    className="MaintenanceJobView__cardDetails"
+                    label='DOY'
+                    className='MaintenanceJobView__cardDetails'
                     value={formatDayOfYear(job.endTime)}
                     readonly={true}
                   />
 
                   <RuxInput
-                    label="Start"
-                    className="MaintenanceJobView__cardDetails"
+                    label='Start'
+                    className='MaintenanceJobView__cardDetails'
                     value={formatReadableTime(job.startTime)}
                     readonly={true}
                   />
 
                   <RuxInput
-                    label="End"
-                    className="MaintenanceJobView__cardDetails"
+                    label='End'
+                    className='MaintenanceJobView__cardDetails'
                     value={formatReadableTime(job.endTime)}
                     readonly={true}
                   />
 
                   <RuxButton
-                    className="MaintenanceJobView__cardButtons"
+                    className='MaintenanceJobView__cardButtons'
                     onClick={() => {
                       changeView('viewJobDetails');
                       setCurrentJob(job);
@@ -90,8 +90,8 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
         </div>
       </RuxContainer>
 
-      <RuxContainer className="MaintenanceJobView__maintenance-history">
-        <div slot="header">Maintenance History</div>
+      <RuxContainer className='MaintenanceJobView__maintenance-history'>
+        <div slot='header'>Maintenance History</div>
 
         <MaintenanceHistory maintenanceLog={maintenanceLog} />
       </RuxContainer>

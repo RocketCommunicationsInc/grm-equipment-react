@@ -21,13 +21,13 @@ const EquipmentHeader = ({ equipment }) => {
 
   return (
     <>
-      <div className="Equipment-header">
-        <p className="Equipment-header__equipment-name">
-          <RuxStatus className="rux-status" status={equipment.data.status} />
+      <div className='Equipment-header'>
+        <p className='Equipment-header__equipment-name'>
+          <RuxStatus className='rux-status' status={equipment.data.status} />
           {equipment.data.label}
         </p>
-        <div className="Equipment-header__parent">
-          <div className="Equipment-header__buttons-container">
+        <div className='Equipment-header__parent'>
+          <div className='Equipment-header__buttons-container'>
             <RuxSegmentedButton
               data={[
                 {
@@ -37,7 +37,7 @@ const EquipmentHeader = ({ equipment }) => {
                   label: 'Offline',
                 },
               ]}
-              data-test="online-offline"
+              data-test='online-offline'
             />
             <RuxSegmentedButton
               data={[
@@ -48,19 +48,19 @@ const EquipmentHeader = ({ equipment }) => {
                   label: 'Deconsidered',
                 },
               ]}
-              data-test="considered-deconsidered"
+              data-test='considered-deconsidered'
             />
           </div>
-          <div className="Equipment-header__description-container">
-            <p className="Equipment-header__description-label">Description</p>
-            <div className="Equipment-header__description">
+          <div className='Equipment-header__description-container'>
+            <p className='Equipment-header__description-label'>Description</p>
+            <div className='Equipment-header__description'>
               {equipment.data.description}
             </div>
           </div>
-          <div className="Equipment-header__events-container">
-            <div className="Equipment-header__description-label">Event Log</div>
+          <div className='Equipment-header__events-container'>
+            <div className='Equipment-header__description-label'>Event Log</div>
             <RuxLog
-              className="Equipment-header__event-log"
+              className='Equipment-header__event-log'
               data={events}
             ></RuxLog>
           </div>

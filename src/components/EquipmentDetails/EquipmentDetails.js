@@ -8,16 +8,16 @@ const EquipmentDetails = ({ equipment }) => {
   return (
     <>
       <RuxContainer>
-        <div slot="header" data-test="panel-label">
+        <div slot='header' data-test='panel-label'>
           Equipment Details
         </div>
 
-        <EquipmentHeader equipment={equipment} status="critical" />
-        <div className="Equipment-details-grid">
-          <section className="Equipment-details-grid__left">
+        <EquipmentHeader equipment={equipment} status='critical' />
+        <div className='Equipment-details-grid'>
+          <section className='Equipment-details-grid__left'>
             <EquipmentAlerts alertsService={equipment.data.alerts} />
           </section>
-          <section className="Equipment-details-grid__right">
+          <section className='Equipment-details-grid__right'>
             <EquipmentContacts contactsService={equipment.data.contacts} />
           </section>
         </div>

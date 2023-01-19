@@ -21,7 +21,7 @@ const ConflictsTable = () => {
   return (
     <>
       <PanelHeader heading={'Conflicts'}></PanelHeader>
-      <RuxContainer className="jobsConflictContainer">
+      <RuxContainer className='jobsConflictContainer'>
         <RuxTable>
           <RuxTableHeader>
             <RuxTableCell>IRON</RuxTableCell>
