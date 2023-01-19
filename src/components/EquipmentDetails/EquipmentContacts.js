@@ -16,7 +16,6 @@ const Contact = ({
   end,
   details,
   expanded,
-  commandMode,
 }) => {
   const [expand, setExpand] = useState(expanded);
   function getStatus() {
@@ -94,15 +93,16 @@ const EquipmentContacts = ({ contactsService }) => {
 
   return (
     <>
-      <div className="grid-zone grid-zone--equipment-contacts grid-zone--fixed">
-        <div className="grid-zone__label">Current Contacts</div>
-        <div className="grid-zone__content">
-          <div className="contact-bin-header">
-            <div className="contact-summary contact-summary--all">
+      <div className="Equipment-contacts">
+        <div className="Equipment-contacts__header-container">
+          <p className="Equipment-contacts__header-title">Current Conflicts</p>
+
+          <div className="Equipment-contacts__main-header">
+            <div className="Equipment-contacts__summary">
               <span className="contact-count">{contacts.length}</span>
               Contacts
             </div>
-            <div className="contact-summary contact-summary--failed">
+            <div className="Equipment-contacts__summary Equipment-contacts__summary-failed">
               <span className="contact-count">
                 {
                   contacts.filter(
@@ -112,7 +112,7 @@ const EquipmentContacts = ({ contactsService }) => {
               </span>
               Failed
             </div>
-            <div className="contact-summary contact-summary--executing">
+            <div className="Equipment-contacts__summary">
               <span className="contact-count">
                 {
                   contacts.filter(

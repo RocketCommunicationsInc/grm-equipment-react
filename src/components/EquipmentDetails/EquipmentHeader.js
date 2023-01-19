@@ -1,9 +1,4 @@
-import {
-  RuxContainer,
-  RuxLog,
-  RuxSegmentedButton,
-  RuxStatus,
-} from '@astrouxds/react';
+import { RuxLog, RuxSegmentedButton, RuxStatus } from '@astrouxds/react';
 import './EquipmentHeader.scss';
 import { useEffect, useState } from 'react';
 

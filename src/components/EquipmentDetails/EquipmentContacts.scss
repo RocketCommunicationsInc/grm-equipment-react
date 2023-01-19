@@ -1,3 +1,32 @@
+.Equipment-contacts {
+  &__header-container {
+    background-color: var(--color-palette-brightblue-850);
+  }
+
+  &__header-title {
+    padding-top: 0.625rem;
+    padding-left: 0.9375rem;
+    font-size: 1.35rem;
+    font-weight: 300;
+  }
+
+  &__main-header {
+    display: flex;
+    padding: 1rem;
+  }
+
+  &__summary {
+    flex: 0 1 8rem;
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+  }
+
+  &__summary-failed {
+    color: var(--colorSerious, rgb(255, 176, 0));
+  }
+}
+
 .contact-bin-header {
   display: flex;
   flex: none;
@@ -5,17 +34,6 @@
   padding: 1rem;
   padding-bottom: 1.5rem;
   background: rgba(113, 189, 255, 0.03);
-}
-
-.contact-summary {
-  flex: 0 1 8rem;
-  display: flex;
-  flex-flow: column nowrap;
-  text-align: center;
-}
-
-.contact-summary--failed {
-  color: var(--colorSerious, rgb(255, 176, 0));
 }
 
 .contact-count {

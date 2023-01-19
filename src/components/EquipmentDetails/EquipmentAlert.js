@@ -2,7 +2,7 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import { RuxCheckbox, RuxStatus } from '@astrouxds/react';
 import { formatReadableTime } from '../../util/util';
-import './EquipmentAlerts.scss';
+import './EquipmentAlert.scss';
 
 const EquipmentAlert = ({ alert, onChange }) => {
   const [expand, setExpand] = useState(alert.expanded);
@@ -16,31 +16,33 @@ const EquipmentAlert = ({ alert, onChange }) => {
 
   return (
     <>
-      <li
-        className={classNames('alert-log__event', {
-          'alert-log--collapsed': !expand,
-          'alert-log--expanded': expand,
-        })}
-        onClick={() => setExpand(!expand)}
-      >
-        <div className="alert-log__event__select">
-          <RuxCheckbox
-            className="rux-checkbox"
-            onRuxchange={handleChange}
-            checked={alert.selected}
-          />
+      <div className="Equipment-alert">
+        <li
+          className={classNames('Equipment-alert__log-row', {
+            'alert-log--collapsed': !expand,
+            'Equipment-alert__log-row-expanded': expand,
+          })}
+          onClick={() => setExpand(!expand)}
+        >
+          <div className="Equipment-alert__select-alert">
+            <RuxCheckbox
+              className="rux-checkbox"
+              onRuxchange={handleChange}
+              checked={alert.selected}
+            />
+          </div>
+          <div className="Equipment-alert__status">
+            <RuxStatus status={alert.status} />
+          </div>
+          <div className="Equipment-alert__message">{alert.errorMessage}</div>
+          <div className="Equipment-alert__category">{alert.errorCategory}</div>
+          <div className="Equipment-alert__timestamp">
+            {formatReadableTime(alert.errorTime)}
+          </div>
+        </li>
+        <div className="Equipment-alert__expanded-detail">
+          <div>{alert.longMessage}</div>
         </div>
-        <div className="alert-log__event__status">
-          <RuxStatus status={alert.status} />
-        </div>
-        <div className="alert-log__event__message">{alert.errorMessage}</div>
-        <div className="alert-log__event__category">{alert.errorCategory}</div>
-        <div className="alert-log__event__timestamp">
-          {formatReadableTime(alert.errorTime)}
-        </div>
-      </li>
-      <div className="alert-log__detail">
-        <div>{alert.longMessage}</div>
       </div>
     </>
   );

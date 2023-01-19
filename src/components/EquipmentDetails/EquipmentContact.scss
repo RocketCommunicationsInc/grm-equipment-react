@@ -1,0 +1,78 @@
+.Equipment-contact {
+  &__status {
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+    width: 2rem;
+    overflow: hidden;
+    text-align: center;
+    align-self: center;
+
+    rux-status {
+      margin-left: 0;
+    }
+  }
+
+  &__name,
+  &__ground,
+  &__equipment,
+  &__state,
+  &__timestamp {
+    flex: 0 0 20%;
+    text-align: left;
+    padding: 0 0.7rem;
+    align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.contact-log__event {
+  display: flex;
+  align-content: flex-start;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+}
+
+.contact-log__event__name {
+  flex: 1 1 3rem;
+}
+.contact-log__event__ground {
+  flex: 1 1 2rem;
+}
+.contact-log__event__equipment {
+  flex: 6 6 7rem;
+}
+.contact-log__event__state {
+  flex: 4 5 7rem;
+  text-transform: capitalize;
+}
+.contact-log__event__timestamp {
+  flex: 0 0 11rem;
+}
+
+.contact-log__detail {
+  overflow: hidden;
+  padding: 0 1rem 0 2.5rem;
+  height: 0;
+  border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+  background: rgba(20, 32, 44, 0.5);
+}
+
+.contact-log--expanded + .contact-log__detail {
+  height: auto;
+  padding: 2rem 1rem 2rem 2.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.contact-log__detail__text {
+  flex: 8 auto;
+  padding-right: 1rem;
+}
+
+.contact-log__event.contact-log--expanded {
+  background: var(--colorTertiary, rgb(40, 63, 88));
+}

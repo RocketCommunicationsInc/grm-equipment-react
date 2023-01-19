@@ -1,0 +1,74 @@
+.Equipment-alert {
+  &__select-alert {
+    text-align: center;
+    width: 5rem;
+
+    .rux-checkbox {
+      display: inline-flex;
+      margin: 0.25rem;
+      width: 1.4rem;
+    }
+  }
+
+  &__status {
+    text-align: center;
+    align-self: center;
+    flex: 0 0 2rem;
+    padding-left: 0.5rem;
+    overflow: hidden;
+
+    rux-status {
+      margin-left: 0;
+    }
+  }
+
+  &__message {
+    flex: 1 0 8rem;
+    text-align: left;
+    padding: 0 0.7rem 0 0.5rem;
+    align-self: center;
+  }
+
+  &__category {
+    flex: 0 1 5rem;
+    text-align: left;
+    align-self: center;
+    text-transform: capitalize;
+  }
+
+  &__timestamp {
+    flex-shrink: 0;
+    text-align: left;
+    width: 4.5rem;
+    padding-left: 0.7rem;
+    align-self: center;
+  }
+
+  &__expanded-detail {
+    overflow: hidden;
+    padding: 0 1rem 0 2.5rem;
+    height: 0;
+    border-bottom: 1px solid var(--logHeaderBackgroundColor, rgb(20, 32, 44));
+    background: rgba(20, 32, 44, 0.5);
+  }
+
+  &__log-row {
+    display: flex;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid var(--color-palette-neutral-1000);
+    cursor: pointer;
+  }
+
+  &__log-row:hover {
+    background-color: var(--color-background-surface-hover);
+  }
+
+  &__log-row-expanded {
+    background: var(--colorTertiary, rgb(40, 63, 88));
+  }
+
+  &__log-row-expanded + &__expanded-detail {
+    height: auto;
+    padding: 2rem 1rem 2rem 2.5rem;
+  }
+}

@@ -12,10 +12,14 @@ const EquipmentDetails = ({ equipment }) => {
           Equipment Details
         </div>
 
-        <div className="equipment-details-grid">
-          <EquipmentHeader equipment={equipment} status="critical" />
-          <EquipmentAlerts alertsService={equipment.data.alerts} />
-          <EquipmentContacts contactsService={equipment.data.contacts} />
+        <EquipmentHeader equipment={equipment} status="critical" />
+        <div className="Equipment-details-grid">
+          <section className="Equipment-details-grid__left">
+            <EquipmentAlerts alertsService={equipment.data.alerts} />
+          </section>
+          <section className="Equipment-details-grid__right">
+            <EquipmentContacts contactsService={equipment.data.contacts} />
+          </section>
         </div>
       </RuxContainer>
     </>
