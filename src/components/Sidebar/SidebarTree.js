@@ -17,9 +17,9 @@ const SidebarTree = ({ selectEquip }) => {
               {a.components &&
                 a.components.map(function (b) {
                   return (
-                    <RuxTreeNode key={b.label} slot="node">
+                    <RuxTreeNode key={b.label} slot='node'>
                       {b.status && (
-                        <RuxStatus status={b.status} slot="prefix" />
+                        <RuxStatus status={b.status} slot='prefix' />
                       )}
                       {b.label}
                       {b.equipment &&
@@ -27,10 +27,10 @@ const SidebarTree = ({ selectEquip }) => {
                           return (
                             <RuxTreeNode
                               key={c.data.id}
-                              slot="node"
+                              slot='node'
                               onRuxtreenodeselected={() => selectEquip(c)}
                             >
-                              <RuxStatus status={c.data.status} slot="prefix" />
+                              <RuxStatus status={c.data.status} slot='prefix' />
                               {c.data.label}
                             </RuxTreeNode>
                           );

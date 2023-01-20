@@ -1,6 +1,5 @@
-$dark_blue: #1d2f41;
-$blue_grey: rgb(40, 63, 88);
-$darkest_blue: rgba(20, 31, 44, 0.5);
+$dark_blue: var(--color-palette-darkblue-800);
+$darkest_blue: var(--color-palette-darkblue-900);
 
 $caution: var(--status-symbol-color-fill-caution);
 $critical: var(--status-symbol-color-fill-critical);

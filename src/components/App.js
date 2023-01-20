@@ -36,7 +36,10 @@ function App() {
       return (
         <>
           <GlobalStatusBar data={data} />
-          <ScheduleJob cancelEdit={() => setCurrentView('main')} />
+          <ScheduleJob
+            currentEq={currentEq}
+            cancelEdit={() => setCurrentView('main')}
+          />
         </>
       );
     case 'viewJobDetails':
@@ -45,6 +48,7 @@ function App() {
           <GlobalStatusBar data={data} />
           <JobDetails
             currentJob={currentJob}
+            currentEq={currentEq}
             cancelEdit={() => setCurrentView('main')}
             events={currentEq.data.events}
           />
@@ -54,18 +58,20 @@ function App() {
       return (
         <>
           <GlobalStatusBar data={data} />
-          <main key={currentView}>
-            <nav className="main-menu">
+          <main className='Dashboard-grid' key={currentView}>
+            <nav className='main-menu Dashboard-grid__left-panel'>
               <SidebarTree selectEquip={selectEquip} />
             </nav>
 
-            <EquipmentContainer
-              changeView={(view) => setCurrentView(view)}
-              setCurrentJob={(job) => setCurrentJob(job)}
-              data={data}
-              currentEq={currentEq}
-              selectEquip={selectEquip}
-            />
+            <section className='Dashboard-grid__right-panel'>
+              <EquipmentContainer
+                changeView={(view) => setCurrentView(view)}
+                setCurrentJob={(job) => setCurrentJob(job)}
+                data={data}
+                currentEq={currentEq}
+                selectEquip={selectEquip}
+              />
+            </section>
           </main>
         </>
       );

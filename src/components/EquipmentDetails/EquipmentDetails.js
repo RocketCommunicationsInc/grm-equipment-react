@@ -2,20 +2,26 @@ import './EquipmentDetails.scss';
 import EquipmentHeader from './EquipmentHeader';
 import EquipmentAlerts from './EquipmentAlerts';
 import EquipmentContacts from './EquipmentContacts';
+import { RuxContainer } from '@astrouxds/react';
 
 const EquipmentDetails = ({ equipment }) => {
   return (
     <>
-      <div className="grid-zone-wrap">
-        <div className="grid-zone__label" data-test="panel-label">
+      <RuxContainer>
+        <div slot='header' data-test='panel-label'>
           Equipment Details
         </div>
-        <div className="grid-zone__content equipment-details-grid">
-          <EquipmentHeader equipment={equipment} status="critical" />
-          <EquipmentAlerts alertsService={equipment.data.alerts} />
-          <EquipmentContacts contactsService={equipment.data.contacts} />
+
+        <EquipmentHeader equipment={equipment} status='critical' />
+        <div className='Equipment-details-grid'>
+          <section className='Equipment-details-grid__left'>
+            <EquipmentAlerts alertsService={equipment.data.alerts} />
+          </section>
+          <section className='Equipment-details-grid__right'>
+            <EquipmentContacts contactsService={equipment.data.contacts} />
+          </section>
         </div>
-      </div>
+      </RuxContainer>
     </>
   );
 };

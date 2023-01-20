@@ -1,7 +1,8 @@
 @import '../colors';
 
-.equipment-container {
-  overflow: hidden;
+.Equipment-container {
+  overflow: auto;
+  height: calc(100vh - 8rem);
 
   ul {
     padding-left: 0;
@@ -10,54 +11,54 @@
   }
 
   rux-tabs {
-    height: 40px;
+    height: 2.5rem;
   }
 
   h2,
   h3 {
     background-color: $darkest_blue;
-    padding: 20px;
+    padding: 1.25rem;
     margin-top: 0;
+  }
+
+  &__tab-panels {
+    padding-top: 1.875rem;
+  }
+
+  &__tab-inoperable {
+    background-color: $dark_blue;
+  }
+
+  &__equipment-inoperable {
+    padding: 1.25rem 1.25rem 9.375rem;
+
+    rux-status {
+      position: absolute;
+      top: 0.938rem;
+      left: 1.875;
+      margin: 0;
+    }
+
+    rux-monitoring-icon {
+      cursor: pointer;
+    }
+  }
+
+  &__equipment-list li {
+    list-style: none;
+    justify-content: space-evenly;
+    padding: 1.25rem;
+    text-align: center;
+    position: relative;
   }
 }
 
 #tab-set-id-1 {
-  height: 60px;
-}
-
-.tab-panels {
-  padding-top: 30px;
-}
-
-.tab-inoperable {
-  background-color: $dark_blue;
-}
-
-.equipment-inoperable {
-  padding: 20px 20px 150px;
-
-  rux-status {
-    position: absolute;
-    top: 15px;
-    left: 30px;
-    margin: 0;
-  }
-
-  rux-monitoring-icon {
-    cursor: pointer;
-  }
+  height: 3.75rem;
 }
 
 rux-icon {
   cursor: pointer;
-}
-
-.equipment-list li {
-  list-style: none;
-  justify-content: space-evenly;
-  padding: 20px;
-  text-align: center;
-  position: relative;
 }
 
 .critical {

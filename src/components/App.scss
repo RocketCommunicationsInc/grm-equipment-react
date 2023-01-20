@@ -8,9 +8,58 @@ main {
 .main-menu {
   flex: 2;
   background-color: $dark_blue;
-  min-width: 15rem;
+
+  max-height: calc(100vh - 8rem);
+  overflow: auto;
 
   rux-status {
     margin-left: -1rem;
   }
+}
+
+.Dashboard-grid {
+  display: grid;
+  // Screen height minus the height of the Global Status Bar
+  max-height: calc(100vh - 7.5rem);
+  max-width: 100vw;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: 1fr;
+
+  grid-template-areas:
+    'left-panel tabs-bar'
+    'left-panel right-panel'
+    'left-panel right-top-panel'
+    'left-panel right-bottom-panel';
+
+  &__left-panel {
+    grid-area: left-panel;
+    background-color: var(--color-background-surface-default);
+    box-shadow: var(--container-color-border) 0 0 0 1px;
+  }
+
+  &__tabs-bar {
+    grid-area: tabs-bar;
+  }
+
+  &__right-panel {
+    grid-area: right-panel;
+    background-color: var(--color-background-surface-default);
+    box-shadow: var(--container-color-border) 0 0 0 1px;
+  }
+
+  &__right-top-panel {
+    grid-area: right-top-panel;
+    background-color: var(--color-background-surface-default);
+    box-shadow: var(--container-color-border) 0 0 0 1px;
+  }
+
+  &__right-bottom-panel {
+    grid-area: right-bottom-panel;
+    background-color: var(--color-background-surface-default);
+    box-shadow: var(--container-color-border) 0 0 0 1px;
+  }
+}
+
+rux-checkbox {
+  position: relative;
 }

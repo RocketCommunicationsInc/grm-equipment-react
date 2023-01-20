@@ -3,17 +3,17 @@
 }
 
 .status-indicators__indicator {
-  width: 108px;
+  width: 6.75rem;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 0.625rem;
 }
 
 rux-global-status-bar {
-  height: 120px;
+  height: 7.5rem;
 }
 
 rux-global-status-bar::part(container) {
-  padding-top: 20px;
+  padding-top: 1.25rem;
 }
 
 .global-status-menu-icon {

@@ -1,9 +1,9 @@
-.Schedule-grid {
+.Job-Detail-grid {
   display: grid;
   grid-template-columns: 35% 65%;
-  grid-template-areas: 'left-panel right-panel';
   padding: var(--spacing-4) var(--spacing-6);
   gap: var(--spacing-3);
+  grid-template-areas: 'left-panel right-panel';
 
   &__left-panel {
     grid-area: left-panel;
@@ -36,7 +36,7 @@
   }
 }
 
-.Schedule-job {
+.Job-details {
   &__input {
     padding: 0.5rem;
   }
@@ -60,10 +60,56 @@
   margin: 1rem;
 }
 
+.event-log {
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
 .home-page-link {
   color: var(--color-palette-brightblue-500);
 }
 
 .home-page-link:hover {
   color: var(--color-palette-brightblue-300);
+}
+
+.rux-icon {
+  float: left;
+  margin-top: -0.5rem;
+}
+
+.follow-checkbox {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.event-log-header {
+  margin-bottom: 0.5rem;
+}
+
+.progress {
+  padding: 1rem 0.25rem;
+}
+.progress .current {
+  fill: var(--color-palette-brightblue-500);
+  opacity: 0;
+}
+.progress .complete {
+  fill: var(--color-palette-neutral-000);
+  opacity: 0;
+}
+.progress--step-1 .step1 {
+  opacity: 1;
+}
+.progress--step-2 .step2 {
+  opacity: 1;
+}
+.progress--step-3 .step3 {
+  opacity: 1;
+}
+.progress--step-4 .step4 {
+  opacity: 1;
+}
+.progress--step-5 .step5 {
+  opacity: 1;
 }

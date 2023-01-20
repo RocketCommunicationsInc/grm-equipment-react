@@ -21,51 +21,48 @@ const EquipmentHeader = ({ equipment }) => {
 
   return (
     <>
-      <div className="grid-zone grid-zone--fixed grid-zone--equipment-header">
-        <div className="grid-zone__content">
-          <div className="equipment-name">
-            <RuxStatus className="rux-status" status={equipment.data.status} />
-            {equipment.data.label}
+      <div className='Equipment-header'>
+        <p className='Equipment-header__equipment-name'>
+          <RuxStatus className='rux-status' status={equipment.data.status} />
+          {equipment.data.label}
+        </p>
+        <div className='Equipment-header__parent'>
+          <div className='Equipment-header__buttons-container'>
+            <RuxSegmentedButton
+              data={[
+                {
+                  label: 'Online',
+                },
+                {
+                  label: 'Offline',
+                },
+              ]}
+              data-test='online-offline'
+            />
+            <RuxSegmentedButton
+              data={[
+                {
+                  label: 'Considered',
+                },
+                {
+                  label: 'Deconsidered',
+                },
+              ]}
+              data-test='considered-deconsidered'
+            />
           </div>
-          <div className="equipment-header">
-            <div className="equipment-header__detail equipment-header__detail--equipment-states">
-              <RuxSegmentedButton
-                className="rux-segmented-button"
-                data={[
-                  {
-                    label: 'Online',
-                    selected: true,
-                  },
-                  {
-                    label: 'Offline',
-                  },
-                ]}
-                data-test="online-offline"
-              />
-              <RuxSegmentedButton
-                className="rux-segmented-button"
-                data={[
-                  {
-                    label: 'Considered',
-                    selected: true,
-                  },
-                  {
-                    label: 'Deconsidered',
-                  },
-                ]}
-                data-test="considered-deconsidered"
-              />
+          <div className='Equipment-header__description-container'>
+            <p className='Equipment-header__description-label'>Description</p>
+            <div className='Equipment-header__description'>
+              {equipment.data.description}
             </div>
-            <div className="equipment-header__detail equipment-header__detail--equipment-description">
-              <div className="equipment-header__detail__label">Description</div>
-              <div className="equipment-header__detail__content">
-                {equipment.data.description}
-              </div>
-            </div>
-            <div className="equipment-header__detail equipment-header__detail--equipment-event-log">
-              <div className="equipment-header__detail__label">Event Log</div>
-              <RuxLog className="rux-log" data={events}></RuxLog>
-            </div>
+          </div>
+          <div className='Equipment-header__events-container'>
+            <div className='Equipment-header__description-label'>Event Log</div>
+            <RuxLog
+              className='Equipment-header__event-log'
+              data={events}
+            ></RuxLog>
           </div>
         </div>
       </div>

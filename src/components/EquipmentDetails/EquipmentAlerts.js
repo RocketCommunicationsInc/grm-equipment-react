@@ -100,21 +100,22 @@ const EquipmentAlerts = ({ alertsService }) => {
 
   return (
     <>
-      <div className="grid-zone grid-zone--equipment-alerts grid-zone--fixed">
-        <div className="grid-zone__label">Alerts</div>
-        <div className="grid-zone__content">
-          <div className="alert-bin-header">
-            <div className="alert-summary">
-              <span className="alert-count"> {alerts.length} </span>
+      <div className='Equipment-alerts'>
+        <div className='Equipment-alerts__header-container'>
+          <p className='Equipment-alerts__header-title'>Alerts</p>
+
+          <div className='Equipment-alerts__main-header'>
+            <div className='Equipment-alerts__summary'>
+              <span className='Equipment-alerts__count'> {alerts.length} </span>
               Active Alerts
             </div>
 
-            <div className="alert-filters">
-              <div className="alert-filter">
-                <label htmlFor="statusFilter">Severity</label>
+            <div className='Equipment-alerts__filters'>
+              <div className='Equipment-alerts__filter'>
+                <label htmlFor='statusFilter'>Severity</label>
                 <RuxSelect
-                  input-id="statusFilter"
-                  className="rux-select"
+                  input-id='statusFilter'
+                  className='rux-select'
                   required={false}
                   onRuxchange={(e) =>
                     switchFilters({
@@ -123,18 +124,18 @@ const EquipmentAlerts = ({ alertsService }) => {
                     })
                   }
                 >
-                  <RuxOption value="all" label="All" />
-                  <RuxOption value="critical" label="Critical" />
-                  <RuxOption value="serious" label="Serious" />
-                  <RuxOption value="caution" label="Caution" />
+                  <RuxOption value='all' label='All' />
+                  <RuxOption value='critical' label='Critical' />
+                  <RuxOption value='serious' label='Serious' />
+                  <RuxOption value='caution' label='Caution' />
                 </RuxSelect>
               </div>
 
-              <div className="alert-filter">
-                <label htmlFor="categoryFilter">Category</label>
+              <div className='Equipment-alerts__filter'>
+                <label htmlFor='categoryFilter'>Category</label>
                 <RuxSelect
-                  input-id="categoryFilter"
-                  className="rux-select"
+                  input-id='categoryFilter'
+                  className='rux-select'
                   required={false}
                   onRuxchange={(e) =>
                     switchFilters({
@@ -143,62 +144,62 @@ const EquipmentAlerts = ({ alertsService }) => {
                     })
                   }
                 >
-                  <RuxOption value="all" label="All" />
-                  <RuxOption value="hardware" label="Hardware" />
-                  <RuxOption value="software" label="Software" />
-                  <RuxOption value="spacecraft" label="Spacecraft" />
+                  <RuxOption value='all' label='All' />
+                  <RuxOption value='hardware' label='Hardware' />
+                  <RuxOption value='software' label='Software' />
+                  <RuxOption value='spacecraft' label='Spacecraft' />
                 </RuxSelect>
               </div>
             </div>
           </div>
-          <div className="alert-log">
-            <header className="alert-log-header">
-              <div className="alert-log__header-labels">
-                <div
-                  onClick={() => toggleSelectFiltered()}
-                  className="alert-log__event__select"
-                >
-                  {evalAllSelected() ? 'Select None' : 'Select All'}
-                </div>
-                <div className="alert-log__event__status"></div>
-                <div className="alert-log__event__message">Message</div>
-                <div className="alert-log__event__category">Category</div>
-                <div className="alert-log__event__timestamp">Time</div>
+        </div>
+        <div className='Equipment-alerts__log'>
+          <header className='Equipment-alerts__log-header'>
+            <div className='Equipment-alerts__log-header-labels'>
+              <div
+                onClick={() => toggleSelectFiltered()}
+                className='Equipment-alerts__select-alert'
+              >
+                {evalAllSelected() ? 'Select None' : 'Select All'}
               </div>
-            </header>
-            <ol className="alert-log__events">
-              {alerts.length > 0 ? (
-                filteredAlerts.map((alert) => {
-                  return (
-                    <EquipmentAlert
-                      key={alert.id}
-                      alert={alert}
-                      onChange={() => {
-                        evalButtons();
-                      }}
-                    />
-                  );
-                })
-              ) : (
-                <div>No new alerts. Please wait for more.</div>
-              )}
-            </ol>
-            <div className="alert-log__actions">
-              <RuxButton
-                className="rux-button"
-                disabled={!buttonsEnabled}
-                onClick={() => dismissAlerts()}
-              >
-                Dismiss
-              </RuxButton>
-              <RuxButton
-                className="rux-button"
-                disabled={!buttonsEnabled}
-                onClick={() => dismissAlerts()}
-              >
-                Acknowledge
-              </RuxButton>
+              <div className='Equipment-alerts__log-status'></div>
+              <div className='Equipment-alerts__log-message'>Message</div>
+              <div className='Equipment-alerts__log-category'>Category</div>
+              <div className='Equipment-alerts__log-timestamp'>Time</div>
             </div>
+          </header>
+          <ol className='Equipment-alerts__events-container'>
+            {alerts.length > 0 ? (
+              filteredAlerts.map((alert) => {
+                return (
+                  <EquipmentAlert
+                    key={alert.id}
+                    alert={alert}
+                    onChange={() => {
+                      evalButtons();
+                    }}
+                  />
+                );
+              })
+            ) : (
+              <div>No new alerts. Please wait for more.</div>
+            )}
+          </ol>
+          <div className='Equipment-alerts__log-actions'>
+            <RuxButton
+              className='rux-button'
+              disabled={!buttonsEnabled}
+              onClick={() => dismissAlerts()}
+            >
+              Dismiss
+            </RuxButton>
+            <RuxButton
+              className='rux-button'
+              disabled={!buttonsEnabled}
+              onClick={() => dismissAlerts()}
+            >
+              Acknowledge
+            </RuxButton>
           </div>
         </div>
       </div>
