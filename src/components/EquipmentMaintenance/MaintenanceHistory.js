@@ -5,73 +5,47 @@ import {
   mapJobType,
 } from '../../util/util';
 
-import {
-  RuxTable,
-  RuxTableBody,
-  RuxTableCell,
-  RuxTableHeader,
-  RuxTableRow,
-} from '@astrouxds/react';
-
 const MaintenanceHistory = ({ maintenanceLog }) => {
   return (
-    <div className='maintenance-history'>
-      <RuxTable>
-        <RuxTableHeader>
-          <RuxTableCell>Name</RuxTableCell>
-          <RuxTableCell>Type</RuxTableCell>
-          <RuxTableCell>Created</RuxTableCell>
-          <RuxTableCell>Started</RuxTableCell>
-          <RuxTableCell>Stopped</RuxTableCell>
-          <RuxTableCell>Technician</RuxTableCell>
-          <RuxTableCell>Description</RuxTableCell>
-        </RuxTableHeader>
-        <RuxTableBody>
-          {maintenanceLog &&
-            maintenanceLog.map(function (job) {
-              return (
-                <RuxTableRow key={job.id}>
-                  <RuxTableCell>
-                    <p>{job.id}</p>
-                  </RuxTableCell>
-                  <RuxTableCell>
-                    <p>{mapJobType(job.type)}</p>
-                  </RuxTableCell>
-                  <RuxTableCell>
-                    <p>
-                      {formatDayOfYear(job.createdTime) +
-                        ' ' +
-                        formatReadableTime(job.createdTime)}
-                    </p>
-                  </RuxTableCell>
-                  <RuxTableCell>
-                    <p>
-                      {formatDayOfYear(job.startTime) +
-                        ' ' +
-                        formatReadableTime(job.startTime)}
-                    </p>
-                  </RuxTableCell>
+    <div className='Maintenance-history-table'>
+      <div className='Maintenance-history-table__heading'>
+        <div>Name</div>
+        <div>Type</div>
+        <div>Created</div>
+        <div>Started</div>
+        <div>Stopped</div>
+        <div>Technician</div>
+        <div>Description</div>
+      </div>
 
-                  <RuxTableCell>
-                    <p>
-                      {formatDayOfYear(job.endTime) +
-                        ' ' +
-                        formatReadableTime(job.endTime)}
-                    </p>
-                  </RuxTableCell>
-
-                  <RuxTableCell>
-                    <p>{job.technician}</p>
-                  </RuxTableCell>
-
-                  <RuxTableCell>
-                    <p>{job.description}</p>
-                  </RuxTableCell>
-                </RuxTableRow>
-              );
-            })}
-        </RuxTableBody>
-      </RuxTable>
+      <ul>
+        {maintenanceLog &&
+          maintenanceLog.map(function (job) {
+            return (
+              <li className='Maintenance-history-table__item' key={job.id}>
+                <div>{job.id}</div>
+                <div>{mapJobType(job.type)}</div>
+                <div>
+                  {formatDayOfYear(job.createdTime) +
+                    ' ' +
+                    formatReadableTime(job.createdTime)}
+                </div>
+                <div>
+                  {formatDayOfYear(job.startTime) +
+                    ' ' +
+                    formatReadableTime(job.startTime)}
+                </div>
+                <div>
+                  {formatDayOfYear(job.endTime) +
+                    ' ' +
+                    formatReadableTime(job.endTime)}
+                </div>
+                <div>{job.technician}</div>
+                <div>{job.description}</div>
+              </li>
+            );
+          })}
+      </ul>
     </div>
   );
 };
