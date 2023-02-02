@@ -1,13 +1,13 @@
 .Conflicts-table {
   overflow: auto;
   display: grid;
+  grid-template-rows: 2rem auto;
 
   &__heading {
     background-color: var(--color-background-surface-header);
     border-top: 1px solid var(--color-background-base-default);
     padding-left: var(--spacing-2);
     box-shadow: var(--shadow-overlay);
-    width: 100%;
   }
 
   &__heading,
@@ -18,6 +18,5 @@
         5rem
       );
     align-items: center;
-    height: 2rem;
   }
 }
