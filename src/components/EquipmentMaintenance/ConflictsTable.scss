@@ -1,6 +1,22 @@
-.jobsConflictContainer {
-  max-width: 100%;
-  max-height: calc(100vh - 14rem);
-  display: flex;
+.Conflicts-table {
   overflow: auto;
+
+  &__heading {
+    background-color: var(--color-background-surface-header);
+    border-top: 1px solid var(--color-background-base-default);
+    padding-left: var(--spacing-2);
+    box-shadow: var(--shadow-overlay);
+    height: 2.5rem;
+    width: 100%;
+  }
+
+  &__heading,
+  &__item {
+    display: grid;
+    grid-template-columns: repeat(2, 4rem) 4.5rem 25rem 4.5rem 3rem repeat(
+        4,
+        5rem
+      );
+    align-items: center;
+  }
 }
