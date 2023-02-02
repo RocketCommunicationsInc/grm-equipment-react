@@ -1,5 +1,21 @@
-.maintenance-history {
-  max-width: 100%;
-  display: flex;
+.Maintenance-history-table {
   overflow: auto;
+  height: fit-content;
+  display: grid;
+
+  &__heading {
+    background-color: var(--color-background-surface-header);
+    border-top: 1px solid var(--color-background-base-default);
+    padding-left: var(--spacing-2);
+    box-shadow: var(--shadow-overlay);
+    width: 100%;
+  }
+
+  &__heading,
+  &__item {
+    display: grid;
+    grid-template-columns: 5rem 5rem 7rem 7rem 7rem 10rem max-content;
+    align-items: center;
+    height: 2rem;
+  }
 }

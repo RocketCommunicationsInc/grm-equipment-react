@@ -29,7 +29,7 @@ const ConflictsTable = () => {
             <div>Stop</div>
           </div>
 
-          <ul className='list'>
+          <ul>
             {conflicts.map((c) => {
               return (
                 <li className='Conflicts-table__item' key={c.aos}>
