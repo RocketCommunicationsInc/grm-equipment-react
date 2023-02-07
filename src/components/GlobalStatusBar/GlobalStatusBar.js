@@ -58,6 +58,7 @@ const GlobalStatusBar = ({ data }) => {
               aria-controls='grm-popup-menu'
               data-test='global-status-menu-btn'
               slot='trigger'
+              size='2rem'
             />
             <RuxMenuItem>GRM Dashboard</RuxMenuItem>
             <RuxMenuItem>GRM Equipment Manager</RuxMenuItem>
