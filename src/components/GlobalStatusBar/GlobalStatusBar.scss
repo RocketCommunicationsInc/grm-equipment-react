@@ -8,14 +8,7 @@
   padding: 0 0.625rem;
 }
 
-rux-global-status-bar {
-  height: 7.5rem;
-}
-
-rux-global-status-bar::part(container) {
-  padding-top: 1.25rem;
-}
-
 .global-status-menu-icon {
   cursor: pointer;
+  padding-bottom: 1.75rem;
 }
