@@ -1,4 +1,4 @@
-import { RuxButton, RuxContainer, RuxInput } from '@astrouxds/react';
+import { RuxButton, RuxCard, RuxContainer, RuxInput } from '@astrouxds/react';
 import {
   mapJobProgress,
   mapJobType,
@@ -30,10 +30,7 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
           {maintenanceJobs &&
             maintenanceJobs.map(function (job) {
               return (
-                <RuxContainer
-                  key={job.id}
-                  className='MaintenanceJobView__job-card'
-                >
+                <RuxCard key={job.id} className='MaintenanceJobView__job-card'>
                   <div slot='header'>{'Job ID #' + job.id}</div>
 
                   <h4 className='MaintenanceJobView__cardDetails'>
@@ -84,7 +81,7 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
                   >
                     View Details
                   </RuxButton>
-                </RuxContainer>
+                </RuxCard>
               );
             })}
         </div>

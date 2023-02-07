@@ -4,7 +4,7 @@
   &__jobCardsContainer {
     flex: 1 1 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 25rem);
+    grid-template-columns: repeat(auto-fill, 20rem);
     grid-gap: 3rem;
     padding: 1.5rem;
   }
@@ -15,12 +15,7 @@
   }
 
   &__cardButtons {
-    padding: 0;
-  }
-
-  &__job-card {
-    box-shadow: var(--container-color-border) 0 0 0 0.2px;
-    background-color: var(--color-background-surface-header);
+    width: 100%;
   }
 
   &__schedule-button {
