@@ -30,7 +30,7 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
           {maintenanceJobs &&
             maintenanceJobs.map(function (job) {
               return (
-                <RuxCard key={job.id} className='MaintenanceJobView__job-card'>
+                <RuxCard key={job.id}>
                   <div slot='header'>{'Job ID #' + job.id}</div>
 
                   <h4 className='MaintenanceJobView__cardDetails'>
@@ -87,7 +87,7 @@ const MaintenanceJobView = ({ changeView, setCurrentJob, equipment }) => {
         </div>
       </RuxContainer>
 
-      <RuxContainer className='MaintenanceJobView__maintenance-history'>
+      <RuxContainer>
         <div slot='header'>Maintenance History</div>
 
         <MaintenanceHistory maintenanceLog={maintenanceLog} />
