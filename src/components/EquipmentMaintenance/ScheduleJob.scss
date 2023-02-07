@@ -1,13 +1,11 @@
 .Schedule-grid {
   display: grid;
   grid-template-columns: 35% 65%;
-  grid-template-areas: 'left-panel right-panel';
   padding: var(--spacing-4) var(--spacing-6);
   gap: var(--spacing-3);
+  height: calc(100vh - 6rem);
 
   &__left-panel {
-    grid-area: left-panel;
-    max-height: calc(100vh - 10rem);
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
 
@@ -29,8 +27,6 @@
   }
 
   &__right-panel {
-    grid-area: right-panel;
-    max-height: calc(100vh - 10rem);
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
   }
