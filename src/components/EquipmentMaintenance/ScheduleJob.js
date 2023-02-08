@@ -11,6 +11,8 @@ import {
   RuxIcon,
   RuxButtonGroup,
   RuxContainer,
+  RuxBreadcrumb,
+  RuxBreadcrumbItem,
 } from '@astrouxds/react';
 import {
   mapJobType,
@@ -37,137 +39,139 @@ const ScheduleJob = ({ cancelEdit, currentJob, currentEq }) => {
     setJobDescription(jobDescription);
   };
   return (
-    <div className='Schedule-grid'>
-      <section className='Schedule-grid__left-panel'>
-        <div className='Schedule-job__parent'>
-          <PanelHeader heading={'Schedule Maintenance Job'} />
+    <>
+      <RuxBreadcrumb className='Breadcrumb-nav'>
+        <RuxBreadcrumbItem onClick={cancelEdit} href='/'>
+          Equipment Manager
+        </RuxBreadcrumbItem>
+        <RuxBreadcrumbItem>Maintenance Details</RuxBreadcrumbItem>
+      </RuxBreadcrumb>
 
-          <RuxContainer>
-            <div className='path-above-grid'>
-              <span onClick={cancelEdit} className='home-page-link'>
-                <RuxIcon className='rux-icon' icon='arrow-back' size='small' />
-                Equipment Manager
-              </span>
-              <span> / Maintenance Details </span>
-            </div>
-            <div className='Schedule-job__jobDetails'>
-              <h4 className='Schedule-job__section-header'>
-                1. Select Job type
-              </h4>
+      <div className='Schedule-grid'>
+        <section className='Schedule-grid__left-panel'>
+          <div className='Schedule-job__parent'>
+            <PanelHeader heading={'Schedule Maintenance Job'} />
 
-              <RuxSelect
-                className='Schedule-job__input'
-                label='Job Type'
-                value={currentJob ? mapJobType(currentJob.type) : 'default'}
-              >
-                <RuxOption value='default' label='Select' selected />
-                {[1, 2, 3, 4, 5].map((i) => {
-                  return (
-                    <RuxOption
-                      key={i}
-                      value={mapJobType(i)}
-                      label={mapJobType(i)}
-                    />
-                  );
-                })}
-              </RuxSelect>
-              <RuxTextarea
-                label='Description'
-                className='Schedule-job__input'
-                onRuxinput={(e) => handleTextareaChange(e.target.value)}
-                placeholder='Enter Description'
-                value={jobDescription}
-              />
+            <RuxContainer>
+              <div className='Schedule-job__jobDetails'>
+                <h4 className='Schedule-job__section-header'>
+                  1. Select Job type
+                </h4>
 
-              <h4 className='Schedule-job__section-header'>2. Select Time</h4>
+                <RuxSelect
+                  className='Schedule-job__input'
+                  label='Job Type'
+                  value={currentJob ? mapJobType(currentJob.type) : 'default'}
+                >
+                  <RuxOption value='default' label='Select' selected />
+                  {[1, 2, 3, 4, 5].map((i) => {
+                    return (
+                      <RuxOption
+                        key={i}
+                        value={mapJobType(i)}
+                        label={mapJobType(i)}
+                      />
+                    );
+                  })}
+                </RuxSelect>
+                <RuxTextarea
+                  label='Description'
+                  className='Schedule-job__input'
+                  onRuxinput={(e) => handleTextareaChange(e.target.value)}
+                  placeholder='Enter Description'
+                  value={jobDescription}
+                />
 
-              <RuxInput
-                label='Year'
-                className='Schedule-job__input'
-                value={
-                  currentJob
-                    ? formatYear(currentJob.startTime)
-                    : formatYear(Date.now())
-                }
-              />
+                <h4 className='Schedule-job__section-header'>2. Select Time</h4>
 
-              <RuxInput
-                label='DOY'
-                className='Schedule-job__input'
-                value={
-                  currentJob
-                    ? formatDayOfYear(currentJob.startTime)
-                    : formatDayOfYear(Date.now())
-                }
-              />
+                <RuxInput
+                  label='Year'
+                  className='Schedule-job__input'
+                  value={
+                    currentJob
+                      ? formatYear(currentJob.startTime)
+                      : formatYear(Date.now())
+                  }
+                />
 
-              <RuxInput
-                label='Start'
-                className='Schedule-job__input'
-                value={
-                  currentJob
-                    ? formatReadableTime(currentJob.startTime)
-                    : 'HH:MM:SS'
-                }
-              />
+                <RuxInput
+                  label='DOY'
+                  className='Schedule-job__input'
+                  value={
+                    currentJob
+                      ? formatDayOfYear(currentJob.startTime)
+                      : formatDayOfYear(Date.now())
+                  }
+                />
 
-              <RuxInput
-                label='End'
-                className='Schedule-job__input'
-                value={
-                  currentJob
-                    ? formatReadableTime(currentJob.endTime)
-                    : 'HH:MM:SS'
-                }
-              />
+                <RuxInput
+                  label='Start'
+                  className='Schedule-job__input'
+                  value={
+                    currentJob
+                      ? formatReadableTime(currentJob.startTime)
+                      : 'HH:MM:SS'
+                  }
+                />
 
-              <h4 className='Schedule-job__section-header'>
-                3. Select Technician
-              </h4>
-              <RuxSelect
-                className='Schedule-job__input'
-                label='Technician'
-                value={currentJob ? currentJob.technician : 'default'}
-              >
-                <RuxOption value='default' label='Select' selected={true} />
-                {technicians.map((technician) => {
-                  return (
-                    <RuxOption
-                      key={technician}
-                      value={technician}
-                      label={technician}
-                    />
-                  );
-                })}
-              </RuxSelect>
+                <RuxInput
+                  label='End'
+                  className='Schedule-job__input'
+                  value={
+                    currentJob
+                      ? formatReadableTime(currentJob.endTime)
+                      : 'HH:MM:SS'
+                  }
+                />
 
-              <h4 className='Schedule-job__section-header'>4. Follow Job</h4>
-              <p className=''>
-                Would you like to follow this job? Following will send all
-                updates and alerts regarding this job to the GRM Dashboard. If
-                you do not follow this job, you must view the job from the
-                Equipment Manager to be notified of any updates or alerts.
-              </p>
-              <RuxCheckbox className='follow-checkbox' name='checkbox'>
-                Follow
-              </RuxCheckbox>
-              <RuxButtonGroup>
-                <RuxButton>Calculate Conflicts</RuxButton>
-                <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
+                <h4 className='Schedule-job__section-header'>
+                  3. Select Technician
+                </h4>
+                <RuxSelect
+                  className='Schedule-job__input'
+                  label='Technician'
+                  value={currentJob ? currentJob.technician : 'default'}
+                >
+                  <RuxOption value='default' label='Select' selected={true} />
+                  {technicians.map((technician) => {
+                    return (
+                      <RuxOption
+                        key={technician}
+                        value={technician}
+                        label={technician}
+                      />
+                    );
+                  })}
+                </RuxSelect>
 
-                <RuxButton secondary onClick={cancelEdit}>
-                  Cancel
-                </RuxButton>
-              </RuxButtonGroup>
-            </div>
-          </RuxContainer>
-        </div>
-      </section>
+                <h4 className='Schedule-job__section-header'>4. Follow Job</h4>
+                <p className=''>
+                  Would you like to follow this job? Following will send all
+                  updates and alerts regarding this job to the GRM Dashboard. If
+                  you do not follow this job, you must view the job from the
+                  Equipment Manager to be notified of any updates or alerts.
+                </p>
+                <RuxCheckbox className='follow-checkbox' name='checkbox'>
+                  Follow
+                </RuxCheckbox>
+                <RuxButtonGroup>
+                  <RuxButton>Calculate Conflicts</RuxButton>
+                  <RuxButton onClick={cancelEdit}>Submit Request</RuxButton>
 
-      <section className='Schedule-grid__right-panel'>
-        <ConflictsTable />
-      </section>
-    </div>
+                  <RuxButton secondary onClick={cancelEdit}>
+                    Cancel
+                  </RuxButton>
+                </RuxButtonGroup>
+              </div>
+            </RuxContainer>
+          </div>
+        </section>
+
+        <section className='Schedule-grid__right-panel'>
+          <ConflictsTable />
+        </section>
+      </div>
+    </>
   );
 };
 

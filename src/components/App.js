@@ -31,15 +31,17 @@ function App() {
     };
   }, [dataService, currentEq]);
 
+  const cancelEdit = (e) => {
+    e.preventDefault();
+    setCurrentView('main');
+  };
+
   switch (currentView) {
     case 'scheduleJob':
       return (
         <>
           <GlobalStatusBar data={data} />
-          <ScheduleJob
-            currentEq={currentEq}
-            cancelEdit={() => setCurrentView('main')}
-          />
+          <ScheduleJob currentEq={currentEq} cancelEdit={cancelEdit} />
         </>
       );
     case 'viewJobDetails':
@@ -49,7 +51,7 @@ function App() {
           <JobDetails
             currentJob={currentJob}
             currentEq={currentEq}
-            cancelEdit={() => setCurrentView('main')}
+            cancelEdit={cancelEdit}
             events={currentEq.data.events}
           />
         </>

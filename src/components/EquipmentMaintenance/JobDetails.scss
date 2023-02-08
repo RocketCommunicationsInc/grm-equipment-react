@@ -1,9 +1,9 @@
 .Job-Detail-grid {
   display: grid;
-  grid-template-columns: 35% 65%;
-  padding: var(--spacing-4) var(--spacing-6);
+  grid-template-columns: minmax(30rem, 2fr) minmax(40rem, 3fr);
+  padding: 0 var(--spacing-6) var(--spacing-4);
   gap: var(--spacing-3);
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 10.25rem);
 
   &__left-panel {
     background-color: var(--color-background-surface-default);
@@ -109,4 +109,8 @@
 }
 .progress--step-5 .step5 {
   opacity: 1;
+}
+
+.Breadcrumb-nav::part(container) {
+  padding: var(--spacing-6);
 }
