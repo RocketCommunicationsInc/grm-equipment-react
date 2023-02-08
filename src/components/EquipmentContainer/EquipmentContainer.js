@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import {
   RuxTabs,
   RuxTab,
@@ -6,10 +7,10 @@ import {
   RuxMonitoringIcon,
   RuxIcon,
 } from '@astrouxds/react';
-import './EquipmentContainer.scss';
+import { PanelSubContainer } from '../../common/Panel/PanelSubContainer/PanelSubContainer';
 import EquipmentMaintenance from '../EquipmentMaintenance/EquipmentMaintenance';
 import EquipmentDetails from '../EquipmentDetails/EquipmentDetails';
-import { useEffect, useRef, useState } from 'react';
+import './EquipmentContainer.scss';
 
 let selectedTabId;
 let lastEq;
@@ -140,36 +141,27 @@ const EquipmentContainer = ({
           <div className='Equipment-container__equipment-inoperable'>
             {formattedData.length > 0 ? (
               <div>
-                {formattedData.map((equipmentList, upperIndex) => {
-                  return (
-                    <div
-                      key={equipmentList.id}
-                      className={`equipment-${equipmentList.label.toLowerCase()}`}
-                    >
-                      <h3>
-                        {equipmentList.label} ({equipmentList.children.length})
-                      </h3>
-                      <ul className='Equipment-container__equipment-list'>
-                        {equipmentList.children.map((equipment, index) => {
-                          return (
-                            <li key={equipment.data.id}>
-                              <RuxMonitoringIcon
-                                data-test={`equipment-${upperIndex}-${index}`}
-                                icon={equipmentList.icon}
-                                className={equipment.data.status}
-                                status={equipment.data.status}
-                                label={equipment.data.label}
-                                onClick={() => {
-                                  selectEquip(equipment);
-                                }}
-                              />
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  );
-                })}
+                {formattedData.map((equipmentList, upperIndex) => (
+                  <PanelSubContainer
+                    key={equipmentList.id}
+                    heading={`${equipmentList.label} ${equipmentList.children.length}`}
+                  >
+                    <ul className='Equipment-container__equipment-list'>
+                      {equipmentList.children.map((equipment, index) => (
+                        <li key={equipment.data.id}>
+                          <RuxMonitoringIcon
+                            data-test={`equipment-${upperIndex}-${index}`}
+                            icon={equipmentList.icon}
+                            className={equipment.data.status}
+                            status={equipment.data.status}
+                            label={equipment.data.label}
+                            onClick={() => selectEquip(equipment)}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </PanelSubContainer>
+                ))}
               </div>
             ) : (
               <p>No Equipment found.</p>
