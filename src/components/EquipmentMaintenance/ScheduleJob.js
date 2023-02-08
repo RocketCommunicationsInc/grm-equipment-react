@@ -8,7 +8,6 @@ import {
   RuxCheckbox,
   RuxButton,
   RuxInput,
-  RuxIcon,
   RuxButtonGroup,
   RuxContainer,
   RuxBreadcrumb,
