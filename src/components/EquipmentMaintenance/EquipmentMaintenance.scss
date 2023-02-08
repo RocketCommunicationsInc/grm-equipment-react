@@ -1,12 +1,9 @@
-@import '../colors';
-
 .MaintenanceJobView {
   &__jobCardsContainer {
-    flex: 1 1 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 20rem);
-    grid-gap: 3rem;
-    padding: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-gap: var(--spacing-6);
+    padding: var(--spacing-6);
   }
 
   &__cardDetails {
