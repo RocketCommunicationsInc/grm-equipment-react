@@ -1,22 +1,4 @@
 .Conflicts-table {
+  height: 100%;
   overflow: auto;
-  display: grid;
-  grid-template-rows: 2rem auto;
-
-  &__heading {
-    background-color: var(--color-background-surface-header);
-    border-top: 1px solid var(--color-background-base-default);
-    padding-left: var(--spacing-2);
-    box-shadow: var(--shadow-overlay);
-  }
-
-  &__heading,
-  &__item {
-    display: grid;
-    grid-template-columns: repeat(2, 4rem) 4.5rem 25rem 4.5rem 3rem repeat(
-        4,
-        5rem
-      );
-    align-items: center;
-  }
 }
