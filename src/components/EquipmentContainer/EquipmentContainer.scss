@@ -33,13 +33,17 @@
   }
 
   &__equipment-inoperable {
-    padding: 1.25rem 1.25rem 9.375rem;
+    height: 100%;
 
-    rux-status {
-      position: absolute;
-      top: 0.938rem;
-      left: 1.875;
-      margin: 0;
+    &::part(container) {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &::part(body) {
+      flex-grow: 1;
+      overflow: auto;
     }
 
     rux-monitoring-icon {
@@ -53,6 +57,7 @@
     padding: 1.25rem;
     text-align: center;
     position: relative;
+    border-bottom: none;
   }
 }
 
