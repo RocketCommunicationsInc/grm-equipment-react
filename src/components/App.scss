@@ -19,8 +19,7 @@ main {
   display: grid;
   // Screen height minus the height of the Global Status Bar
   height: calc(100vh - 6rem);
-  max-width: 100vw;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 18rem 1fr;
 
   &__left-panel {
     background-color: var(--color-background-surface-default);
@@ -28,6 +27,8 @@ main {
   }
 
   &__right-panel {
+    height: 100%;
+    overflow: auto;
     background-color: var(--color-background-surface-default);
     box-shadow: var(--container-color-border) 0 0 0 1px;
   }
