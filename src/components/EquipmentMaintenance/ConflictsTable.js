@@ -18,8 +18,6 @@ let conflicts = getAllConflicts();
 const ConflictsTable = () => {
   const columns = useMemo(() => columnDefs, []);
 
-  console.log(conflicts);
-
   const table = useReactTable({
     data: conflicts,
     columns,

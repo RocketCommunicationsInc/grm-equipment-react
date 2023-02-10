@@ -20,8 +20,6 @@ export const AstroReactTable = ({
     return false;
   };
 
-  console.log(table);
-
   return (
     <div className='Astro-react-table'>
       <header className='Astro-react-table__header'>
