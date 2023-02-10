@@ -3,28 +3,6 @@
 .Equipment-container {
   height: 100%;
 
-  // ** Not sure these are needed now **
-  // ul {
-  //   padding-left: 0;
-  //   display: flex;
-  //   flex-flow: row wrap;
-  // }
-
-  // rux-tabs {
-  //   height: 2.5rem;
-  // }
-
-  // h2 {
-  //   background-color: $darkest_blue;
-  //   padding: 1.25rem;
-  //   margin-top: 0;
-  // }
-
-  // h3 {
-  //   margin: 0;
-  // }
-  // ** end **
-
   &__tab-panels {
     padding-top: var(--spacing-6);
     height: calc(100% - 4rem);
@@ -61,11 +39,6 @@
     li {
       border-bottom: none;
       padding: var(--spacing-4);
-      // ** don't think these are needed **
-      // list-style: none;
-      // justify-content: space-evenly;
-      // text-align: center;
-      // position: relative;
     }
   }
 }
@@ -73,13 +46,6 @@
 #tab-set-id-1 {
   height: 3.75rem;
 }
-
-// this sets cursor pointer for the entire app
-// not sure this is the spot for that if that's
-// the desired result
-// rux-icon {
-//   cursor: pointer;
-// }
 
 .critical {
   color: $critical;
