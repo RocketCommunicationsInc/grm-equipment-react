@@ -7,7 +7,7 @@
   gap: var(--spacing-3);
 
   &__tab-panels {
-    height: calc(100% - 4.75rem + 2px);
+    height: calc(100% - 4.625rem);
     display: flex;
     flex-direction: column;
   }
