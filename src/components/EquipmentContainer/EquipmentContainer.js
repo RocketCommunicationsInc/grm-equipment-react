@@ -149,14 +149,16 @@ const EquipmentContainer = ({
                 >
                   <ul className='Equipment-container__equipment-list'>
                     {equipmentList.children.map((equipment, index) => (
-                      <li key={equipment.data.id}>
+                      <li
+                        key={equipment.data.id}
+                        onClick={() => selectEquip(equipment)}
+                      >
                         <RuxMonitoringIcon
                           data-test={`equipment-${upperIndex}-${index}`}
                           icon={equipmentList.icon}
                           className={equipment.data.status}
                           status={equipment.data.status}
                           label={equipment.data.label}
-                          onClick={() => selectEquip(equipment)}
                         />
                       </li>
                     ))}
@@ -170,21 +172,18 @@ const EquipmentContainer = ({
         </RuxTabPanel>
         {openEqs.map((openEq) => (
           <RuxTabPanel
+            className='Equipment-container__equipment-details'
             key={openEq.data.id}
             aria-labelledby={`tab-id-${openEq.data.id}`}
             data-test={`panel-id-${openEq.data.id}`}
           >
-            <section>
-              <EquipmentDetails equipment={openEq} />
-            </section>
+            <EquipmentDetails equipment={openEq} />
 
-            <section>
-              <EquipmentMaintenance
-                changeView={changeView}
-                setCurrentJob={setCurrentJob}
-                equipment={openEq}
-              />
-            </section>
+            <EquipmentMaintenance
+              changeView={changeView}
+              setCurrentJob={setCurrentJob}
+              equipment={openEq}
+            />
           </RuxTabPanel>
         ))}
       </RuxTabPanels>
