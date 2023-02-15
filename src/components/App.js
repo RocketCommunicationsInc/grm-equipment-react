@@ -61,7 +61,7 @@ function App() {
         <>
           <GlobalStatusBar data={data} />
           <main className='Dashboard-grid' key={currentView}>
-            <nav className='main-menu Dashboard-grid__left-panel'>
+            <nav className='Dashboard-grid__left-panel'>
               <SidebarTree selectEquip={selectEquip} />
             </nav>
 
