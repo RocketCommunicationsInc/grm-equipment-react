@@ -1,52 +1,36 @@
-import './ConflictsTable.scss';
 import {
-  formatDayOfYear,
-  formatReadableTime,
-  capitalize,
-} from '../../util/util';
+  getCoreRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+
+import { AstroReactTable } from '../../common/AstroReactTable/AstroReactTable';
+import { getAll as getAllConflicts } from '../../services/jobs';
+import { columnDefs } from './ConflictsTableColumns';
+
 import PanelHeader from '../../common/PanelHeader';
 import { RuxContainer } from '@astrouxds/react';
-import { getAll as getAllConflicts } from '../../services/jobs';
+import './ConflictsTable.scss';
+import { useMemo } from 'react';
 
 let conflicts = getAllConflicts();
 
 const ConflictsTable = () => {
+  const columns = useMemo(() => columnDefs, []);
+
+  const table = useReactTable({
+    data: conflicts,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
+
   return (
     <>
       <PanelHeader heading={'Conflicts'}></PanelHeader>
       <RuxContainer>
         <div className='Conflicts-table'>
-          <div className='Conflicts-table__heading'>
-            <div>IRON</div>
-            <div>GS</div>
-            <div>Rev</div>
-            <div>Equipment String</div>
-            <div>State</div>
-            <div>DOY</div>
-            <div>Start</div>
-            <div>AOS</div>
-            <div>LOS</div>
-            <div>Stop</div>
-          </div>
-
-          <ul>
-            {conflicts.map((c) => {
-              return (
-                <li className='Conflicts-table__item' key={c.aos}>
-                  <div>{c.iron}</div>
-                  <div>{c.groundStation}</div>
-                  <div>{c.rev}</div>
-                  <div>{c.equipmentString}</div>
-                  <div>{capitalize(c.state)}</div>
-                  <div>{formatDayOfYear(c.startTime)}</div>
-                  <div>{formatReadableTime(c.startTime)}</div>
-                  <div>{formatReadableTime(c.aos)}</div>
-                  <div>{formatReadableTime(c.los)}</div>
-                  <div>{formatReadableTime(c.endTime)}</div>
-                </li>
-              );
-            })}
-          </ul>
+          <AstroReactTable table={table} isSortable />
         </div>
       </RuxContainer>
     </>
